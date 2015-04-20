@@ -1,0 +1,7 @@
+GET /                        Phpsx\Website\Application\Index
+GET /download                Phpsx\Website\Application\Download
+GET /documentation           Phpsx\Website\Application\Documentation
+GET /blog                    Phpsx\Website\Application\Blog::doIndex
+GET /blog/post/:title        Phpsx\Website\Application\Blog::doDetail
+GET /blog/category/:category Phpsx\Website\Application\Blog::doCategory
+GET /blog/feed               Phpsx\Website\Application\Blog::doFeed

@@ -1,0 +1,13 @@
+
+ooooooooo.    .oooooo..o ooooooo  ooooo 
+`888   `Y88. d8P'    `Y8  `8888    d8'  
+ 888   .d88' Y88bo.         Y888..8P    
+ 888ooo88P'   `"Y8888o.      `8888'     
+ 888              `"Y88b    .8PY888.    
+ 888         oo     .d8P   d8'  `888b   
+o888o        8""88888P'  o888o  o88888o 
+
+
+Welcome, PSX is a framework written in PHP to create RESTful APIs. More 
+informations at http://phpsx.org.
+

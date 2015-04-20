@@ -1,0 +1,191 @@
+
+body
+{
+	font-family: 'Inconsolata', sans-serif;
+	background-color:rgba(30,30,30, 1);
+	background-image:url(../img/bkg_light.png);
+	font-size:1.7em;
+}
+
+pre
+{
+	margin:0px;
+	padding:8px;
+	line-height:1.4em;
+	border:none;
+	border-radius:0px;
+	background-color:#222;
+	color:#b5e853;
+}
+
+.psx-header
+{
+	margin-top:16px;
+}
+
+.psx-header img
+{
+	float:left;
+	margin:0px 12px;
+	padding-top:8px;
+	padding-bottom:12px;
+}
+
+.psx-header h1
+{
+	margin:0px;
+	padding:0px;
+	padding-top:12px;
+	color:#b5e853;
+	font-weight:bold;
+}
+
+.psx-navigation
+{
+	background-color:#fff;
+	border-bottom:1px solid #222;
+}
+
+.psx-navigation ul
+{
+	margin:0px;
+	padding:12px;
+	background-color:#ccc;
+}
+
+.psx-navigation li
+{
+	list-style-type:none;
+	display:inline;
+	margin:0px;
+	padding:0px;
+}
+
+.psx-navigation a
+{
+	padding:12px;
+	color:#00f;
+}
+
+.psx-body
+{
+	background-color:#fff;
+	padding:8px;
+}
+
+.psx-body h2
+{
+	margin-top:8px;
+	font-weight:bold;
+}
+
+.psx-body h3
+{
+	font-weight:bold;
+}
+
+.psx-body h4
+{
+	font-weight:bold;
+}
+
+.psx-body p
+{
+	text-align:justify;
+}
+
+.psx-body > dl > dd
+{
+	text-indent:16px;
+}
+
+.psx-footer
+{
+	text-align:right;
+	margin:8px;
+	color:#aaa;
+	font-size:0.8em;
+	margin-top:16px;
+	margin-bottom:32px;
+}
+
+.psx-code-box
+{
+	border:1px solid #666;
+	margin-top:6px;
+	margin-bottom:8px;
+}
+
+.psx-code-box > div
+{
+	overflow:hidden;
+}
+
+.psx-code-box h4
+{
+	background-color:#666;
+	color:#fff;
+	font-size:0.8em;
+	font-weight:bold;
+	margin:0px;
+	padding:4px;
+}
+
+.psx-right
+{
+	float:right;
+	margin-right:0px;
+}
+
+.psx-left
+{
+	float:left;
+	margin-left:0px;
+}
+
+.psx-body-ruler
+{
+	clear:both;
+	padding:8px;
+	border-bottom:1px solid #222;
+}
+
+.psx-categories
+{
+	color:#aaa;
+	font-size:0.9em;
+	border-top:1px solid #aaa;
+	margin-top:8px;
+	padding-top:4px;
+}
+
+.psx-categories ul
+{
+	list-style-type:none;
+	padding:0px;
+	display:inline;
+}
+
+.psx-categories li
+{
+	display:inline;
+}
+
+.psx-categories li:after
+{
+	content:',';
+}
+
+.psx-categories li:last-child:after
+{
+	content:'';
+}
+
+.psx-categories a
+{
+}
+
+.nav-tabs > li > a
+{
+	border-radius:0px;
+}

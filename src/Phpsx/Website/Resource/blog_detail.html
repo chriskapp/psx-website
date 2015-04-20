@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<?php include($location . '/inc/meta.html'); ?>
+	<?php echo \PSX\Atom\Writer::link('PSX', $router->getUrl('Phpsx\Website\Application\Blog::doFeed')); ?>
+</head>
+<body>
+
+<?php include($location . '/inc/header.html'); ?>
+
+<h2 id="blog">Blog</h2>
+<div class="entry">
+	<h3><?php echo $title; ?></h3>
+	<p><small>posted by <a href="<?php echo $authorUri; ?>"><?php echo $authorName; ?></a> on <?php echo $updated->format('Y-m-d'); ?></small></p>
+	<div class="content"><?php echo $content; ?></div>
+</div>
+
+<?php include($location . '/inc/footer.html'); ?>
+
+</body>
+</html>
+

@@ -1,0 +1,9 @@
+{
+  "name": "psx",
+  "description": "PSX website",
+  "homepage": "http://phpsx.org",
+  "private": true,
+  "dependencies": {
+  	"bootstrap": "~3.2"
+  }
+}
