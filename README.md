@@ -11,8 +11,8 @@ There is also an command to fetch the latest releases from GitHub. The latest
 release gets then displayed on the download page.
 
 Since PSX is an framework to create RESTful APIs every page has also different
-representations formats. If you request i.e. an page with an Accept header 
-application/json the JSON representation of the page gets returned. By default
-there are several media types supporter. Hint try to request the front page
-with an Accept text/plain header.
+media type representation formats. If you request i.e. an page with an Accept 
+header "application/json" the JSON representation of the page gets returned. By 
+default there are several media types supported. Hint try to request the front 
+page with an Accept "text/plain" header.
 
