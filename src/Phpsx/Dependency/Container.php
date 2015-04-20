@@ -4,7 +4,7 @@ namespace Phpsx\Dependency;
 
 use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\DriverManager;
-use PSX\Data\writer;
+use PSX\Data\Writer;
 use PSX\Dependency\DefaultContainer;
 use Phpsx\Website\Console;
 use Symfony\Component\Console\Application;
