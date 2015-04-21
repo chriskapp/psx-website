@@ -690,7 +690,7 @@ GET|POST /bar              Acme\News\Application\BarApi</pre>
         $requestMethod = $this-&gt;getParameter('foo');
      
         // if its an XML Content-Type returns an DOMDocument. On
-        // an JSON or x-www-form-urlencoded Content-Type an array
+        // an JSON or x-www-form-urlencoded Content-Type an stdClass
         $body = $this-&gt;getBody():
      
         // set an response code
