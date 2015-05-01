@@ -78,10 +78,11 @@ class UpdateBlogCommand extends Command
 			}
 			else
 			{
-				if($row->getUpdated()->format('Y-m-d H:i:s') != $entry->getUpdated()->format('Y-m-d H:i:s'))
+				if($entry->getUpdated() > $row->getUpdated())
 				{
 					// if the update date has change update the entry
 					$table->update([
+						'id'         => $entry->getId(),
 						'title'      => $entry->getTitle(),
 						'titleSlug'  => $this->slugify->slugify($entry->getTitle()),
 						'authorName' => $author->getName(),
@@ -90,8 +91,6 @@ class UpdateBlogCommand extends Command
 						'summary'    => $entry->getSummary(),
 						'category'   => $this->getCategories($entry),
 						'content'    => $entry->getContent()->getContent(),
-					], [
-						'id' => $entry->getId()
 					]);
 
 					$putCount++;
