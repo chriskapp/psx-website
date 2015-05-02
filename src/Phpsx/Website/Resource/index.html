@@ -124,8 +124,8 @@ version: v1
         $resource-&gt;setDescription('Returns a collection of population entries');
 
         $resource-&gt;addMethod(Resource\Factory::getMethod('GET')
-            -&gt;addQueryParameter(new Property\Integer('startIndex'))
-            -&gt;addQueryParameter(new Property\Integer('count'))
+            -&gt;addQueryParameter(Property::getInteger('startIndex'))
+            -&gt;addQueryParameter(Property::getInteger('count'))
             -&gt;addResponse(
                 200, 
                 $this-&gt;schemaManager-&gt;getSchema('Acme\Schema\Collection')
