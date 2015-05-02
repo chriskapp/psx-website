@@ -2,7 +2,47 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>urn:phpsx.org:blog</id>
 	<title>PSX Blog</title>
-	<updated>2015-04-19T00:52:00Z</updated>
+	<updated>2015-05-02T18:37:00Z</updated>
+	<entry>
+		<id>urn:phpsx.org:blog:15</id>
+		<title>First stable 1.0 release</title>
+		<author>
+			<name>christoph.kappestein</name>
+			<uri>http://github.com/k42b3</uri>
+		</author>
+		<updated>2015-05-02T18:37:00Z</updated>
+		<summary>
+Announcement of the 1.0 release with talk about PSX
+		</summary>
+		<category term="announcement" />
+		<category term="psx" />
+		<content type="html"><![CDATA[
+
+<p>Iam really proud to announce the first stable version of PSX! This release 
+contains some improvements and fixes over the 0.9.10 release but is mostly 
+backwards compatible. The most important changes are that PSX is now compatible 
+to the current nightly build of PHP 7. Also the date time handling was improved 
+and many test cases were added. In the following a short description what PSX 
+offers.</p>
+
+<p>PSX is a framework which helps you to build RESTful APIs. We think that the 
+most important part to build an successful REST API is to provide an clear 
+contract between the API provider and consumer. Because of this you have to
+provide a specification if you build an API with PSX. This specification gets 
+used by PSX to validate and format incoming/outgoing data and also to generate 
+documentation and other data. Currently the specification can be written in 
+<a href="http://raml.org/">RAML</a> or directly in PHP. This means that you 
+always have an documentation which represents the actual API.</p>
+
+<p>Besides documentation PSX provides various other features like routing, API 
+versioning, data transformation, authentication and testing. More informations 
+at <a href="http://phpsx.org">phpsx.org</a>. All in all we think that PSX is a 
+unique project which should help developers to build better APIs. Since PSX is 
+in an early stage there are many things which are planed for the future so stay 
+tuned.</p>
+
+]]></content>
+	</entry>
 	<entry>
 		<id>urn:phpsx.org:blog:14</id>
 		<title>Version 0.9.10 released</title>
