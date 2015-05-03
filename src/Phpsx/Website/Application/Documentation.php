@@ -12,15 +12,13 @@ class Documentation extends ViewAbstract
 	 */
 	protected $reverseRouter;
 
-	public function onLoad()
+	public function doIndex()
 	{
-		parent::onLoad();
-
 		$this->setBody([
 			'links' => [[
 				'rel'         => 'manual',
 				'title'       => 'Manual',
-				'href'        => $this->reverseRouter->getBasePath() . '/doc',
+				'href'        => 'http://psx.readthedocs.org',
 				'description' => 'The official manual of PSX',
 			],[
 				'rel'         => 'api',

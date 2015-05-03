@@ -3,6 +3,7 @@
 namespace Phpsx\Website\Application;
 
 use PSX\Controller\ViewAbstract;
+use PSX\Data\WriterInterface;
 
 class Index extends ViewAbstract
 {
@@ -12,10 +13,14 @@ class Index extends ViewAbstract
 	 */
 	protected $reverseRouter;
 
-	public function onLoad()
-	{
-		parent::onLoad();
+	/**
+	 * @Inject
+	 * @var PSX\Data\WriterFactory
+	 */
+	protected $writerFactory;
 
+	public function doIndex()
+	{
 		$this->setBody([
 			'motd'  => 'Welcome, PSX is a framework written in PHP to create RESTful APIs',
 			'links' => [[
@@ -23,14 +28,19 @@ class Index extends ViewAbstract
 				'href' => $this->reverseRouter->getUrl(__CLASS__),
 			],[
 				'rel'  => 'download',
-				'href' => $this->reverseRouter->getUrl('Phpsx\Website\Application\Download'),
+				'href' => $this->reverseRouter->getUrl('Phpsx\Website\Application\Download::doIndex'),
 			],[
 				'rel'  => 'documentation',
-				'href' => $this->reverseRouter->getUrl('Phpsx\Website\Application\Documentation'),
+				'href' => $this->reverseRouter->getUrl('Phpsx\Website\Application\Documentation::doIndex'),
 			],[
 				'rel'  => 'blog',
 				'href' => $this->reverseRouter->getUrl('Phpsx\Website\Application\Blog::doIndex'),
 			]]
 		]);
+	}
+
+	public function doHumans()
+	{
+		$this->writerFactory->setContentNegotiation('*/*', WriterInterface::TEXT);
 	}
 }

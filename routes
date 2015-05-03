@@ -1,6 +1,10 @@
-GET /                        Phpsx\Website\Application\Index
-GET /download                Phpsx\Website\Application\Download
-GET /documentation           Phpsx\Website\Application\Documentation
+GET /                        Phpsx\Website\Application\Index::doIndex
+GET /humans.txt              Phpsx\Website\Application\Index::doHumans
+GET /get-started             Phpsx\Website\Application\Bootstrap::doIndex
+GET /download                Phpsx\Website\Application\Download::doIndex
+GET /documentation           Phpsx\Website\Application\Documentation::doIndex
+GET /security                Phpsx\Website\Application\Security::doIndex
+GET /disclosure              Phpsx\Website\Application\Disclosure::doIndex
 GET /blog                    Phpsx\Website\Application\Blog::doIndex
 GET /blog/post/:title        Phpsx\Website\Application\Blog::doDetail
 GET /blog/category/:category Phpsx\Website\Application\Blog::doCategory

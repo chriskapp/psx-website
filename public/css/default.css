@@ -101,12 +101,40 @@ pre
 
 .psx-footer
 {
-	text-align:right;
-	margin:8px;
 	color:#aaa;
 	font-size:0.8em;
-	margin-top:16px;
 	margin-bottom:32px;
+}
+
+.psx-footer > p
+{
+	text-align:right;
+}
+
+.psx-footer-navigation
+{
+	border-top:1px solid #222;
+	background-color:#ccc;
+	background-image:url(../img/bkg_footer.png);
+	background-position:center bottom;
+	margin-bottom:16px;
+}
+
+.psx-footer-navigation a
+{
+	color:#222;
+}
+
+.psx-footer-navigation ul
+{
+	list-style-type:none;
+	margin:8px;
+	margin-left:12px;
+	padding:0px;
+}
+
+.psx-footer-navigation li
+{
 }
 
 .psx-code-box

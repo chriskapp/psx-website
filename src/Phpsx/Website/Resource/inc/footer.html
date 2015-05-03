@@ -4,6 +4,30 @@
 
 <div class="container">
 	<div class="psx-footer">
+		<div class="psx-footer-navigation">
+			<div class="row">
+				<div class="col-md-4">
+					<ul>
+						<li><a href="<?php echo $router->getUrl('Phpsx\Website\Application\Index::doIndex'); ?>">About</a></li>
+						<li><a href="<?php echo $router->getUrl('Phpsx\Website\Application\Security::doIndex'); ?>">Security</a></li>
+						<li><a href="<?php echo $router->getUrl('Phpsx\Website\Application\Blog::doIndex'); ?>">Blog</a></li>
+					</ul>
+				</div>
+				<div class="col-md-4">
+					<ul>
+						<li><a href="https://packagist.org/packages/psx/psx">Packagist</a></li>
+						<li><a href="https://github.com/k42b3/psx">GitHub</a></li>
+					</ul>
+				</div>
+				<div class="col-md-4">
+					<ul>
+						<li><a href="http://psx.readthedocs.org/">Manual</a></li>
+						<li><a href="http://phpsx.org/api">API</a></li>
+						<li><a href="http://example.phpsx.org/">Example</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
 		<p>proudly powered by <a href="http://phpsx.org">PSX (<?php echo \PSX\Base::getVersion(); ?>)</a><br />
 		the <a href="https://github.com/k42b3/psx-website">source</a> is available on GitHub</p>
 	</div>

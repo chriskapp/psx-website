@@ -10,6 +10,7 @@ load an different configuration depending on the environment.
 return array(
 
 	// File which contains an atom feed with blog entries
+	'disclosure_file'         => __DIR__ . '/disclosure.xml',
 	'blog_file'               => __DIR__ . '/blog.xml',
 
 	// GIT repo data

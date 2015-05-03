@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<?php include($location . '/inc/meta.html'); ?>
+</head>
+<body>
+
+<?php include($location . '/inc/header.html'); ?>
+
+<h2 id="security">Security</h2>
+
+<p>Handling of security vulnerabilities is a important part of open-source 
+development. With the following page we want streamline the process of reporting 
+and getting informations about security vulnerabilities.</p>
+
+<h3 id="disclosure">Disclosure</h2>
+
+<p>We maintain an dedicated vulnerability disclosure feed (<a href="http://phpsx.org/disclosure">http://phpsx.org/disclosure</a>)
+which contains every announced vulnerability. You can subscribe to this feed in 
+order to get always the latest security informations. Besides that we will also
+announce each known vulnerability in a blog post.</p>
+
+<h3 id="reporting">Reporting</h2>
+
+<p>The following process shows how the PSX team handles an reported security
+vulnerability:</p>
+
+<ul>
+	<li>The vulnerability gets reported privately to <b>security [at] phpsx.org</b>.</li>
+	<li>Messages that do not relate to security vulnerabilities in PSX are ignored.</li>
+	<li>Investigate the report and either reject or accept it.</li>
+	<li>If the report is rejected send an explanation to the reporter why.</li>
+	<li>If the report is accepted inform the reporter about the acceptance and that we are working on a fix.</li>
+	<li>Develop a fix in private.</li>
+	<li>Provide the reporter with a copy of the fix and a draft vulnerability announcement for comment.</li>
+	<li>Agree on the fix, the announcement and the release schedule with the reporter.</li>
+	<li>Commit the fix.</li>
+	<li>Create a new release that includes the fix.</li>
+	<li>Announce the release and the vulnerability. This includes an blog post of the new version and adding the vulnerability to the vulnerability disclosure feed.</li>
+</ul>
+
+<?php include($location . '/inc/footer.html'); ?>
+
+</body>
+</html>
+

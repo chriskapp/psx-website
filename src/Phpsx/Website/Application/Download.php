@@ -13,10 +13,8 @@ class Download extends ViewAbstract
 	 */
 	protected $tableManager;
 
-	public function onLoad()
+	public function doIndex()
 	{
-		parent::onLoad();
-
 		$releases = $this->tableManager->getTable('Phpsx\Website\Table\Release')->getAll(0, 1, 'publishedAt', Sql::SORT_DESC);
 		$release  = current($releases);
 

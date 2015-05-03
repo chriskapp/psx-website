@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:sd="http://www.php-fig.org/schemas/security-disclosure">
+	<id>urn:phpsx.org:disclosure</id>
+	<title>PSX</title>
+	<updated>2015-05-03T15:59:00Z</updated>
+</feed>
