@@ -2,7 +2,32 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>urn:phpsx.org:blog</id>
 	<title>PSX Blog</title>
-	<updated>2015-05-02T18:37:00Z</updated>
+	<updated>2015-05-04T23:04:00Z</updated>
+	<entry>
+		<id>urn:phpsx.org:blog:16</id>
+		<title>Security process and website update</title>
+		<author>
+			<name>christoph.kappestein</name>
+			<uri>http://github.com/k42b3</uri>
+		</author>
+		<updated>2015-05-04T23:04:00Z</updated>
+		<summary>
+Short coverage of the defined security process and description of the website changes
+		</summary>
+		<category term="website" />
+		<category term="psx" />
+		<content type="html"><![CDATA[
+<p>We think that correct handling of reported vulnerabilities is an important 
+part of responsible software development. Because of this we have added a 
+<a href="http://phpsx.org/security">security</a> page which describes the formal 
+process how to report an security vulnerability. Also we provide a way to 
+receive the latest security informations.</p>
+
+<p>Beside that we have added a <a href="http://phpsx.org/get-started">getting started</a> 
+page to help new users to quickly get a running PSX environment.</p>
+
+]]></content>
+	</entry>
 	<entry>
 		<id>urn:phpsx.org:blog:15</id>
 		<title>First stable 1.0 release</title>
@@ -17,7 +42,6 @@ Announcement of the 1.0 release with talk about PSX
 		<category term="announcement" />
 		<category term="psx" />
 		<content type="html"><![CDATA[
-
 <p>Iam really proud to announce the first stable version of PSX! This release 
 contains some improvements and fixes over the 0.9.10 release but is mostly 
 backwards compatible. The most important changes are that PSX is now compatible 
