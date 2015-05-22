@@ -2,7 +2,75 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>urn:phpsx.org:blog</id>
 	<title>PSX Blog</title>
-	<updated>2015-05-04T23:04:00Z</updated>
+	<updated>2015-05-22T19:13:00Z</updated>
+	<entry>
+		<id>urn:phpsx.org:blog:17</id>
+		<title>Version 1.0.1 released</title>
+		<author>
+			<name>christoph.kappestein</name>
+			<uri>http://github.com/k42b3</uri>
+		</author>
+		<updated>2015-05-22T19:13:00Z</updated>
+		<summary>
+Coverage of the changes in the 1.0.1 release
+		</summary>
+		<category term="announcement" />
+		<category term="psx" />
+		<content type="html"><![CDATA[
+<p>This release adds commands for debugging and dumping the schema of an API. 
+Also the parsing and generation of RAML files was improved. In the following the 
+coverage of the complete changelog.</p>
+
+<ul>
+	<li>
+		<b>Added raml file parameter for api generation command</b>
+		<p>It is now possible to provide an RAML file as option to the API 
+		generation command. If provided the generated API uses the given RAML 
+		file i.e.:</p>
+		<pre>vendor/bin/psx generate:api --raml schema.raml Acme\Api connection,http</pre>
+	</li>
+	<li>
+		<b>Improved raml parser and tests</b>
+		<p>The RAML parser was improved that means we have now support for the 
+		<code>schemas</code> key and we can define nested resources.</p>
+	</li>
+	<li>
+		<b>Add format key to swagger parameter record</b>
+		<p>The Swagger parameter record has a new property <code>format</code>.</p>
+	</li>
+	<li>
+		<b>Add iterator and countable interface to complex type</b>
+		<p>It is now possible to iterate over the childs of an complex type.</p>
+	</li>
+	<li>
+		<b>Improved raml and swagger generation</b>
+		<p>The query and path parameters are now properly included into the 
+		specification also the description field is used where it is possible.</p>
+	</li>
+	<li>
+		<b>Add return $this to MethodAbstract::setDescription</b>
+		<p>The method returns now $this to have a fluent-interface like in the 
+		other methods.</p>
+	</li>
+	<li>
+		<b>Add debug commands to print an raml and jsonschema resource definition</b>
+		<p>A command which prints the structure of the resource definition when 
+		parsing an RAML or JsonSchema. This can be useful for debugging to see 
+		whether PSX understands an specific parameter. I.e. to debug an RAML 
+		file:</p>
+		<pre>vendor/bin/psx debug:raml schema.raml</pre>
+	</li>
+	<li>
+		<b>Add console commands to generate different schema representations of the api</b>
+		<p>With theses commands it is now possible to generate different schema 
+		representations from the console. As example to generate an RAML file of
+		an API:</p>
+		<pre>vendor/bin/psx schema:raml /acme/api</pre>
+	</li>
+</ul>
+
+]]></content>
+	</entry>
 	<entry>
 		<id>urn:phpsx.org:blog:16</id>
 		<title>Security process and website update</title>
