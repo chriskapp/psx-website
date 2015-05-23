@@ -2,7 +2,29 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>urn:phpsx.org:blog</id>
 	<title>PSX Blog</title>
-	<updated>2015-05-22T19:13:00Z</updated>
+	<updated>2015-05-23T19:26:00Z</updated>
+	<entry>
+		<id>urn:phpsx.org:blog:18</id>
+		<title>Version 1.0.2 hotfix released</title>
+		<author>
+			<name>christoph.kappestein</name>
+			<uri>http://github.com/k42b3</uri>
+		</author>
+		<updated>2015-05-23T19:26:00Z</updated>
+		<summary>
+Short explanation of the hotfix release
+		</summary>
+		<category term="announcement" />
+		<category term="psx" />
+		<content type="html"><![CDATA[
+<p>This is a hotfix release which fixes a problem introduced in the 1.0.1 
+release. The problem was that the wrong base path was passed to the JsonSchema
+when included in an RAML file. Because of that the sample API endpoint does not 
+work correct. More detailed informations about the problem at the 
+<a href="https://github.com/k42b3/psx/issues/8">issue</a>.</p>
+
+]]></content>
+	</entry>
 	<entry>
 		<id>urn:phpsx.org:blog:17</id>
 		<title>Version 1.0.1 released</title>
