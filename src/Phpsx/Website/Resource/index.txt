@@ -8,6 +8,6 @@ ooooooooo.    .oooooo..o ooooooo  ooooo
 o888o        8""88888P'  o888o  o88888o 
 
 
-Welcome, PSX is a framework written in PHP to create RESTful APIs. More 
+Welcome, PSX is a framework written in PHP to create REST APIs. More 
 informations at http://phpsx.org.
 

@@ -22,7 +22,7 @@ class Index extends ViewAbstract
 	public function doIndex()
 	{
 		$this->setBody([
-			'motd'  => 'Welcome, PSX is a framework written in PHP to create RESTful APIs',
+			'motd'  => 'Welcome, PSX is a framework written in PHP to create REST APIs',
 			'links' => [[
 				'rel'  => 'self',
 				'href' => $this->reverseRouter->getUrl(__CLASS__),
