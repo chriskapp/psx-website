@@ -2,7 +2,63 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>urn:phpsx.org:blog</id>
 	<title>PSX Blog</title>
-	<updated>2015-05-23T19:26:00Z</updated>
+	<updated>2015-06-13T13:31:00Z</updated>
+	<entry>
+		<id>urn:phpsx.org:blog:19</id>
+		<title>Version 1.0.3 released</title>
+		<author>
+			<name>christoph.kappestein</name>
+			<uri>http://github.com/k42b3</uri>
+		</author>
+		<updated>2015-06-13T13:31:00Z</updated>
+		<summary>
+Coverage of the changes in the 1.0.3 release
+		</summary>
+		<category term="tutorial" />
+		<category term="psx" />
+		<content type="html"><![CDATA[
+<p>This release adds a new property type choice which allows to define an schema
+property which allows different kind of objects. Also the handling for incoming
+and outgoing data was unified. In the following the changelog</p>
+
+<ul>
+	<li>
+		<b>Added new ChoiceType property which allows different kinds of objects as value</b>
+		<p>Property which allows different of complex types. It uses the JsonSchema "oneOf" and
+		XSD "choice" element to generate the fitting schema definition.</p>
+	</li>
+	<li>
+		<b>Use same logic for traversing incoming and outgoing data</b>
+		<p>For parsing incoming and outgoing data we had in some places the same code
+		which essentially goes recursively through an schema and makes an specific 
+		action on an value. We have created a schema traverser class which unifies
+		this traversing through the schema. It is possible to add visitor classes 
+		which can act on the values.</p>
+	</li>
+	<li>
+		<b>Moved schema property methods assimilate and validate into seperate class</b>
+		<p>Because if the traversing class we could remove the assimilate and validate methods
+		from each property and add proper visitor implementations.</p>
+	</li>
+	<li>
+		<b>Improved record factory factory class which uses now the object build to get arbitrary dependencies</b>
+		<p>Inside an record factory it is now possible to define dependencies through an
+		<code>@Inject</code> annotation.</p>
+	</li>
+	<li>
+		<b>Implemented factory to convert requests into PSR-7 objects and vice versa</b>
+		<p>We have added an factory class to convert PSX http objects into PSR-7 objects.
+		Therefor we use the zend-diactoros PSR-7 implementation.</p>
+	</li>
+	<li>
+		<b>Improved many test cases</b>
+		<p>Many test cases were extended and improved. Especially the property schema
+		and controller schema api test cases.</p>
+	</li>
+</ul>
+
+]]></content>
+	</entry>
 	<entry>
 		<id>urn:phpsx.org:blog:18</id>
 		<title>Version 1.0.2 hotfix released</title>
