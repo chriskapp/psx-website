@@ -10,7 +10,7 @@
 			<name>christoph.kappestein</name>
 			<uri>http://github.com/k42b3</uri>
 		</author>
-		<updated>2015-06-13T13:31:00Z</updated>
+		<updated>2015-06-14T20:28:00Z</updated>
 		<summary>
 Coverage of the changes in the 1.0.3 release
 		</summary>
@@ -24,7 +24,7 @@ and outgoing data was unified. In the following the changelog</p>
 <ul>
 	<li>
 		<b>Added new ChoiceType property which allows different kinds of objects as value</b>
-		<p>Property which allows different of complex types. It uses the JsonSchema "oneOf" and
+		<p>Property which allows different kind of complex types. It uses the JsonSchema "oneOf" and
 		XSD "choice" element to generate the fitting schema definition.</p>
 	</li>
 	<li>
@@ -37,7 +37,7 @@ and outgoing data was unified. In the following the changelog</p>
 	</li>
 	<li>
 		<b>Moved schema property methods assimilate and validate into seperate class</b>
-		<p>Because if the traversing class we could remove the assimilate and validate methods
+		<p>Because of the traversing class we could remove the assimilate and validate methods
 		from each property and add proper visitor implementations.</p>
 	</li>
 	<li>
