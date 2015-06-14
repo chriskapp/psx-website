@@ -492,10 +492,9 @@ Accept: application/vnd.acme.v2+json</code></pre>
 
         // send request the response gets written to the body
         $controller = $this-&gt;loadController($request, $response);
-        $data       = json_decode((string) $body);
 
-        $this-&gt;assertArrayHasKey('hello', $data);
-        $this-&gt;assertEquals($data['hello'], 'world');
+        $this-&gt;assertEquals(200, $response->getStatusCode());
+        $this-&gt;assertJsonStringEqualsJsonString('{"hello": "world"}', (string) $body);
     }
 
     protected function getPaths()
