@@ -481,20 +481,12 @@ Accept: application/vnd.acme.v2+json</code></pre>
 {
     public function testHelloWorld()
     {
-        // create http request
-        $request  = new GetRequest('http://localhost.com/foo');
-        $request-&gt;addHeader('Accept', 'application/json');
-
-        // create http response
-        $response = new Response();
-        $body     = new TempStream(fopen('php://memory', 'r+'));
-        $response-&gt;setBody($body);
-
-        // send request the response gets written to the body
-        $controller = $this-&gt;loadController($request, $response);
+        // send request to the controller
+        $response = $this-&gt;sendRequest('http://127.0.0.1/foo', 'GET', ['Accept' => 'application/json']);
+        $body     = (string) $response->getBody();
 
         $this-&gt;assertEquals(200, $response->getStatusCode());
-        $this-&gt;assertJsonStringEqualsJsonString('{"hello": "world"}', (string) $body);
+        $this-&gt;assertJsonStringEqualsJsonString('{"hello": "world"}', $body);
     }
 
     protected function getPaths()
