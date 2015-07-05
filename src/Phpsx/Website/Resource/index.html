@@ -482,7 +482,7 @@ Accept: application/vnd.acme.v2+json</code></pre>
     public function testHelloWorld()
     {
         // send request to the controller
-        $response = $this-&gt;sendRequest('http://127.0.0.1/foo', 'GET', ['Accept' => 'application/json']);
+        $response = $this-&gt;sendRequest('http://127.0.0.1/foo', 'GET');
         $body     = (string) $response->getBody();
 
         $this-&gt;assertEquals(200, $response->getStatusCode());
