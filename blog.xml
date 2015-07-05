@@ -2,7 +2,65 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>urn:phpsx.org:blog</id>
 	<title>PSX Blog</title>
-	<updated>2015-06-13T13:31:00Z</updated>
+	<updated>2015-07-05T23:20:00Z</updated>
+	<entry>
+		<id>urn:phpsx.org:blog:20</id>
+		<title>Version 1.0.4 released</title>
+		<author>
+			<name>christoph.kappestein</name>
+			<uri>http://github.com/k42b3</uri>
+		</author>
+		<updated>2015-07-05T23:20:00Z</updated>
+		<summary>
+Coverage of the changes in the 1.0.4 release
+		</summary>
+		<category term="tutorial" />
+		<category term="psx" />
+		<content type="html"><![CDATA[
+<p>The bigest change of this release is the switch to the PSR-2 coding style 
+which should help new developers. In the following the coverage of the complete 
+changelog.</p>
+
+<ul>
+	<li>
+		<b>Switched to PSR-2 coding style and using absolute class paths in phpdocs</b>
+		<p>The previous coding style of PSX was relative similar to PSR-2 but had 
+		some small differences. We fixed these small differences with the  
+		<a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer">PHP-CS-Fixer</a>
+		tool. This should help new developers to go through the code.</p>
+	</li>
+	<li>
+		<b>Improve controller test cases</b>
+		<p>A new method was added to the controller test case which makes an
+		internal request to an controller and returns an response. This method
+		is now also used in every controller test case.</p>
+	</li>
+	<li>
+		<b>Add RecordInterface access to Accessor</b>
+		<p>It is now possible to navigate through an <code>RecordInterface</code> object 
+		structure using the accessor class-</p>
+	</li>
+	<li>
+		<b>Add JsonSerializable interface to record abstract</b>
+		<p>A record can be now easily converted to an JSON object using <code>json_encode</code>.</p>
+	</li>
+	<li>
+		<b>For incoming requests an exception is now throw if the data structure 
+		contains keys which are not available in the schema</b>
+		<p>Previously PSX had simply ignored unknown keys of the request data. To
+		give the consumer an direct feedback and to prevent abuse PSX throws now 
+		an exception if the data contains unknown keys.</p>
+	</li>
+	<li>
+		<b>Add development status for an API resource</b>
+		<p>The API can have a new status "development". If the API has this status
+		everybody can use the API as in production mode but an additional warning header
+		gets returned that the API is likely to change.</p>
+	</li>
+</ul>
+
+]]></content>
+	</entry>
 	<entry>
 		<id>urn:phpsx.org:blog:19</id>
 		<title>Version 1.0.3 released</title>
