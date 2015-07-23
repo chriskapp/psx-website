@@ -2,7 +2,41 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>urn:phpsx.org:blog</id>
 	<title>PSX Blog</title>
-	<updated>2015-07-05T23:20:00Z</updated>
+	<updated>2015-07-23T18:36:00Z</updated>
+	<entry>
+		<id>urn:phpsx.org:blog:21</id>
+		<title>Version 1.0.5 released</title>
+		<author>
+			<name>christoph.kappestein</name>
+			<uri>http://github.com/k42b3</uri>
+		</author>
+		<updated>2015-07-23T18:36:00Z</updated>
+		<summary>
+Short description of the changes in the 1.0.5 release
+		</summary>
+		<category term="announcement" />
+		<category term="psx" />
+		<content type="html"><![CDATA[
+<p>This release fixes a content negotiation bug. Because of this IE (and perhaps 
+other browsers) users received XML instead of HTML. This affects only users who
+use PSX for HTML presentation. In the following the changelog.</p>
+
+<ul>
+	<li>
+		<b>Fix issue with content negotiation</b>
+		<p>The issue was that the media types of the <code>Accept</code> header 
+		were sorted in the wrong order if no quality value was provided. The 
+		position of the media type is no considered.</p>
+	</li>
+	<li>
+		<b>Make api resource and schema classes serializable</b>
+		<p>It is now possible to serialize schema and resource classes. This is 
+		useful if you want to cache these classes.</p>
+	</li>
+</ul>
+
+]]></content>
+	</entry>
 	<entry>
 		<id>urn:phpsx.org:blog:20</id>
 		<title>Version 1.0.4 released</title>
@@ -10,11 +44,11 @@
 			<name>christoph.kappestein</name>
 			<uri>http://github.com/k42b3</uri>
 		</author>
-		<updated>2015-07-05T23:20:00Z</updated>
+		<updated>2015-07-05T23:21:00Z</updated>
 		<summary>
 Coverage of the changes in the 1.0.4 release
 		</summary>
-		<category term="tutorial" />
+		<category term="announcement" />
 		<category term="psx" />
 		<content type="html"><![CDATA[
 <p>The bigest change of this release is the switch to the PSR-2 coding style 
@@ -68,11 +102,11 @@ changelog.</p>
 			<name>christoph.kappestein</name>
 			<uri>http://github.com/k42b3</uri>
 		</author>
-		<updated>2015-06-14T20:28:00Z</updated>
+		<updated>2015-06-14T20:29:00Z</updated>
 		<summary>
 Coverage of the changes in the 1.0.3 release
 		</summary>
-		<category term="tutorial" />
+		<category term="announcement" />
 		<category term="psx" />
 		<content type="html"><![CDATA[
 <p>This release adds a new property type choice which allows to define an schema
