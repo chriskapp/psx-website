@@ -2,7 +2,77 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>urn:phpsx.org:blog</id>
 	<title>PSX Blog</title>
-	<updated>2015-07-23T18:36:00Z</updated>
+	<updated>2015-08-22T13:19:00Z</updated>
+	<entry>
+		<id>urn:phpsx.org:blog:22</id>
+		<title>Version 1.0.6 and 1.0.7 released</title>
+		<author>
+			<name>christoph.kappestein</name>
+			<uri>http://github.com/k42b3</uri>
+		</author>
+		<updated>2015-08-22T13:19:00Z</updated>
+		<summary>
+Coverage of the 1.0.6 and 1.0.7 release
+		</summary>
+		<category term="announcement" />
+		<category term="psx" />
+		<content type="html"><![CDATA[
+<p>Since the 1.0.6 and 1.0.7 release include only some small changes I will 
+cover both releases in one post. The bigest changes are that a new "any" schema
+porperty type was introduced and the condition component was improved. In the 
+following the coverage of both changelogs.</p>
+
+<p><b>1.0.7</b></p>
+<ul>
+	<li>
+		<b>Improved condition class</b>
+		<p>The condition class has new methods i.e <code>equals</code>, 
+		<code>greaterThen</code> etc. which add specific constraints to the
+		condition. It is recommended to use these methods over the old
+		<code>add</code> method. Also it is now possible to pass an DBAL 
+		<code>DatabasePlatform</code> object to the condition to generate db
+		vendor independent SQL. By default it uses still the MySQL dialect.</p>
+	</li>
+	<li>
+		<b>Schema html generator fix traversing nested schema properties</b>
+		<p>There was a problem that a nested schema was not added to the html
+		markup which is now fixed</p>
+	</li>
+</ul>
+
+<p><b>1.0.6</b></p>
+<ul>
+	<li>
+		<b>Fix schema parse read description of array and scalar types</b>
+		<p>When parsing an JsonSchema the description properties of array and 
+		scalar types are now correctly used</p>
+	</li>
+	<li>
+		<b>Add any schema property type</b>
+		<p>With this property you can define an object which can contain 
+		arbitrary key value pairs. Like an array property there must be an
+		prototype for the value</p>
+	</li>
+	<li>
+		<b>Messages of StatusCodeException are now shown to the user when in production mode</b>
+		<p>The <code>StatusCodeException</code> extends now from the <code>DisplayException</code>
+		so that the message is shown to the enduser</p>
+	</li>
+	<li>
+		<b>Add title and required parameter to accessor</b>
+		<p>It is now possible to pass the <code>title</code> and <code>required</code> 
+		parameter to the accessor which is then passed to the validate object</p>
+	</li>
+	<li>
+		<b>Set controllerClass variable for template writers</b>
+		<p>The class name of the controller gets now passed to the template. This 
+		is in some cases useful i.e. if you want to highlite a navigation point
+		for a specific controller</p>
+	</li>
+</ul>
+
+]]></content>
+	</entry>
 	<entry>
 		<id>urn:phpsx.org:blog:21</id>
 		<title>Version 1.0.5 released</title>
