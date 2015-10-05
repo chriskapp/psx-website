@@ -28,7 +28,7 @@
 
 <div class="row">
 	<div class="col-md-7">
-		<img src="<?php echo $base; ?>/img/api_doc.png" class="img-responsive" />
+		<img src="<?php echo $base; ?>/img/api_doc2.png" class="img-responsive" />
 	</div>
 	<div class="col-md-5">
 		<p>PSX provides tools to automatically generate a documentation from 
@@ -236,7 +236,7 @@ version: v1
 		or directly in PHP.</p>
 
 		<p>In the example we see an API controller which consumes the request
-		data of an POST request. In the tabs you can see the used schema as 
+		data of a POST request. In the tabs you can see the used schema as 
 		JsonSchema or defined in PHP.</p>
 	</div>
 </div>
@@ -440,12 +440,12 @@ Accept: application/vnd.acme.v2+json</code></pre>
 		</div>
 	</div>
 	<div class="col-md-5">
-		<p>If you produce an response PSX analyzes the data structure and
-		uses an data writer to generate an response. By default PSX comes with 
-		multiple data writers which can generate different data formats like
-		i.e. Json or XML. The writer which gets used depends on the <code>Accept</code> 
+		<p>PSX analyzes the data structure of the response and uses a data 
+        writer to generate the response. By default PSX comes with multiple data 
+        writers which can generate different data formats like i.e. Json or XML. 
+        The writer which gets used depends on the <code>Accept</code> 
 		header field or the GET parameter <code>format</code>. In the example you
-		can see an controller and the corresponding responses from different 
+		can see a controller and the corresponding responses from different 
 		data writers.</p>
 
 		<p>PSX offers also built in data models to generate <b><a href="http://www.ietf.org/rfc/rfc4287.txt">Atom</a></b>, 
@@ -463,15 +463,15 @@ Accept: application/vnd.acme.v2+json</code></pre>
 
 <div class="row">
 	<div class="col-md-5">
-		<p>Because PSX is build around an HTTP request and response object we 
-		can easily test our API code. We dont need to start an webserver 
+		<p>Because PSX is build around a HTTP request and response object we 
+		can easily test our API code. We dont need to start a webserver 
 		or mock the request we can simply call our controller from the test. Internally this 
-		is the same code as when we make an call to an webserver except that we manually 
-		create the HTTP request and response.</p>
+		is the same code as when we make a call to the webserver except that we 
+        manually create the HTTP request and response.</p>
 
-		<p>In this way we can easily make an integration test for an controller by 
+		<p>In this way we can easily make a integration test for the controller by 
 		looking at the actually response. In our example we call the doIndex method
-		of the controller and check whether the response is an JSON object 
+		of the controller and check whether the response is a JSON object 
 		<code>{"hello": "world"}</code>.</p>
 	</div>
 	<div class="col-md-7">
@@ -553,11 +553,11 @@ Accept: application/vnd.acme.v2+json</code></pre>
 		</div>
 	</div>
 	<div class="col-md-5">
-		<p>PSX comes with an fast DI container which implements the <a href="https://github.com/symfony/DependencyInjection">Symfony DI container</a> 
+		<p>PSX comes with a fast DI container which implements the <a href="https://github.com/symfony/DependencyInjection">Symfony DI container</a> 
 		interface. Instead of configuration files it uses simple traits where each
-		method is an service definition.</p>
+		method is a service definition.</p>
 
-		<p>Inside an controller/command it is not possible to access the DI container 
+		<p>Inside a controller/command it is not possible to access the DI container 
 		instead each dependency must be specified as property with an <code>@Inject</code>
 		annotation. PSX injects the dependency into this property. This gives an 
 		clear overview of the dependencies for each controller/command which eventually 
@@ -640,9 +640,9 @@ GET|POST /bar              Acme\News\Application\BarApi</pre>
 	</div>
 	<div class="col-md-5">
 		<p>PSX controllers are designed as middleware. In the end each controller
-		returns only an array of middlewares which get executed. By default an
+		returns only an array of middlewares which get executed. By default a
 		controller returns the ControllerExecutor middleware which executes the
-		specific methods of the controller. In the example we return an simple
+		specific methods of the controller. In the example we return a simple
 		closure as middleware which writes the string <code>Hello world!</code>
 		as response.</p>
 	</div>
@@ -657,12 +657,12 @@ GET|POST /bar              Acme\News\Application\BarApi</pre>
 
 <div class="row">
 	<div class="col-md-5">
-		<p>PSX provides an simple controller class which gives you the possibility
+		<p>PSX provides a simple controller class which gives you the possibility
 		to read from the request and write to the response. Because the controller is 
-		the connection between your application and the framework PSX tries to provide 
-		an stable API for your application. Inside the controller you 
+		the connection between your application and the framework, PSX tries to provide 
+		a stable API for your application. Inside the controller you 
 		can specify your dependecies via the <code>@Inject</code> annotation. The 
-		example shows some important methods inside an controller.</p>
+		example shows some important methods inside a controller.</p>
 	</div>
 	<div class="col-md-7">
 		<div class="psx-code-box">
@@ -695,6 +695,7 @@ GET|POST /bar              Acme\News\Application\BarApi</pre>
 	</div>
 </div>
 
+<!--
 <div class="row">
 	<div class="col-md-12">
 		<div class="psx-body-ruler"></div>
@@ -748,6 +749,7 @@ GET|POST /bar              Acme\News\Application\BarApi</pre>
 		command which inserts an news entry.</p>
 	</div>
 </div>
+-->
 
 <?php include($location . '/inc/footer.html'); ?>
 
