@@ -2,7 +2,64 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>urn:phpsx.org:blog</id>
 	<title>PSX Blog</title>
-	<updated>2015-08-22T13:19:00Z</updated>
+	<updated>2015-10-05T18:35:00Z</updated>
+	<entry>
+		<id>urn:phpsx.org:blog:23</id>
+		<title>Version 1.1.0 released</title>
+		<author>
+			<name>christoph.kappestein</name>
+			<uri>http://github.com/k42b3</uri>
+		</author>
+		<updated>2015-10-05T18:35:00Z</updated>
+		<summary>
+Announcement of the 1.1.0 release
+		</summary>
+		<category term="announcement" />
+		<category term="psx" />
+		<content type="html"><![CDATA[
+<p>The most notable change of this release is that the documentation controller
+returns now a different format. Previously the controller returned a HTML 
+presentation of the schema. This generation is now moved to the client so that
+the API only needs to return the json schema. We have build a new API viewer
+based on AngularJs/Material which parses the response of the documentation 
+controller and generates a nice documentation. Take a look at the 
+<a href="http://example.phpsx.org/documentation/">example</a> to get an impression.
+Because of this change we have increased a minor version. In the following
+the complete changlog.</p>
+
+<ul>
+	<li>
+		<b>Curve array nest method handle indexed arrays</b>
+		<p>The method handles now also objects which are inside of an index based array</p>
+	</li>
+	<li>
+		<b>JSON Schema add title property to complex types</b>
+		<p>The json schema generator adds now title properties to the schema</p>
+	</li>
+	<li>
+		<b>Documentation controller returns also the API endpoint url</b>
+		<p>The endpoint returns now the API url as HATEOAS link</p>
+	</li>
+	<li>
+		<b>XML generator validate element names</b>
+		<p>Not allowed characters are now replaced with an underscore</p>
+	</li>
+	<li>
+		<b>Documentation controller returns now the complete json schema which can be used by the API client to generate a documentation</b>
+		<p>The response format has changed we return now the complete json schema for each method request/response</p>
+	</li>
+	<li>
+		<b>Improved swagger and json schema generator</b>
+		<p>Add method to get the schema also as array which is useful if we want to modify the result</p>
+	</li>
+	<li>
+		<b>Extended api resource methods</b>
+		<p>For completeness add hasPathParameters and hasQueryParameters to the resource method class</p>
+	</li>
+</ul>
+
+]]></content>
+	</entry>
 	<entry>
 		<id>urn:phpsx.org:blog:22</id>
 		<title>Version 1.0.6 and 1.0.7 released</title>
