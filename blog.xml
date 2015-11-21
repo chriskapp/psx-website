@@ -2,7 +2,115 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>urn:phpsx.org:blog</id>
 	<title>PSX Blog</title>
-	<updated>2015-10-05T18:35:00Z</updated>
+	<updated>2015-11-21T21:10:00Z</updated>
+	<entry>
+		<id>urn:phpsx.org:blog:24</id>
+		<title>Version 1.1.1 released</title>
+		<author>
+			<name>christoph.kappestein</name>
+			<uri>http://github.com/k42b3</uri>
+		</author>
+		<updated>2015-11-21T21:10:00Z</updated>
+		<summary>
+Coverage of the 1.1.1 release
+		</summary>
+		<category term="announcement" />
+		<category term="psx" />
+		<content type="html"><![CDATA[
+<p>The most notable changes of this release are that we now have a 
+<a href="https://tools.ietf.org/html/rfc6902">JSON patch</a> implementation. 
+Also it is now possible to define a custom validator before importing data. In
+the following the complete changelog.</p>
+
+<ul>
+	<li>
+		<b>Add logger configuration settings and factory</b>
+		<p>It is now possible to configure the logging behaviour through the <code>configuration.php</code>.
+		Therefor you can use the following config parameters.</p>
+		<pre><code class="php">return array(
+    // ...
+
+    // Log settings, the handler is one of: stream, logcaster, void, system
+    'psx_log_level'           => \Monolog\Logger::ERROR,
+    'psx_log_handler'         => 'system',
+    'psx_log_uri'             => null,
+
+    // ...
+);</code></pre>
+	</li>
+	<li>
+		<b>Add json patch and pointer implementation. The accessor uses now also the json pointer syntax</b>
+		<p>The JSON patch implementation can apply patch operations on an arbitrary data structure. The accessor 
+		uses now also the JSON pointer syntax (i.e. <code>/foo/bar</code>)</p>
+	</li>
+	<li>
+		<b>Add record serializer and add transformer which builds a record graph from arbitrary data</b>
+		<p>The transformer can generate an object graph. The object graph is based either on a record or stdclass</p>
+	</li>
+	<li>
+		<b>Add option to attach a validator to the importer inside a controller</b>
+		<p>Through the method <code>getImportValidator</code> we can now return a custom validator in our
+		controller which gets applied before importing any data</p>
+	</li>
+	<li>
+		<b>Make ImporterManager immutable so that it is not possible to globally change a importer object</b>
+		<p>The ImporterManager returns now always a new instance of the importer. This ensures that we dont
+		have any side-effects if the importer has changed</p>
+	</li>
+	<li>
+		<b>Improved validator</b>
+		<p>The validator uses now overall the JSON pointer syntax to reference fields. Also the error messages were improved</p>
+	</li>
+	<li>
+		<b>Renamed some classes for PHP7 compatibility</b>
+		<p>We have renamed the following classes because the class names are not allowed in PHP7</p>
+		<table>
+		<tr>
+			<td>PSX\Cache\Handler\Void</td>
+			<td>&nbsp;-&gt;&nbsp;</td>
+			<td>PSX\Cache\Handler\Noop</td>
+		</tr>
+		<tr>
+			<td>PSX\Command\Output\Void</td>
+			<td>&nbsp;-&gt;&nbsp;</td>
+			<td>PSX\Command\Output\Noop</td>
+		</tr>
+		<tr>
+			<td>PSX\Dispatch\Sender\Void</td>
+			<td>&nbsp;-&gt;&nbsp;</td>
+			<td>PSX\Dispatch\Sender\Noop</td>
+		</tr>
+		<tr>
+			<td>PSX\Session\Void</td>
+			<td>&nbsp;-&gt;&nbsp;</td>
+			<td>PSX\Session\Memory</td>
+		</tr>
+		<tr>
+			<td>PSX\ActivityStream\Object</td>
+			<td>&nbsp;-&gt;&nbsp;</td>
+			<td>PSX\ActivityStream\ObjectType</td>
+		</tr>
+		<tr>
+			<td>PSX\Data\Object</td>
+			<td>&nbsp;-&gt;&nbsp;</td>
+			<td>-removed-</td>
+		</tr>
+		</table>
+	</li>
+	<li>
+		<b>Removed class PSX\Data\Object and added static factory method fromArray to PSX\Data\Record</b>
+		<p>The record class has now the static method <code>fromArray</code> which creates a record
+		from an array. This is the replacement for the object class which was removed because the class
+		name is not allowed in PHP7</p>
+	</li>
+	<li>
+		<b>Adjust visitor exception messages</b>
+		<p>The wording of the visitor exception messages were unified</p>
+	</li>
+</ul>
+
+]]></content>
+	</entry>
 	<entry>
 		<id>urn:phpsx.org:blog:23</id>
 		<title>Version 1.1.0 released</title>
