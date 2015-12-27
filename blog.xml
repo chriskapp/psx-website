@@ -2,7 +2,60 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>urn:phpsx.org:blog</id>
 	<title>PSX Blog</title>
-	<updated>2015-11-21T21:10:00Z</updated>
+	<updated>2015-12-27T02:01:00Z</updated>
+	<entry>
+		<id>urn:phpsx.org:blog:25</id>
+		<title>Version 1.1.2 released</title>
+		<author>
+			<name>christoph.kappestein</name>
+			<uri>http://github.com/k42b3</uri>
+		</author>
+		<updated>2015-12-27T02:01:00Z</updated>
+		<summary>
+Announcement of the 1.1.2 release
+		</summary>
+		<category term="announcement" />
+		<category term="psx" />
+		<content type="html"><![CDATA[
+<p>This release contains some small changes and few new features. In the 
+following the coverage of the changelog.</p>
+
+<ul>
+	<li>
+		<b>Add option to specify global middlewares</b>
+		<p>It is now possible to specify global middlewares which are applied 
+		before or after every request. The filter can be specified in the 
+		configuration with the key `psx_filter_pre` and `psx_filter_post`</p>
+	</li>
+	<li>
+		<b>Updated composer dependencies</b>
+		<p>We have updated the composer dependencies to the latest stable 
+		versions</p>
+	</li>
+	<li>
+		<b>Graph traverser handle also objects which implement JsonSerializable, ArrayObject or Traversable</b>
+		<p>The graph traverser handles now also the following classes: JsonSerializable, ArrayObject or Traversable.
+		Traversable classes are resolved through the `iterator_to_array` function</p>
+	</li>
+	<li>
+		<b>JsonSchema parser set default id if not available</b>
+		<p>Previously it was required that a json schema has an `id` property. 
+		This is not longer required because we set a default id if not 
+		available</p>
+	</li>
+	<li>
+		<b>Improve dispatcher dont send the response for nested calls</b>
+		<p>We send only the response for the outer dispatch call all other
+		dispatch calls will not produce any output</p>
+	</li>
+	<li>
+		<b>Fixed comperator record comparsion and add test case</b>
+		<p>Added a test case and fixed the comparsion logic</p>
+	</li>
+</ul>
+
+]]></content>
+	</entry>
 	<entry>
 		<id>urn:phpsx.org:blog:24</id>
 		<title>Version 1.1.1 released</title>
