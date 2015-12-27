@@ -1,5 +1,6 @@
 GET /                        Phpsx\Website\Application\Index::doIndex
 GET /humans.txt              Phpsx\Website\Application\Index::doHumans
+GET /about                   Phpsx\Website\Application\About::doIndex
 GET /get-started             Phpsx\Website\Application\Bootstrap::doIndex
 GET /download                Phpsx\Website\Application\Download::doIndex
 GET /documentation           Phpsx\Website\Application\Documentation::doIndex

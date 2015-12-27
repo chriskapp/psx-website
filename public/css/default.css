@@ -40,6 +40,12 @@ pre
 	font-weight:bold;
 }
 
+.psx-header h1 a
+{
+	text-decoration:none;
+	color:inherit;
+}
+
 .psx-navigation
 {
 	background-color:#fff;
@@ -217,4 +223,48 @@ pre
 .nav-tabs > li > a
 {
 	border-radius:0px;
+}
+
+.psx-annotation
+{
+	position:relative;
+	border:1px solid #222;
+	border-right:none;
+	border-bottom:none;
+	border-top:none;
+
+	padding:8px;
+	margin:0px;
+	margin-left:-12px;
+	padding-top:0px;
+	padding-bottom:0px;
+	font-size:0.9em;
+}
+
+.psx-annotation:after, .psx-annotation:before
+{
+	right:100%;
+	top:50%;
+	border: solid transparent;
+	content:" ";
+	height:0;
+	width:0;
+	position:absolute;
+	pointer-events:none;
+}
+
+.psx-annotation:after 
+{
+	border-color:rgba(255, 255, 255, 0);
+	border-right-color: #fff;
+	border-width:10px;
+	margin-top:-10px;
+}
+
+.psx-annotation:before 
+{
+	border-color:rgba(34, 34, 34, 0);
+	border-right-color:#222;
+	border-width:12px;
+	margin-top:-12px;
 }

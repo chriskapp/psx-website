@@ -36,7 +36,7 @@ a look at the offical <a href="http://psx.readthedocs.org/">documentation</a>.</
 <ul>
 	<li>
 		<p>Install the sample project of PSX with the following composer command.
-		This checksout the sample project and installs a stable version of PSX.</p>
+		This creates the sample project and installs a stable version of PSX.</p>
 		<p><pre>composer create-project psx/sample .</pre></p>
 	</li>
 	<li>
@@ -61,7 +61,7 @@ a look at the offical <a href="http://psx.readthedocs.org/">documentation</a>.</
 <ul>
 	<li>
 		<b>Welcome <code>http://127.0.0.1:8080</code></b>
-		<p>The welcome API endpoint should given you an welcome message with 
+		<p>The welcome API endpoint should given you a welcome message with 
 		further links to other endpoints.</p>
 	</li>
 	<li>
@@ -86,7 +86,7 @@ API.</p>
 		<p>This is the class which represents the <code>/internet</code> endpoint.
 		It loads the <code>population.raml</code> file which contains the 
 		specification of the API. Also it contains the business logic to create 
-		and receive records on an sqlite database.</p>
+		and receive records on a sqlite database.</p>
 	</li>
 	<li>
 		<b>src/Sample/Api/InternetPopulation/Resource/population.raml</b>
@@ -98,7 +98,7 @@ API.</p>
 	<li>
 		<b>src/Sample/Dependency/Container.php</b>
 		<p>DI container which overwrites the <code>connection</code> service to
-		use an sqlite database.</p>
+		use a sqlite database.</p>
 	</li>
 	<li>
 		<b>tests/Sample/Api/InternetPopulation/Endpoint/CollectionTest.php</b>

@@ -13,14 +13,14 @@
 <div class="container">
 	<div class="psx-header">
 		<img src="<?php echo $base; ?>/img/psx_logo_large.png" width="50">
-		<h1>PSX Framework</h1>
+		<h1><a href="<?php echo $url; ?>">PSX Framework</a></h1>
 	</div>
 </div>
 
 <div class="container">
 	<div class="psx-navigation">
 		<ul>
-			<li><a href="<?php echo $router->getUrl('Phpsx\Website\Application\Index::doIndex'); ?>">About</a></li>
+			<li><a href="<?php echo $router->getUrl('Phpsx\Website\Application\About::doIndex'); ?>">About</a></li>
 			<li><a href="<?php echo $router->getUrl('Phpsx\Website\Application\Bootstrap::doIndex'); ?>">Get started</a></li>
 			<li><a href="<?php echo $router->getUrl('Phpsx\Website\Application\Download::doIndex'); ?>">Download</a></li>
 			<li><a href="<?php echo $router->getUrl('Phpsx\Website\Application\Documentation::doIndex'); ?>">Documentation</a></li>

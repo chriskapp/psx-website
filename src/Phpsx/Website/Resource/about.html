@@ -1,0 +1,757 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <?php include($location . '/inc/meta.html'); ?>
+</head>
+<body>
+
+<?php include($location . '/inc/header.html'); ?>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 id="about">About</h2>
+
+        <p>PSX is a framework written in PHP to create <b>REST APIs</b>. 
+        It provides tools to handle routing, API versioning, data transformation, 
+        authentication, documentation and testing. With PSX you can easily build 
+        an REST API around an existing application or create a new one from 
+        scratch. Take a look at the <a href="http://example.phpsx.org">example</a> 
+        to see an API in action. The following chapter shows some features of 
+        PSX which should give you a first impression how it works. <b>Talk is 
+        cheap show me the code!</b></p>
+
+        <div class="psx-body-ruler"></div>
+
+        <h3>Documentation</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-7">
+        <img src="<?php echo $base; ?>/img/api_doc2.png" class="img-responsive" />
+    </div>
+    <div class="col-md-5">
+        <p>PSX provides tools to automatically generate a documentation from 
+        the defined API. The documentation gets generated from the schema and is 
+        therefore always up to date. To see the documentation you can view the 
+        <b><a href="http://example.phpsx.org/documentation/">example</a></b> 
+        project or take a look at the <b><a href="https://github.com/k42b3/psx-examples">source</a></b>.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="psx-body-ruler"></div>
+        <h3>Schema definition</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-5">
+        <p>PSX gives you the possibility to define a clear schema for your API 
+        endpoint. The schema can be defined as <b><a href="http://raml.org/">RAML</a></b>
+        specification or directly in PHP. Because PSX has all informations how 
+        the API is structured it can validate incoming and outgoing data according 
+        to the schema.</p>
+
+        <p>Based on the defined schema PSX can also generate different API  
+        definition formats: <b><a href="http://example.phpsx.org/tool/raml/1/population">RAML</a></b>, 
+        <b><a href="http://example.phpsx.org/tool/swagger/1/population">Swagger</a></b>
+        and <b><a href="http://example.phpsx.org/tool/wsdl/1/population">WSDL</a></b>.
+        These formats can be used i.e. to automatically generate client-side
+        code.</p>
+    </div>
+    <div class="col-md-7">
+        <div role="tabpanel">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#schema-raml" aria-controls="schema-raml" role="tab" data-toggle="tab">RAML</a></li>
+                <li role="presentation"><a href="#schema-php" aria-controls="schema-php" role="tab" data-toggle="tab">PHP</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="schema-raml">
+                    <div class="psx-code-box">
+                        <h4>PHP</h4>
+                        <pre><code class="php">class Endpoint extends SchemaApiAbstract
+{
+    public function getDocumentation()
+    {
+        return new Raml::fromFile(
+            'endpoint.raml', 
+            $this-&gt;context-&gt;get(Context::KEY_PATH)
+        );
+    }
+}</code></pre>
+                    </div>
+                    <div class="psx-code-box">
+                        <h4>RAML</h4>
+                        <pre><code class="yaml">#%RAML 0.8
+title: Acme api
+baseUri: http://api.acme.com
+version: v1
+/population:
+  description: Returns a collection of population entries
+  get:
+    queryParameters:
+      startIndex:
+        type: integer
+      count:
+        type: integer
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include schema/collection.json
+  post:
+    body:
+      application/json:
+        schema: !include schema/entry.json
+</code></pre>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane psx-code-box" id="schema-php">
+                    <h4>PHP</h4>
+                    <pre><code class="php">class Endpoint extends SchemaApiAbstract
+{
+    public function getDocumentation()
+    {
+        $resource = new Resource(
+            Resource::STATUS_ACTIVE, 
+            $this-&gt;context-&gt;get(Context::KEY_PATH)
+        );
+
+        $resource-&gt;setTitle('Acme api');
+        $resource-&gt;setDescription('Returns a collection of population entries');
+
+        $resource-&gt;addMethod(Resource\Factory::getMethod('GET')
+            -&gt;addQueryParameter(Property::getInteger('startIndex'))
+            -&gt;addQueryParameter(Property::getInteger('count'))
+            -&gt;addResponse(
+                200, 
+                $this-&gt;schemaManager-&gt;getSchema('Acme\Schema\Collection')
+            )
+        );
+
+        $resource-&gt;addMethod(Resource\Factory::getMethod('POST')
+            -&gt;setRequest($this-&gt;schemaManager-&gt;getSchema('Acme\Schema\Entry'))
+        );
+
+        return new Documentation\Simple($resource);
+    }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="psx-body-ruler"></div>
+        <h3>Request parsing</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-7">
+        <div role="tabpanel">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#request-controller" aria-controls="request-controller" role="tab" data-toggle="tab">Controller</a></li>
+                <li role="presentation"><a href="#request-schema" aria-controls="request-schema" role="tab" data-toggle="tab">JsonSchema</a></li>
+                <li role="presentation"><a href="#request-php" aria-controls="request-php" role="tab" data-toggle="tab">PHP</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active psx-code-box" id="request-controller">
+                    <h4>Controller</h4>
+                    <pre><code class="php">class Endpoint extends SchemaApiAbstract
+{
+    protected function doPost(RecordInterface $record, Version $version);
+    {
+        // @TODO do something with the news
+        $record-&gt;getTitle();
+        $record-&gt;getAuthor()->getName();
+        $record-&gt;getContent();
+
+        return array(
+            'success' => true,
+            'message' => 'Record successful created',
+        );
+    }
+}</code></pre>
+                </div>
+                <div role="tabpanel" class="tab-pane psx-code-box" id="request-schema">
+                    <h4>JsonSchema</h4>
+                    <pre><code class="json">{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://example.phpsx.org#",
+    "type": "object",
+    "properties": {
+        "title": {
+            "type": "string",
+            "description": "Title description",
+            "pattern": "[A-z]{3,16}"
+        },
+        "author": {
+            "$ref": "file:///author.json#"
+        },
+        "content": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 512
+        }
+    },
+    "required": ["content"]
+}
+</code></pre>
+                </div>
+                <div role="tabpanel" class="tab-pane psx-code-box" id="request-php">
+                    <h4>PHP</h4>
+                    <pre><code class="php">class News extends SchemaAbstract
+{
+    public function getDefinition()
+    {
+        $sb = $this-&gt;getSchemaBuilder('news');
+        $sb-&gt;string('title')
+            -&gt;setDescription('Title description')
+            -&gt;setPattern('[A-z]{3,16}');
+        $sb-&gt;complexType($this-&gt;getSchema('Acme\Schema\Author'));
+        $sb-&gt;string('content')
+            -&gt;setDescription('Content description')
+            -&gt;setMinLength(3)
+            -&gt;setMaxLength(512)
+            -&gt;setRequired(true);
+
+        return $sb-&gt;getProperty();
+    }
+}
+</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <p>PSX parses the incoming request into an object graph according to
+        the defined data model. The data model can be defined either as 
+        <b><a href="http://tools.ietf.org/html/draft-zyp-json-schema-04">JsonSchema</a></b>
+        or directly in PHP.</p>
+
+        <p>In the example we see an API controller which consumes the request
+        data of a POST request. In the tabs you can see the used schema as 
+        JsonSchema or defined in PHP.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="psx-body-ruler"></div>
+        <h3>Versioning</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-5">
+        <p>PSX supports different API versioning methods. You can use simple
+        url versioning by providing a route for each version or you can use an 
+        custom <code>Accept</code> header. The version which you provide in the 
+        <code>Accept</code> header gets passed to the API controller as version 
+        object.</p>
+
+        <p>Accept header versioning is the preferred method in PSX because it is 
+        more RESTful. This is because you have for each resource only one 
+        endpoint but can request different representations of the resource by 
+        providing the <code>Accept</code> header.</p>
+    </div>
+    <div class="col-md-7">
+        <div role="tabpanel">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#version-one" aria-controls="version-one" role="tab" data-toggle="tab">Version 1</a></li>
+                <li role="presentation"><a href="#version-two" aria-controls="version-two" role="tab" data-toggle="tab">Version 2</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="version-one">
+                    <div class="psx-code-box">
+                        <h4>Url versioning</h4>
+                        <pre><code class="http">GET /v1/news HTTP/1.1</code></pre>
+                    </div>
+                    <div class="psx-code-box">
+                        <h4>Accept-Header versioning</h4>
+                        <pre><code class="http">GET /news HTTP/1.1
+Accept: application/vnd.acme.v1+json</code></pre>
+                    </div>
+                    <div class="psx-code-box">
+                        <h4>Response</h4>
+                        <pre><code class="json">{
+    "title": "foo"
+}</code></pre>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="version-two">
+                    <div class="psx-code-box">
+                        <h4>Url versioning</h4>
+                        <pre><code class="http">GET /v2/news HTTP/1.1</code></pre>
+                    </div>
+                    <div class="psx-code-box">
+                        <h4>Accept-Header versioning</h4>
+                        <pre><code class="http">GET /news HTTP/1.1
+Accept: application/vnd.acme.v2+json</code></pre>
+                    </div>
+                    <div class="psx-code-box">
+                        <h4>Response</h4>
+                        <pre><code class="json">{
+    "displayName": "foo"
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="psx-body-ruler"></div>
+        <h3>Response generation</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-7">
+        <div role="tabpanel">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#response-controller" aria-controls="response-controller" role="tab" data-toggle="tab">Controller</a></li>
+                <li role="presentation"><a href="#response-json" aria-controls="response-json" role="tab" data-toggle="tab">Json</a></li>
+                <li role="presentation"><a href="#response-xml" aria-controls="response-xml" role="tab" data-toggle="tab">XML</a></li>
+                <li role="presentation"><a href="#response-atom" aria-controls="response-atom" role="tab" data-toggle="tab">Atom</a></li>
+                <li role="presentation"><a href="#response-soap" aria-controls="response-soap" role="tab" data-toggle="tab">Soap</a></li>
+                <li role="presentation"><a href="#response-jsonx" aria-controls="response-jsonx" role="tab" data-toggle="tab">Jsonx</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active psx-code-box" id="response-controller">
+                    <h4>Controller</h4>
+                    <pre><code class="php">class Endpoint extends SchemaApiAbstract
+{
+    protected function doGet(Version $version);
+    {
+        return [
+            'totalResults' => 2,
+            'entry' => [[
+                'title' => 'Acme news one',
+                'content' => 'lorem ipsum'
+            ],[
+                'title' => 'Acme news two',
+                'content' => 'lorem ipsum'
+            ]],
+        ];
+    }
+}</code></pre>
+                </div>
+                <div role="tabpanel" class="tab-pane psx-code-box" id="response-json">
+                    <h4>Json</h4>
+                    <pre><code class="json">{
+    "totalResults": 2,
+    "entry": [
+        {
+            "title": "Acme news one",
+            "content": "lorem ipsum"
+        },
+        {
+            "title": "Acme news two",
+            "content": "lorem ipsum"
+        }
+    ]
+}
+</code></pre>
+                </div>
+                <div role="tabpanel" class="tab-pane psx-code-box" id="response-xml">
+                    <h4>Xml</h4>
+                    <pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;record&gt;
+ &lt;totalResults&gt;2&lt;/totalResults&gt;
+ &lt;entry&gt;
+  &lt;title&gt;Acme news one&lt;/title&gt;
+  &lt;content&gt;lorem ipsum&lt;/content&gt;
+ &lt;/entry&gt;
+ &lt;entry&gt;
+  &lt;title&gt;Acme news two&lt;/title&gt;
+  &lt;content&gt;lorem ipsum&lt;/content&gt;
+ &lt;/entry&gt;
+&lt;/record&gt;
+</code></pre>
+                </div>
+                <div role="tabpanel" class="tab-pane psx-code-box" id="response-atom">
+                    <h4>Atom</h4>
+                    <pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;entry xmlns=&quot;http://www.w3.org/2005/Atom&quot;&gt;
+ &lt;content type=&quot;application/xml&quot;&gt;
+  &lt;record&gt;
+   &lt;totalResults&gt;2&lt;/totalResults&gt;
+   &lt;entry&gt;
+    &lt;title&gt;Acme news one&lt;/title&gt;
+    &lt;content&gt;lorem ipsum&lt;/content&gt;
+   &lt;/entry&gt;
+   &lt;entry&gt;
+    &lt;title&gt;Acme news two&lt;/title&gt;
+    &lt;content&gt;lorem ipsum&lt;/content&gt;
+   &lt;/entry&gt;
+  &lt;/record&gt;
+ &lt;/content&gt;
+&lt;/entry&gt;
+</code></pre>
+                </div>
+                <div role="tabpanel" class="tab-pane psx-code-box" id="response-soap">
+                    <h4>SOAP</h4>
+                    <pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;soap:Envelope xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
+ &lt;soap:Body&gt;
+  &lt;getResponse xmlns=&quot;http://phpsx.org/2014/data&quot;&gt;
+   &lt;totalResults&gt;2&lt;/totalResults&gt;
+   &lt;entry&gt;
+    &lt;title&gt;Acme news one&lt;/title&gt;
+    &lt;content&gt;lorem ipsum&lt;/content&gt;
+   &lt;/entry&gt;
+   &lt;entry&gt;
+    &lt;title&gt;Acme news two&lt;/title&gt;
+    &lt;content&gt;lorem ipsum&lt;/content&gt;
+   &lt;/entry&gt;
+  &lt;/getResponse&gt;
+ &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;
+</code></pre>
+                </div>
+                <div role="tabpanel" class="tab-pane psx-code-box" id="response-jsonx">
+                    <h4>Jsonx</h4>
+                    <pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;json:object xmlns:json=&quot;http://www.ibm.com/xmlns/prod/2009/jsonx&quot;&gt;
+ &lt;json:number name=&quot;totalResults&quot;&gt;2&lt;/json:number&gt;
+ &lt;json:array name=&quot;entry&quot;&gt;
+  &lt;json:object&gt;
+   &lt;json:string name=&quot;title&quot;&gt;Acme news one&lt;/json:string&gt;
+   &lt;json:string name=&quot;content&quot;&gt;lorem ipsum&lt;/json:string&gt;
+  &lt;/json:object&gt;
+  &lt;json:object&gt;
+   &lt;json:string name=&quot;title&quot;&gt;Acme news two&lt;/json:string&gt;
+   &lt;json:string name=&quot;content&quot;&gt;lorem ipsum&lt;/json:string&gt;
+  &lt;/json:object&gt;
+ &lt;/json:array&gt;
+&lt;/json:object&gt;
+</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <p>PSX analyzes the data structure of the response and uses a data 
+        writer to generate the response. By default PSX comes with multiple data 
+        writers which can generate different data formats like i.e. Json or XML. 
+        The writer which gets used depends on the <code>Accept</code> 
+        header field or the GET parameter <code>format</code>. In the example you
+        can see a controller and the corresponding responses from different 
+        data writers.</p>
+
+        <p>PSX offers also built in data models to generate <b><a href="http://www.ietf.org/rfc/rfc4287.txt">Atom</a></b>, 
+        <b><a href="http://cyber.law.harvard.edu/rss/rss.html">RSS</a></b> and 
+        <b><a href="http://tools.ietf.org/html/draft-snell-activitystreams-09">ActivityStream</a></b> responses.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="psx-body-ruler"></div>
+        <h3>API testing</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-5">
+        <p>Because PSX is build around a HTTP request and response object we 
+        can easily test our API code. We dont need to start a webserver 
+        or mock the request we can simply call our controller from the test. Internally this 
+        is the same code as when we make a call to the webserver except that we 
+        manually create the HTTP request and response.</p>
+
+        <p>In this way we can easily make an integration test for the controller by 
+        looking at the actually response. In our example we call the doIndex method
+        of the controller and check whether the response is a JSON object 
+        <code>{"hello": "world"}</code>.</p>
+    </div>
+    <div class="col-md-7">
+        <div class="psx-code-box">
+            <h4>PHP</h4>
+            <pre><code class="php">class HelloWorldApiTest extends ControllerTestCase
+{
+    public function testHelloWorld()
+    {
+        // send request to the controller
+        $response = $this-&gt;sendRequest('http://127.0.0.1/foo', 'GET');
+        $body     = (string) $response->getBody();
+
+        $this-&gt;assertEquals(200, $response->getStatusCode());
+        $this-&gt;assertJsonStringEqualsJsonString('{"hello": "world"}', $body);
+    }
+
+    protected function getPaths()
+    {
+        return array(
+            '/foo' =&gt; 'Acme\TestViewController::doIndex',
+        );
+    }
+}</code></pre>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="psx-body-ruler"></div>
+        <h3>Dependency managment</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-7">
+        <div role="tabpanel">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#di-controller" aria-controls="di-controller" role="tab" data-toggle="tab">Controller</a></li>
+                <li role="presentation"><a href="#di-definition" aria-controls="di-definition" role="tab" data-toggle="tab">Definition</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active psx-code-box" id="di-controller">
+                    <h4>PHP</h4>
+                    <pre><code class="php">class Controller extends ControllerAbstract
+{
+    /**
+     * @Inject
+     * @var Doctrine\DBAL\Connection
+     */
+    protected $connection;
+}
+</code></pre>
+                </div>
+                <div role="tabpanel" class="tab-pane psx-code-box" id="di-definition">
+                    <h4>PHP</h4>
+                    <pre><code class="php">class DefaultContainer extends Container
+{
+    /**
+     * @return Doctrine\DBAL\Connection
+     */
+    public function getConnection()
+    {
+        $config = new Configuration();
+        $params = array(
+            'dbname'   =&gt; $this-&gt;get('config')-&gt;get('psx_sql_db'),
+            'user'     =&gt; $this-&gt;get('config')-&gt;get('psx_sql_user'),
+            'password' =&gt; $this-&gt;get('config')-&gt;get('psx_sql_pw'),
+            'host'     =&gt; $this-&gt;get('config')-&gt;get('psx_sql_host'),
+            'driver'   =&gt; 'pdo_mysql',
+        );
+
+        return DriverManager::getConnection($params, $config);
+    }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <p>PSX comes with a fast DI container which implements the <a href="https://github.com/symfony/DependencyInjection">Symfony DI container</a> 
+        interface. Instead of configuration files it uses simple traits where each
+        method is a service definition.</p>
+
+        <p>Inside a controller/command it is not possible to access the DI container 
+        instead each dependency must be specified as property with an <code>@Inject</code>
+        annotation. PSX injects the dependency into this property. This gives a 
+        clear overview of the dependencies for each controller/command which eventually 
+        should help you to decouple your application code from the framework.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="psx-body-ruler"></div>
+        <h3>Routing</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-5">
+        <p>PSX uses a simple routing file which was inspired by the Java <a href="https://www.playframework.com/">Play-Framework</a>.
+        We can specify the allowed request methods, the path and the controller which 
+        should be called. In the example controller we access the dynamic part 
+        of the path.</p>
+    </div>
+    <div class="col-md-7">
+
+        <div role="tabpanel">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#routing-file" aria-controls="routing-file" role="tab" data-toggle="tab">File</a></li>
+                <li role="presentation"><a href="#routing-controller" aria-controls="routing-controller" role="tab" data-toggle="tab">Controller</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active psx-code-box" id="routing-file">
+                    <h4>Routing</h4>
+                    <pre>GET      /news             Acme\News\Application\Index::doIndex
+GET      /news/:news_id    Acme\News\Application\Index::doDetail
+GET      /bar/$foo&lt;[0-9]+&gt; Acme\News\Application\Article
+GET      /download/*file   Acme\News\Application\Download
+GET|POST /bar              Acme\News\Application\BarApi</pre>
+                </div>
+                <div role="tabpanel" class="tab-pane psx-code-box" id="routing-controller">
+                    <h4>PHP</h4>
+                    <pre><code class="php">class Index extends ControllerAbstract
+{
+    public function doDetail()
+    {
+        $newsId = $this-&gt;getUriFragment('news_id');
+
+        // @TODO work with the news id
+    }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="psx-body-ruler"></div>
+        <h3>Middleware oriented</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="psx-code-box">
+            <h4>PHP</h4>
+            <pre><code class="php">class AcmeController extends ControllerAbstract
+{
+    public function getApplicationStack()
+    {
+        return [function($request, $response, $filterChain){
+
+            $response->getBody()->write('Hello world!');
+
+            $filterChain->handle($request, $response);
+
+        }];
+    }
+}</code></pre>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <p>PSX controllers are designed as middleware. In the end each controller
+        returns only an array of middlewares which get executed. By default a
+        controller returns the ControllerExecutor middleware which executes the
+        specific method of the controller. In the example we return a simple
+        closure as middleware which writes the string <code>Hello world!</code>
+        as response.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="psx-body-ruler"></div>
+        <h3>Controller</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-5">
+        <p>PSX provides a simple controller class which gives you the possibility
+        to read from the request and write to the response. Because the controller is 
+        the connection between your application and the framework, PSX tries to provide 
+        a stable API for your application. Inside the controller you 
+        can specify your dependecies via the <code>@Inject</code> annotation. The 
+        example shows some important methods inside a controller.</p>
+    </div>
+    <div class="col-md-7">
+        <div class="psx-code-box">
+            <h4>PHP</h4>
+            <pre><code class="php">class AcmeController extends ControllerAbstract
+{
+    public function doIndex()
+    {
+        // get request method i.e. POST
+        $requestMethod = $this-&gt;getMethod();
+     
+        // get Content-Type header
+        $contentType = $this-&gt;getHeader('Content-Type');
+     
+        // get GET parameter foo
+        $requestMethod = $this-&gt;getParameter('foo');
+     
+        // if its a XML Content-Type returns a DOMDocument. On
+        // a JSON or x-www-form-urlencoded Content-Type a stdClass
+        $body = $this-&gt;getBody():
+     
+        // set a response code
+        $this-&gt;setResponseCode(200);
+     
+        // write a response
+        $this-&gt;setBody('foobar');
+    }
+}</code></pre>
+        </div>
+    </div>
+</div>
+
+<!--
+<div class="row">
+    <div class="col-md-12">
+        <div class="psx-body-ruler"></div>
+        <h3>Command</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="psx-code-box">
+            <h4>PHP</h4>
+            <pre><code class="php">class AcmeCommand extends CommandAbstract
+{
+    /**
+     * @Inject
+     * @var Doctrine\DBAL\Connection
+     */
+    protected $connection;
+
+    public function onExecute(Parameters $parameters, OutputInterface $output)
+    {
+        $this-&gt;connection-&gt;insert('acme_news', array(
+            'title' =&gt; $parameters-&gt;get('title')
+        ));
+
+        $output-&gt;writeln('Inserted a news');
+    }
+
+    public function getParameters()
+    {
+        return $this-&gt;getParameterBuilder()
+            -&gt;setDescription('Inserts an news entry')
+            -&gt;addOption('title', Parameter::TYPE_REQUIRED, 'The title of the news')
+            -&gt;getParameters();
+    }
+}</code></pre>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <p>PSX offers a command system which helps to encapsulate code into micro 
+        services. An command is like an controller but without the request/response 
+        context. Each command can specify parameters which are needed to complete
+        the task. Like in an controller you can specify your dependecies via the 
+        <code>@Inject</code> annotation.</p>
+
+        <p>The idea is that an command can be executed from any context i.e. within an
+        Controller/Command, CLI, message queue or any other environment. Although it is
+        possible to call an command from CLI you can not ask for user input inside an 
+        command. All needed values must be provided as parameters. This ensures that we 
+        always can call an command from other environments. The example shows an
+        command which inserts an news entry.</p>
+    </div>
+</div>
+-->
+
+<?php include($location . '/inc/footer.html'); ?>
+
+</body>
+</html>
