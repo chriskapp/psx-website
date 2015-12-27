@@ -17,7 +17,7 @@
 		an REST API around an existing application or create a new one from 
 		scratch. Take a look at the <a href="http://example.phpsx.org">example</a> 
 		to see an API in action. The following chapter shows some features of 
-		PSX which should give you an first impression how it works. <b>Talk is 
+		PSX which should give you a first impression how it works. <b>Talk is 
 		cheap show me the code!</b></p>
 
 		<div class="psx-body-ruler"></div>
@@ -49,7 +49,7 @@
 
 <div class="row">
 	<div class="col-md-5">
-		<p>PSX gives you the possibility to define an clear schema for your API 
+		<p>PSX gives you the possibility to define a clear schema for your API 
 		endpoint. The schema can be defined as <b><a href="http://raml.org/">RAML</a></b>
 		specification or directly in PHP. Because PSX has all informations how 
 		the API is structured it can validate incoming and outgoing data according 
@@ -469,7 +469,7 @@ Accept: application/vnd.acme.v2+json</code></pre>
 		is the same code as when we make a call to the webserver except that we 
         manually create the HTTP request and response.</p>
 
-		<p>In this way we can easily make a integration test for the controller by 
+		<p>In this way we can easily make an integration test for the controller by 
 		looking at the actually response. In our example we call the doIndex method
 		of the controller and check whether the response is a JSON object 
 		<code>{"hello": "world"}</code>.</p>
@@ -559,7 +559,7 @@ Accept: application/vnd.acme.v2+json</code></pre>
 
 		<p>Inside a controller/command it is not possible to access the DI container 
 		instead each dependency must be specified as property with an <code>@Inject</code>
-		annotation. PSX injects the dependency into this property. This gives an 
+		annotation. PSX injects the dependency into this property. This gives a 
 		clear overview of the dependencies for each controller/command which eventually 
 		should help you to decouple your application code from the framework.</p>
 	</div>
@@ -642,7 +642,7 @@ GET|POST /bar              Acme\News\Application\BarApi</pre>
 		<p>PSX controllers are designed as middleware. In the end each controller
 		returns only an array of middlewares which get executed. By default a
 		controller returns the ControllerExecutor middleware which executes the
-		specific methods of the controller. In the example we return a simple
+		specific method of the controller. In the example we return a simple
 		closure as middleware which writes the string <code>Hello world!</code>
 		as response.</p>
 	</div>
