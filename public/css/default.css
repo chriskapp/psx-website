@@ -220,11 +220,6 @@ pre
 {
 }
 
-.nav-tabs > li > a
-{
-	border-radius:0px;
-}
-
 .psx-annotation
 {
 	position:relative;
@@ -257,14 +252,24 @@ pre
 {
 	border-color:rgba(255, 255, 255, 0);
 	border-right-color: #fff;
-	border-width:10px;
-	margin-top:-10px;
+	border-width:6px;
+	margin-top:-6px;
 }
 
 .psx-annotation:before 
 {
 	border-color:rgba(34, 34, 34, 0);
 	border-right-color:#222;
-	border-width:12px;
-	margin-top:-12px;
+	border-width:8px;
+	margin-top:-8px;
+}
+
+.nav-tabs > li > a
+{
+	border-radius:0px;
+}
+
+.btn
+{
+	border-radius:0px;
 }
