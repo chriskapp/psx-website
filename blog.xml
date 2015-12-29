@@ -2,7 +2,64 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>urn:phpsx.org:blog</id>
 	<title>PSX Blog</title>
-	<updated>2015-12-27T02:05:00Z</updated>
+	<updated>2015-12-29T12:03:00Z</updated>
+	<entry>
+		<id>urn:phpsx.org:blog:26</id>
+		<title>Website update and version 1.1.4 released</title>
+		<author>
+			<name>christoph.kappestein</name>
+			<uri>http://github.com/k42b3</uri>
+		</author>
+		<updated>2015-12-29T12:03:00Z</updated>
+		<summary>
+Explanation of the website update and version 1.1.4 coverage
+		</summary>
+		<category term="announcement" />
+		<category term="psx" />
+		<content type="html"><![CDATA[
+
+<p>We have introduced a new landing page which contains a short explanation of 
+a simple PSX schema controller. This should give new users a quick insight how
+PSX works. Also we have released a new version which contains some improvements. 
+In the following the coverage of the changelog:</p>
+
+<ul>
+	<li>
+		<b>The schema API handles now automatically HEAD requests</b>
+		<p>That means the <code>doGet</code> method is called on a 
+		<a href="http://tools.ietf.org/html/rfc7231#section-4.3.2">HEAD</a> 
+		request but the response body is not sent</p>
+	</li>
+	<li>
+		<b>Add support for PATCH request method</b>
+		<p>All controller can handle now PATCH request methods</p>
+	</li>
+	<li>
+		<b>Fix automatic template detection for psr4 namespaces</b>
+		<p>Previously there was a problem with the template detection if your 
+		controller class was in a psr4 style folder because the template engine 
+		created the template file based on the class name. This is now fixed
+		as we use the class file path to resolve the correct template file. 
+		This works now for psr0 and psr4 autoloading</p>
+	</li>
+	<li>
+		<b>Renamed doCreate and doUpdate method to doPost and doPut to follow the http request method naming scheme</b>
+		<p>This is no BC since we have also added a compatibility layer which 
+		calls the <code>doCreate</code> and <code>doUpdate</code> method in case 
+		they are available. But we recommend to rename all methods in your 
+		schema controller from <code>doCreate</code> to <code>doPost</code> and 
+		<code>doUpdate</code> to <code>doPut</code>. This compatibility layer 
+		will be removed on the next major release</p>
+	</li>
+	<li>
+		<b>Json schema document throw an exception if a json pointer could not be resolved</b>
+		<p>Since there is no gracefully way to handle an invalid json pointer we
+		now throw an exception which also helps to debug the json schema</p>
+	</li>
+</ul>
+
+]]></content>
+	</entry>
 	<entry>
 		<id>urn:phpsx.org:blog:25</id>
 		<title>Version 1.1.2 released</title>
