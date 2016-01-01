@@ -65,7 +65,7 @@ a look at the offical <a href="http://psx.readthedocs.org/">documentation</a>.</
 		further links to other endpoints.</p>
 	</li>
 	<li>
-		<b>API <code>http://127.0.0.1:8080/internet</code></b>
+		<b>API <code>http://127.0.0.1:8080/population</code></b>
 		<p>This is the example API of the project.</p>
 	</li>
 	<li>
@@ -82,18 +82,21 @@ API.</p>
 
 <ul>
 	<li>
-		<b>src/Sample/Api/InternetPopulation/Endpoint/Collection.php</b>
-		<p>This is the class which represents the <code>/internet</code> endpoint.
+		<b>src/Sample/Api/Population/Collection.php</b>
+		<p>This is the class which represents the <code>/population</code> endpoint.
 		It loads the <code>population.raml</code> file which contains the 
-		specification of the API. Also it contains the business logic to create 
-		and receive records on a sqlite database.</p>
+		specification of the API.</p>
 	</li>
 	<li>
-		<b>src/Sample/Api/InternetPopulation/Resource/population.raml</b>
+		<b>src/Sample/Resource/population.raml</b>
 		<p><a href="http://raml.org/">RAML</a> specification which describes the 
 		capabilities of the API. You can add or remove parameters to change the
 		behaviour of the API. The format of the request and response bodies is
 		defined in the json schema files.</p>
+	</li>
+	<li>
+		<b>src/Sample/Service/Population.php</b>
+		<p>Service class which contains the business logic of the API.</p>
 	</li>
 	<li>
 		<b>src/Sample/Dependency/Container.php</b>
@@ -101,9 +104,9 @@ API.</p>
 		use a sqlite database.</p>
 	</li>
 	<li>
-		<b>tests/Sample/Api/InternetPopulation/Endpoint/CollectionTest.php</b>
+		<b>tests/Sample/Api/Population/CollectionTest.php</b>
 		<p>Contains the <a href="https://phpunit.de/">PHPUnit</a> test case for
-		the <code>/internet</code> endpoint. If you have phpunit installed you
+		the <code>/population</code> endpoint. If you have phpunit installed you
 		can run the tests in the root of the project with the <code>phpunit</code>
 		command.</p>
 	</li>
