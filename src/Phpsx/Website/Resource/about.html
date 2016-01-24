@@ -32,8 +32,8 @@
     </div>
     <div class="col-md-5">
         <p>PSX provides tools to automatically generate a documentation from 
-        the defined API. The documentation gets generated from the schema and is 
-        therefore always up to date. To see the documentation you can view the 
+        the defined API. The documentation is generated from the schema and is 
+        therefore always up to date. To see a documentation you can view the 
         <b><a href="http://example.phpsx.org/documentation/">example</a></b> 
         project or take a look at the <b><a href="https://github.com/k42b3/psx-examples">source</a></b>.
         </p>
@@ -50,13 +50,13 @@
 <div class="row">
     <div class="col-md-5">
         <p>PSX gives you the possibility to define a clear schema for your API 
-        endpoint. The schema can be defined as <b><a href="http://raml.org/">RAML</a></b>
+        endpoint. The schema can be defined through annotations, as <b><a href="http://raml.org/">RAML</a></b>
         specification or directly in PHP. Because PSX has all informations how 
         the API is structured it can validate incoming and outgoing data according 
         to the schema.</p>
 
         <p>Based on the defined schema PSX can also generate different API  
-        definition formats: <b><a href="http://example.phpsx.org/tool/raml/1/population">RAML</a></b>, 
+        definition formats like: <b><a href="http://example.phpsx.org/tool/raml/1/population">RAML</a></b>, 
         <b><a href="http://example.phpsx.org/tool/swagger/1/population">Swagger</a></b>
         and <b><a href="http://example.phpsx.org/tool/wsdl/1/population">WSDL</a></b>.
         These formats can be used i.e. to automatically generate client-side
@@ -65,11 +65,37 @@
     <div class="col-md-7">
         <div role="tabpanel">
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#schema-raml" aria-controls="schema-raml" role="tab" data-toggle="tab">RAML</a></li>
+                <li role="presentation" class="active"><a href="#schema-annotation" aria-controls="schema-annotation" role="tab" data-toggle="tab">Annotation</a></li>
+                <li role="presentation"><a href="#schema-raml" aria-controls="schema-raml" role="tab" data-toggle="tab">RAML</a></li>
                 <li role="presentation"><a href="#schema-php" aria-controls="schema-php" role="tab" data-toggle="tab">PHP</a></li>
             </ul>
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="schema-raml">
+                <div role="tabpanel" class="tab-pane active" id="schema-annotation">
+                    <div class="psx-code-box">
+                        <h4>PHP</h4>
+                        <pre><code class="php">class Endpoint extends AnnotationApiAbstract
+{
+    /**
+     * Returns a collection of population entries
+     *
+     * @QueryParam(name="startIndex", type="integer")
+     * @QueryParam(name="count", type="integer")
+     * @Outgoing(code=200, schema="schema/collection.json")
+     */
+    public function doGet()
+    {
+    }
+
+    /**
+     * @Incoming(schema="schema/entry.json")
+     */
+    public function doPost()
+    {
+    }
+}</code></pre>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="schema-raml">
                     <div class="psx-code-box">
                         <h4>PHP</h4>
                         <pre><code class="php">class Endpoint extends SchemaApiAbstract

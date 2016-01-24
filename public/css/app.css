@@ -367,6 +367,13 @@ pre
     padding:4px;
 }
 
+
+.psx-code-box a
+{
+    text-decoration:underline;
+    color:#d0d0ff;
+}
+
 .psx-right
 {
     float:right;
@@ -382,8 +389,8 @@ pre
 .psx-body-ruler
 {
     clear:both;
-    padding:8px;
-    border-bottom:1px solid #222;
+    margin:10px 0;
+    border-bottom:1px solid #ddd;
 }
 
 .psx-categories
@@ -424,7 +431,7 @@ pre
 .psx-annotation
 {
     position:relative;
-    border:1px solid #222;
+    border:1px solid #ddd;
     border-right:none;
     border-bottom:none;
     border-top:none;
@@ -460,7 +467,7 @@ pre
 .psx-annotation:before 
 {
     border-color:rgba(34, 34, 34, 0);
-    border-right-color:#222;
+    border-right-color:#ddd;
     border-width:8px;
     margin-top:-8px;
 }

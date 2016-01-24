@@ -7,6 +7,8 @@
 
 <?php include($location . '/inc/header.html'); ?>
 
+
+
 <div class="row">
     <div class="col-md-12">
     <br>
@@ -19,50 +21,46 @@
     </div>
 </div>
 
+
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#annotation" aria-controls="annotation" role="tab" data-toggle="tab">Annotation</a></li>
+    <li role="presentation"><a href="#raml" aria-controls="profile" role="tab" data-toggle="tab">RAML</a></li>
+</ul>
+
+<div class="tab-content">
+    <!-- ANNOTATION ======================================================== -->
+    <div role="tabpanel" class="tab-pane active" id="annotation">
+
 <div class="row">
     <div class="col-md-6">
         <div class="psx-code-box">
             <h4>Controller</h4>
-            <pre><code class="php">class Collection extends SchemaApiAbstract
+            <pre><code class="php">class Collection extends AnnotationApiAbstract
 {
     /**
-     * @Inject
-     * @var \Doctrine\DBAL\Connection
+     * @QueryParam(name="count", type="integer")
+     * @Outgoing(code=200, schema="<a href="#" onclick="loadSpec('jsonschema-collection', 'json');return false;">../Resource/schema/collection.json</a>")
      */
-    protected $connection;
-
-    public function getDocumentation()
-    {
-        return Raml::fromFile(
-            __DIR__ . '/../Resource/population.raml', 
-            $this-&gt;context-&gt;get(Context::KEY_PATH)
-        );
-    }
-
     protected function doGet(Version $version)
     {
-        $sql = '  SELECT id, 
-                         title, 
-                         content, 
-                         createDate 
-                    FROM acme_news 
-                ORDER BY createDate DESC
-                   LIMIT :count';
-
-        $count = $this-&gt;queryParameters-&gt;getProperty('count') ?: 8;
-        $data  = $this-&gt;connection-&gt;fetchAll($sql, ['count' => $count]);
+        $count  = $this-&gt;queryParameters-&gt;getProperty('count') ?: 8;
+        $result = $this-&gt;repository-&gt;fetchAll($count);
 
         return [
-            'entry' =&gt; $data
+            'entry' =&gt; $result
         ];
     }
 
+    /**
+     * @Incoming(schema="<a href="#" onclick="loadSpec('jsonschema-entity', 'json');return false;">../Resource/schema/entity.json</a>")
+     * @Outgoing(code=201, schema="<a href="#" onclick="loadSpec('jsonschema-message', 'json');return false;">../Resource/schema/message.json</a>")
+     */
     protected function doPost(RecordInterface $record, Version $version)
     {
-        $this-&gt;connection-&gt;insert('acme_news', [
-            'title'      => $record->getTitle(),
-            'content'    => $record->getContent(),
-            'createDate' => date('Y-m-d H:i:s'),
+        $this-&gt;repository-&gt;insert('acme_news', [
+            'title'      => $record-&gt;getTitle(),
+            'content'    => $record-&gt;getContent(),
+            'createDate' => new \DateTime(),
         ]);
 
         return [
@@ -70,16 +68,7 @@
             'message' =&gt; 'Create successful',
         ];
     }
-
-    protected function doPut(RecordInterface $record, Version $version)
-    {
-    }
-
-    protected function doDelete(RecordInterface $record, Version $version)
-    {
-    }
 }
-
 
 </code></pre>
         </div>
@@ -91,70 +80,33 @@
         <div class="psx-annotation">
             <p>
             <br>
-            Specify the dependencies in your controller which come from a 
-            Symfony compatible DI container.
-            <br>
-            <br>
-            </p>
-        </div>
-        <br>
-        <div class="psx-annotation">
-            <p>
-            <br>
-            Each controller knows the schema of the API endpoint. Because of
-            that we can automatically validate incoming data and generate a
+            We can use annotations to describe our web service. Because of
+            that PSX can automatically validate incoming data and generate a
             <a href="http://example.phpsx.org/documentation/#/api/">documentation</a>
             for the API endpoints.
             <br>
             <br>
-            </p>
-        </div>
-        <br>
-        <div class="psx-annotation">
-            <p>
-            <br>
-            Each request method has a seperate method inside the controller. 
-            There you can use the services from the DI container to handle the 
-            incoming data and produce the response.
-            <br>
-            <br>
-            In our example we use the <a href="https://github.com/doctrine/dbal">Doctrine DBAL</a> 
-            library but your are free to choose the DB or ORM library you like.
-            PSX will analyze the response and transform it to the fitting format.
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+            Inside PSX you can use any ORM or database library to fetch the 
+            response data.
             <br>
             <br>
             </p>
         </div>
         <br>
-        <div class="psx-annotation">
-            <p>
-            <br>
-            The request data is availabe as record which contains all fields 
-            which are defined in the request schema.
-            <br>
-            <br>
-            The version object contains the submitted version if the 
-            <code>Accept</code> header contains a specific version constraint 
-            i.e. <code>application/vnd.acme.v2+json</code>
-            <br>
-            <br>
-            <br>
-            <br>
-            </p>
-        </div>
+        <br>
         <br>
         <div class="psx-annotation">
             <p>
             <br>
-            If a request method is not available in the schema the API returns
-            a <code>405 Method Not Allowed</code> response code with a 
-            <code>Allow</code> header containing the available methods.
+            We can use the <a href="http://json-schema.org/">JsonSchema</a> format 
+            to describe our incoming and outgoing data. PSX comes with an 
+            advanced JsonSchema parser which validates the 
+            incoming data according to the schema.
             <br>
+            <br>
+            In our example we use an imagined repository service which
+            acts on a database but your are free to use any service you like. 
+            All services come from a Symfony compatible DI container.
             <br>
             <br>
             </p>
@@ -162,13 +114,124 @@
     </div>
 </div>
 
-<div class="psx-body-ruler"></div>
+    </div>
+    <!-- RAML ============================================================== -->
+    <div role="tabpanel" class="tab-pane" id="raml">
 
 <div class="row">
     <div class="col-md-6">
         <div class="psx-code-box">
-            <h4>RAML Specification</h4>
-            <pre><code class="yaml">#%RAML 0.8
+            <h4>Controller</h4>
+            <pre><code class="php">class Collection extends SchemaApiAbstract
+{
+    public function getDocumentation()
+    {
+        return Raml::fromFile(
+            __DIR__ . '<a href="#" onclick="loadSpec('raml-population', 'yaml');return false;">/../Resource/population.raml</a>', 
+            $this-&gt;context-&gt;get(Context::KEY_PATH)
+        );
+    }
+
+    protected function doGet(Version $version)
+    {
+        $count  = $this-&gt;queryParameters-&gt;getProperty('count') ?: 8;
+        $result = $this-&gt;repository-&gt;fetchAll($count);
+
+        return [
+            'entry' =&gt; $result
+        ];
+    }
+
+    protected function doPost(RecordInterface $record, Version $version)
+    {
+        $this-&gt;repository-&gt;insert('acme_news', [
+            'title'      => $record-&gt;getTitle(),
+            'content'    => $record-&gt;getContent(),
+            'createDate' => new \DateTime(),
+        ]);
+
+        return [
+            'success' =&gt; true,
+            'message' =&gt; 'Create successful',
+        ];
+    }
+}
+
+</code></pre>
+        </div>
+    </div>
+    <div class="col-md-6 hidden-xs hidden-sm">
+        <br>
+        <br>
+        <br>
+        <div class="psx-annotation">
+            <p>
+            <br>
+            It is also possible to use a <a href="http://raml.org/">RAML</a> 
+            specification to describe you API endpoint. PSX will parse the 
+            specification and validates the request accordingly.
+            <br>
+            <br>
+            Besides the <code>getDocumentation</code> method the controller 
+            behaves exactly like the annotation controller. In fact the 
+            annotation controller has also a <code>getDocumentation</code> 
+            implementation which reads the annotations. This architecture gives 
+            PSX the flexibility to implement future API specification formats.
+            <br>
+            <br>
+            </p>
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+<div class="psx-body-ruler"></div>
+
+<div class="row">
+    <div class="col-md-12">
+    <p>This was only a short introduction to give you an insight how a PSX 
+    application works. If you are excited about the possibilities as we are you 
+    can read the <a href="<?php echo $router->getUrl('Phpsx\Website\Application\About::doIndex'); ?>">about</a>
+    page for more informations or checkout the offical <a href="http://psx.readthedocs.org/en/latest/">documentation</a>.</p>
+    <br>
+    <div style="text-align:center">
+        <a href="<?php echo $router->getUrl('Phpsx\Website\Application\Bootstrap::doIndex'); ?>" class="btn btn-primary">Get started</a>
+        <a href="<?php echo $router->getUrl('Phpsx\Website\Application\Download::doIndex'); ?>" class="btn btn-default">Download</a>
+    </div>
+    <br>
+    <br>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Source</h4>
+      </div>
+      <div class="modal-body">
+        <div id="modalSource"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php include($location . '/inc/footer.html'); ?>
+
+<script type="text/javascript">
+function loadSpec(id, lang) {
+    $('#modalSource').html('<pre class="' + lang + '"><code>' + $('#' + id).html() + '</code></pre>');
+    hljs.highlightBlock($('#modalSource pre')[0]);
+    $('#myModal').modal({
+        show: true
+    });
+}
+</script>
+
+<script type="text/yaml" id="raml-population">#%RAML 0.8
 title: Acme API
 baseUri: http://acme.com
 version: v1
@@ -193,44 +256,9 @@ version: v1
         body:
           application/json:
             schema: !include schema/message.json
-</code></pre>
-        </div>
-    </div>
-    <div class="col-md-6 hidden-xs hidden-sm">
-        <br>
-        <br>
-        <div class="psx-annotation">
-            <p>
-            <br>
-            The API schema can be described in the <a href="http://raml.org/">RAML</a> 
-            format. PSX reads the specification from the path and validates the 
-            request data according to the schema.
-            <br>
-            <br>
-            </p>
-        </div>
-        <br>
-        <br>
-        <br>
-        <div class="psx-annotation">
-            <p>
-            <br>
-            It is possible to include <a href="http://json-schema.org/">JSON schema</a> 
-            specifications which describe the request and response body.
-            <br>
-            <br>
-            </p>
-        </div>
-    </div>
-</div>
+</script>
 
-<div class="psx-body-ruler"></div>
-
-<div class="row">
-    <div class="col-md-6">
-        <div class="psx-code-box">
-            <h4>JSON Schema entity.json</h4>
-            <pre><code class="json">{
+<script type="text/json" id="jsonschema-entity">{
     "$schema": "http://json-schema.org/draft-04/schema#",
     "title": "news",
     "description": "News entry",
@@ -255,13 +283,9 @@ version: v1
         }
     }
 }
+</script>
 
-</code></pre>
-        </div>
-
-        <div class="psx-code-box">
-            <h4>JSON Schema collection.json</h4>
-            <pre><code class="json">{
+<script type="text/json" id="jsonschema-collection">{
     "$schema": "http://json-schema.org/draft-04/schema#",
     "title": "collection",
     "description": "Collection of news entries",
@@ -275,75 +299,25 @@ version: v1
         }
     }
 }
+</script>
 
-</code></pre>
-        </div>
-
-    </div>
-    <div class="col-md-6 hidden-xs hidden-sm">
-        <br>
-        <br>
-        <div class="psx-annotation">
-            <p>
-            <br>
-            It is great to have a framework independent format which describes
-            your data. Since JSON schema is the de facto standard for describing 
-            JSON data you probably already have a schema wich you can utilize 
-            with PSX. If not it is a great way to start defining a schema.
-            <br>
-            <br>
-            </p>
-        </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div class="psx-annotation">
-            <p>
-            <br>
-            PSX provides an advanced JSON schema parser which can handle local  
-            and remote schema referenes.
-            <br>
-            <br>
-            </p>
-        </div>
-    </div>
-</div>
-
-<div class="psx-body-ruler"></div>
-
-<div class="row">
-    <div class="col-md-12">
-    <p>This was a short introduction how a PSX application works. If you are 
-    excited about the possibilities as we are you can read the 
-    <a href="<?php echo $router->getUrl('Phpsx\Website\Application\About::doIndex'); ?>">about</a>
-    page for more informations or checkout the offical <a href="http://psx.readthedocs.org/en/latest/">documentation</a>.</p>
-    <br>
-    <div style="text-align:center">
-        <a href="<?php echo $router->getUrl('Phpsx\Website\Application\Bootstrap::doIndex'); ?>" class="btn btn-primary">Get started</a>
-        <a href="<?php echo $router->getUrl('Phpsx\Website\Application\Download::doIndex'); ?>" class="btn btn-default">Download</a>
-    </div>
-    <br>
-    <br>
-    </div>
-</div>
-
-
-
-
-<?php include($location . '/inc/footer.html'); ?>
+<script type="text/json" id="jsonschema-message">{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "message",
+    "description": "Response message",
+    "type": "object",
+    "properties": {
+        "success": {
+            "type": "boolean",
+            "description": "Indicates whether the operation was successful"
+        },
+        "message": {
+            "type": "string",
+            "description": "Human readable description what happened"
+        }
+    }
+}
+</script>
 
 </body>
 </html>
