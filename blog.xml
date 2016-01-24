@@ -2,7 +2,68 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>urn:phpsx.org:blog</id>
 	<title>PSX Blog</title>
-	<updated>2015-12-29T12:03:00Z</updated>
+	<updated>2016-01-24T20:28:00Z</updated>
+	<entry>
+		<id>urn:phpsx.org:blog:27</id>
+		<title>Version 1.2 released</title>
+		<author>
+			<name>christoph.kappestein</name>
+			<uri>http://github.com/k42b3</uri>
+		</author>
+		<updated>2016-01-24T20:28:00Z</updated>
+		<summary>
+Coverage of the 1.2 release
+		</summary>
+		<category term="announcement" />
+		<category term="psx" />
+		<content type="html"><![CDATA[
+
+<p>We like to announce version 1.2 of PSX. This release contains a new API 
+controller where you can define the API format through annotations. The 
+annotations are based on the JAX-RS annotations. Since the annotations contain
+more complex values we have switched to the doctrine annotation parser. In the 
+following we go in detail through the changelog:</p>
+
+<ul>
+	<li>
+		<b>Add annotation API controller which can be used to specify the API 
+		behaviour through annotations</b>
+		<p>The class <code>PSX\Controller\AnnotationApiAbstract</code> was added
+		which can be used as alternative to the RAML or programmatic schema
+		definition</p>
+	</li>
+	<li>
+		<b>Improved api generation command</b>
+		<p>The <code>--raml</code> option was improved so that the include path 
+		is relative to the location of the class</p>
+	</li>
+	<li>
+		<b>Add doctrine annotation reader for annotation parsing</b>
+		<p>Since we use the annotation reader for the annotation API controller
+		we use it now also for the object builder to parse the <code>@Inject</code>
+		annotation. Note this has the implication that the notation of a custom 
+		service name has changed. I.e. previously you could define a service 
+		name with <code>@Inject test_service</code> since this release it must
+		be <code>@Inject("test_service")</code>. In most cases this wont affect
+		your code because you rarely need to define a custom service name</p>
+	</li>
+	<li>
+		<b>Unify doctrine cache usage and improve entity manager integration</b>
+		<p>The doctrine cache is used in several services like the JMS serializer,
+		doctrine annotation reader or doctrine ORM. We have unified the usage
+		so that it is simple to change the storage from the filesystem to a 
+		different implementation
+		</p>
+	</li>
+	<li>
+		<b>Oauth2 token endpoint handle also client_id and client_secret parameter</b>
+		<p>The OAuth2 endpoint implementation handles now also <code>client_id</code> and 
+		<code>client_secret</code> parameters which are send through POST</p>
+	</li>
+</ul>
+
+]]></content>
+	</entry>
 	<entry>
 		<id>urn:phpsx.org:blog:26</id>
 		<title>Website update and version 1.1.4 released</title>
