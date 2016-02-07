@@ -2,7 +2,64 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>urn:phpsx.org:blog</id>
 	<title>PSX Blog</title>
-	<updated>2016-01-24T20:28:00Z</updated>
+	<updated>2016-02-07T18:59:00Z</updated>
+	<entry>
+		<id>urn:phpsx.org:blog:28</id>
+		<title>Version 1.2.1 released</title>
+		<author>
+			<name>christoph.kappestein</name>
+			<uri>http://github.com/k42b3</uri>
+		</author>
+		<updated>2016-02-07T18:59:00Z</updated>
+		<summary>
+Coverage of the 1.2.1 release
+		</summary>
+		<category term="announcement" />
+		<category term="psx" />
+		<content type="html"><![CDATA[
+<p>We like to announce version 1.2.1 of PSX. This release contains some new 
+features and we have cleaned up the code at some places. In the following the
+coverage of the changelog:</p>
+
+<ul>
+	<li>
+		<b>Add pseudo ANY request method to the routing parser</b>
+		<p>It is now possible to use the <code>ANY</code> request method inside
+		a routing file. If used the route is called for every request method if 
+		the path matches</p>
+	</li>
+	<li>
+		<b>Removed annotation loader</b>
+		<p>The annotation loader was an alternative loader implementation which
+		was not actively used. Since the routing file works really well we 
+		removed this option</p>
+	</li>
+	<li>
+		<b>Dispatcher add option to disable sending the response to the client</b>
+		<p>An option was added to the dispatcher to disable sending the content
+		to the client. This is useful in case the dispatcher is used inside a 
+		command</p>
+	</li>
+	<li>
+		<b>Add SoapProxyController which handles all SOAP communication</b>
+		<p>The <code>SoapProxyController</code> is a new controller which 
+		handles all SOAP communication. Previously it was possible to send SOAP
+		requests to any endpoint now all communication is bundled through the
+		SOAP proxy. This solves also the problem that you can access endpoints
+		with dynamic path fragments. In case you are accessing an endpoint 
+		through SOAP you have to add the following routes entry:</p>
+		<pre>ANY /soap PSX\Controller\Tool\SoapProxyController</pre>
+	</li>
+	<li>
+		<b>Add option to restrict fields at the table abstract class</b>
+		<p>The <code>TableAbstract</code> class has now a option to specify the
+		fields which a select should return. It is possible to white/blacklist 
+		fields</p>
+	</li>
+</ul>
+
+]]></content>
+	</entry>
 	<entry>
 		<id>urn:phpsx.org:blog:27</id>
 		<title>Version 1.2 released</title>
@@ -17,7 +74,6 @@ Coverage of the 1.2 release
 		<category term="announcement" />
 		<category term="psx" />
 		<content type="html"><![CDATA[
-
 <p>We like to announce version 1.2 of PSX. This release contains a new API 
 controller where you can define the API format through annotations. The 
 annotations are based on the JAX-RS annotations. Since the annotations contain
@@ -78,7 +134,6 @@ Explanation of the website update and version 1.1.4 coverage
 		<category term="announcement" />
 		<category term="psx" />
 		<content type="html"><![CDATA[
-
 <p>We have introduced a new landing page which contains a short explanation of 
 a simple PSX schema controller. This should give new users a quick insight how
 PSX works. Also we have released a new version which contains some improvements. 
