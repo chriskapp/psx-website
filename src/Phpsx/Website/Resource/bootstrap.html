@@ -77,22 +77,13 @@ a look at the offical <a href="http://psx.readthedocs.org/">documentation</a>.</
 
 <h3 id="source-code">Source code</h2>
 
-<p>In the following a short explanation about the important parts of the example 
+<p>In the following a few explanations about the important parts of the sample 
 API.</p>
 
 <ul>
 	<li>
 		<b>src/Sample/Api/Population/Collection.php</b>
-		<p>This is the class which represents the <code>/population</code> endpoint.
-		It loads the <code>population.raml</code> file which contains the 
-		specification of the API.</p>
-	</li>
-	<li>
-		<b>src/Sample/Resource/population.raml</b>
-		<p><a href="http://raml.org/">RAML</a> specification which describes the 
-		capabilities of the API. You can add or remove parameters to change the
-		behaviour of the API. The format of the request and response bodies is
-		defined in the json schema files.</p>
+		<p>This is the class which represents the /population endpoint.</p>
 	</li>
 	<li>
 		<b>src/Sample/Service/Population.php</b>
@@ -107,8 +98,8 @@ API.</p>
 		<b>tests/Sample/Api/Population/CollectionTest.php</b>
 		<p>Contains the <a href="https://phpunit.de/">PHPUnit</a> test case for
 		the <code>/population</code> endpoint. If you have phpunit installed you
-		can run the tests in the root of the project with the <code>phpunit</code>
-		command.</p>
+		can run the tests in the root of the project with the 
+		<code>phpunit</code> command.</p>
 	</li>
 </ul>
 
