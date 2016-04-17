@@ -3,35 +3,42 @@
 <head>
 	<?php include($location . '/inc/meta.html'); ?>
 </head>
-<body>
+<body class="psx mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
 
 <?php include($location . '/inc/header.html'); ?>
 
-<h2 id="download">Download</h2>
-
-<p>This is the official release of PSX. PSX tries to follow the <a href="http://semver.org/">semantic</a> 
-versioning. The public <a href="/api">API documentation</a> is shipped with each release in 
-the doc folder. You can also browse all <a href="https://github.com/k42b3/psx/releases">releases</a> at GitHub. The
+<div class="psx-section mdl-color--primary-contrast">
+    <div class="psx-max-width">
+        <div class="psx-text">
+            <h2 class="mdl-typography--display-1-color-contrast">Download</h2>
+            <p class="mdl-typography--subhead-color-contrast">Here you can 
+            download the official release of PSX. PSX tries to follow the <a href="http://semver.org/">semantic</a> 
+versioning. You can also browse all <a href="https://github.com/apioo/psx/releases">releases</a> at GitHub. The
 preferred way of installing PSX is through composer.</p>
+        </div>
+    </div>
+</div>
 
-<h3>Composer</h3>
+<div class="psx-section">
+    <div class="psx-max-width">
+        <div class="psx-text">
+            <h3 class="mdl-typography--title-color-contrast">Composer</h3>
+            <div class="mdl-typography--body-1-color-contrast">
+                <p><?php echo $links[0]['description']; ?>.</p>
+                <p><pre>composer create-project psx/sample .</pre></p>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p><?php echo $links[0]['description']; ?>.</p>
-<p><pre>composer create-project psx/sample .</pre></p>
-
-<h3>Vagrant</h3>
-
-<p><?php echo $links[1]['description']; ?>.</p>
-<p><pre>git clone https://github.com/k42b3/psx-vagrant .
-vagrant up</pre></p>
-
-<h3>Download</h3>
-
-<ul style="margin-top:8px;">
-	<li>
-		<a href="<?php echo $links[2]['href']; ?>"><?php echo $links[2]['title']; ?></a>
-	</li>
-</ul>
+<div class="psx-section mdl-color--primary-contrast">
+    <div class="psx-max-width">
+        <div class="psx-text">
+            <h3 class="mdl-typography--title-color-contrast">Download</h3>
+            <a href="<?php echo $links[2]['href']; ?>" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"><?php echo $links[2]['title']; ?></a>
+        </div>
+    </div>
+</div>
 
 <?php include($location . '/inc/footer.html'); ?>
 

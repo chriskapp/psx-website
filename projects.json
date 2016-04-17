@@ -1,0 +1,70 @@
+{
+   "primary": {
+      "psx/api": {
+         "git": "https://github.com/apioo/psx-api.git",
+         "description": "Parse and generate API specification formats"
+      },
+      "psx/data": {
+         "git": "https://github.com/apioo/psx-data.git",
+         "description": "Data processing library to read and write POPOs in different formats"
+      },
+      "psx/framework": {
+         "git": "https://github.com/apioo/psx-framework.git",
+         "description": "Engine of the PSX framework"
+      },
+      "psx/json": {
+         "git": "https://github.com/apioo/psx-json.git",
+         "description": "Handle JSON patch, pointer and web token specifications"
+      },
+      "psx/schema": {
+         "git": "https://github.com/apioo/psx-schema.git",
+         "description": "Parse and generate data schema formats"
+      },
+      "psx/sql": {
+         "git": "https://github.com/apioo/psx-sql.git",
+         "description": "Build complex data structures from relational databases"
+      }
+   },
+   "secondary": {
+      "psx/cache": {
+         "git": "https://github.com/apioo/psx-cache.git",
+         "description": "PSR-6 implementation using the doctrine cache system"
+      },
+      "psx/datetime": {
+         "git": "https://github.com/apioo/psx-datetime.git",
+         "description": "Date and time implementations which only accept RFC3339 formats"
+      },
+      "psx/http": {
+         "git": "https://github.com/apioo/psx-http.git",
+         "description": "Mutable HTTP model and HTTP client implementation"
+      },
+      "psx/model": {
+         "git": "https://github.com/apioo/psx-model.git",
+         "description": "Model classes based on open data specifications"
+      },
+      "psx/oauth": {
+         "git": "https://github.com/apioo/psx-oauth.git",
+         "description": "Oauth consumer"
+      },
+      "psx/oauth2": {
+         "git": "https://github.com/apioo/psx-oauth2.git",
+         "description": "Oauth2 consumer"
+      },
+      "psx/openssl": {
+         "git": "https://github.com/apioo/psx-openssl.git",
+         "description": "OpenSsl wrapper library"
+      },
+      "psx/record": {
+         "git": "https://github.com/apioo/psx-record.git",
+         "description": "Data HashMap implementation"
+      },
+      "psx/uri": {
+         "git": "https://github.com/apioo/psx-uri.git",
+         "description": "URI, URL and URN value objects"
+      },
+      "psx/validate": {
+         "git": "https://github.com/apioo/psx-validate.git",
+         "description": "Validate complex data structures"
+      }
+   }
+}

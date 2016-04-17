@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <?php include($location . '/inc/meta.html'); ?>
+</head>
+<body class="psx mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+
+<?php include($location . '/inc/header.html'); ?>
+
+<div class="psx-section mdl-color--primary-contrast">
+    <div class="psx-max-width">
+        <div class="psx-text">
+            <h2 class="mdl-typography--display-1-color-contrast">Components</h2>
+            <p class="mdl-typography--subhead-color-contrast">The PSX framework is 
+            based on several components which cover various aspects of the API 
+            creation. It is possible to use these components independently of 
+            the framework.</p>
+        </div>
+    </div>
+</div>
+
+<div class="psx-section">
+    <div class="psx-max-width">
+        <div class="psx-cards mdl-grid">
+            <?php foreach($projects as $name => $project): ?>
+            <div class="mdl-cell mdl-cell--4-col mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title"><h4 class="mdl-card__title-text"><?php echo $name; ?></h4></div>
+                <div class="mdl-card__supporting-text mdl-card--expand"><?php echo $project->description; ?></div>
+                <div class="mdl-card__actions">
+                    <a href="<?php echo $project->git; ?>" class="mdl-button mdl-js-button mdl-button--primary">GitHub</a>
+                    <!--<a href="<?php echo $base . '/api/' . $name; ?>" class="mdl-button mdl-js-button mdl-button--primary">API</a>-->
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+
+<?php include($location . '/inc/footer.html'); ?>
+
+</body>
+</html>
+

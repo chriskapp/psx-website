@@ -3,17 +3,34 @@
 <head>
 	<?php include($location . '/inc/meta.html'); ?>
 </head>
-<body>
+<body class="psx mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
 
 <?php include($location . '/inc/header.html'); ?>
 
-<h2 id="documentation">Documentation</h2>
-<dl>
-	<?php foreach($links as $link): ?>
-		<dt><a href="<?php echo $link['href']; ?>"><?php echo $link['title']; ?></a></dt>
-		<dd><?php echo $link['description']; ?></dd>
-	<?php endforeach; ?>
-</dl>
+<div class="psx-section mdl-color--primary-contrast">
+    <div class="psx-max-width">
+        <div class="psx-text">
+            <h2 class="mdl-typography--display-1-color-contrast">Documentation</h2>
+            <p class="mdl-typography--subhead-color-contrast">The manual covers
+            the usage of the complete framework. For more detailed informations 
+            about a single component please take a look at the corresponding 
+            repository.</p>
+        </div>
+    </div>
+</div>
+
+<div class="psx-section">
+    <div class="psx-max-width">
+        <div class="psx-text">
+            <dl class="mdl-typography--body-1-color-contrast">
+                <?php foreach($links as $link): ?>
+                    <dt><a href="<?php echo $link['href']; ?>" class="mdl-color-text--primary"><?php echo $link['title']; ?></a></dt>
+                    <dd><?php echo $link['description']; ?></dd>
+                <?php endforeach; ?>
+            </dl>
+        </div>
+    </div>
+</div>
 
 <?php include($location . '/inc/footer.html'); ?>
 

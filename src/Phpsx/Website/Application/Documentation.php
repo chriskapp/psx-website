@@ -21,15 +21,10 @@ class Documentation extends ViewAbstract
 				'href'        => 'http://psx.readthedocs.org',
 				'description' => 'The official manual of PSX',
 			],[
-				'rel'         => 'api',
-				'title'       => 'API',
-				'href'        => $this->reverseRouter->getBasePath() . '/api',
-				'description' => 'The official API of PSX',
-			],[
-				'rel'         => 'coverage',
-				'title'       => 'Test coverage',
-				'href'        => $this->reverseRouter->getBasePath() . '/coverage',
-				'description' => 'Shows how many code is covered by tests',
+				'rel'         => 'forum',
+				'title'       => 'Forum',
+				'href'        => 'https://groups.google.com/forum/#!forum/phpsx',
+				'description' => 'Forum for questions about PSX ',
 			],[
 				'rel'         => 'sample',
 				'title'       => 'Example',

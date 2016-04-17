@@ -3,111 +3,150 @@
 <head>
 	<?php include($location . '/inc/meta.html'); ?>
 </head>
-<body>
+<body class="psx mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
 
 <?php include($location . '/inc/header.html'); ?>
 
-<h2 id="get-started">Get started</h2>
+<div class="psx-section mdl-color--primary-contrast">
+    <div class="psx-max-width">
+        <div class="psx-text">
+            <h2 class="mdl-typography--display-1-color-contrast">Getting started</h2>
+            <p class="mdl-typography--subhead-color-contrast">To quickly get 
+            started with PSX follow this guide which creates a working PSX environment. 
+            For more detailed informations please take a look at the offical 
+            <a href="http://psx.readthedocs.org/">documentation</a>.</p>
+        </div>
+    </div>
+</div>
 
-<p>To quickly get started with PSX follow this guide which setups a working PSX 
-environment and explains the sample project. For more detailed informations take 
-a look at the offical <a href="http://psx.readthedocs.org/">documentation</a>.</p>
+<div class="psx-section">
+    <div class="psx-max-width">
+        <div class="psx-text">
+            <h3 class="mdl-typography--title-color-contrast">Requirements</h3>
+            <div class="mdl-typography--body-1-color-contrast">
+				<ul>
+					<li>
+						<p>PSX requires at least <b>PHP >= 5.5</b> so you have to check whether 
+						you have the right version installed.</p>
+						<p><pre>php -v</pre></p>
+					</li>
+					<li>
+						<p>PSX uses also <a href="https://getcomposer.org/">composer</a> as  
+						dependency managment tool. With the following command you can see 
+						whether composer is correctly installed. In case it is not installed you 
+						can use the following <a href="https://getcomposer.org/doc/00-intro.md">guide</a> 
+						to setup composer.</p>
+						<p><pre>composer --version</pre></p>
+					</li>
+				</ul>
+            </div>
+        </div>
+    </div>
+</div>
 
-<h3 id="requirements">Requirements</h2>
-
-<ul>
-	<li>
-		<p>PSX requires at least <b>PHP >= 5.4</b> so you have to check whether 
-		you have the right version installed.</p>
-		<p><pre>php -v</pre></p>
-	</li>
-	<li>
-		<p>PSX uses also <a href="https://getcomposer.org/">composer</a> as  
-		dependency managment tool. With the following command you can see 
-		whether composer is correctly installed. In case it is not installed you 
-		can use the following <a href="https://getcomposer.org/doc/00-intro.md">guide</a> 
-		to setup composer.</p>
-		<p><pre>composer --version</pre></p>
-	</li>
-</ul>
-
-<h3 id="installation">Installation</h2>
-
-<ul>
-	<li>
-		<p>Install the sample project of PSX with the following composer command.
-		This creates the sample project and installs a stable version of PSX.</p>
-		<p><pre>composer create-project psx/sample .</pre></p>
-	</li>
-	<li>
-		<p>Change the file <code>configuration.php</code> so that the following 
-		keys are set.</p>
-		<p><pre>'psx_url'      => 'http://127.0.0.1:8080',
+<div class="psx-section mdl-color--primary-contrast">
+    <div class="psx-max-width">
+        <div class="psx-text">
+            <h3 class="mdl-typography--title-color-contrast">Installation</h3>
+            <div class="mdl-typography--body-1-color-contrast">
+				<ul>
+					<li>
+						<p>Install the sample project of PSX with the following composer command.
+						This creates the sample project and installs a stable version of PSX.</p>
+						<p><pre>composer create-project psx/sample .</pre></p>
+					</li>
+					<li>
+						<p>Change the file <code>configuration.php</code> so that the following 
+						keys are set.</p>
+						<p><pre>'psx_url'      => 'http://127.0.0.1:8080',
 'psx_dispatch' => '',</pre></p>
-	</li>
-	<li>
-		<p>Start the internal PHP web-server inside the <code>public/</code> 
-		folder with the following command. Note this is only a setup for testing 
-		in production you want use a real web-server like Apache or Nginx with a 
-		vhost pointing to the public directory.</p>
-		<p><pre>php -S 127.0.0.1:8080 server.php</pre></p>
-	</li>
-</ul>
+					</li>
+					<li>
+						<p>Start the internal PHP web-server inside the <code>public/</code> 
+						folder with the following command. Note this is only a setup for testing 
+						in production you want use a real web-server like Apache or Nginx with a 
+						vhost pointing to the public directory.</p>
+						<p><pre>php -S 127.0.0.1:8080 server.php</pre></p>
+					</li>
+				</ul>
+            </div>
+        </div>
+    </div>
+</div>
 
-<h3 id="endpoints">Endpoints</h2>
+<div class="psx-section">
+    <div class="psx-max-width">
+        <div class="psx-text">
+            <h3 class="mdl-typography--title-color-contrast">Endpoints</h3>
+            <div class="mdl-typography--body-1-color-contrast">
+            	<p>Now you should be able to visit the following endpoints:</p>
+				<ul>
+					<li>
+						<b>Welcome <code>http://127.0.0.1:8080</code></b>
+						<p>The welcome API endpoint should given you a welcome message with 
+						further links to other endpoints.</p>
+					</li>
+					<li>
+						<b>API <code>http://127.0.0.1:8080/population</code></b>
+						<p>This is the example API of the project.</p>
+					</li>
+					<li>
+						<b>Documentation <code>http://127.0.0.1:8080/documentation/</code></b>
+						<p>The automatically generated documentation of the example API. Note 
+						there must be a trailing slash at the url.</p>
+					</li>
+				</ul>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>Now you should be able to visit the following endpoints:</p>
+<div class="psx-section mdl-color--primary-contrast">
+    <div class="psx-max-width">
+        <div class="psx-text">
+            <h3 class="mdl-typography--title-color-contrast">Source code</h3>
+            <div class="mdl-typography--body-1-color-contrast">
+				<p>In the following a few explanations about the important parts of the sample 
+				API.</p>
+				<ul>
+					<li>
+						<b>src/Sample/Api/Population/Collection.php</b>
+						<p>This is the class which represents the /population endpoint.</p>
+					</li>
+					<li>
+						<b>src/Sample/Service/Population.php</b>
+						<p>Service class which contains the business logic of the API.</p>
+					</li>
+					<li>
+						<b>src/Sample/Dependency/Container.php</b>
+						<p>DI container which overwrites the <code>connection</code> service to
+						use a sqlite database.</p>
+					</li>
+					<li>
+						<b>tests/Sample/Api/Population/CollectionTest.php</b>
+						<p>Contains the <a href="https://phpunit.de/">PHPUnit</a> test case for
+						the <code>/population</code> endpoint. If you have phpunit installed you
+						can run the tests in the root of the project with the 
+						<code>phpunit</code> command.</p>
+					</li>
+				</ul>
+            </div>
+        </div>
+    </div>
+</div>
 
-<ul>
-	<li>
-		<b>Welcome <code>http://127.0.0.1:8080</code></b>
-		<p>The welcome API endpoint should given you a welcome message with 
-		further links to other endpoints.</p>
-	</li>
-	<li>
-		<b>API <code>http://127.0.0.1:8080/population</code></b>
-		<p>This is the example API of the project.</p>
-	</li>
-	<li>
-		<b>Documentation <code>http://127.0.0.1:8080/documentation/</code></b>
-		<p>The automatically generated documentation of the example API. Note 
-		there must be a trailing slash at the url.</p>
-	</li>
-</ul>
-
-<h3 id="source-code">Source code</h2>
-
-<p>In the following a few explanations about the important parts of the sample 
-API.</p>
-
-<ul>
-	<li>
-		<b>src/Sample/Api/Population/Collection.php</b>
-		<p>This is the class which represents the /population endpoint.</p>
-	</li>
-	<li>
-		<b>src/Sample/Service/Population.php</b>
-		<p>Service class which contains the business logic of the API.</p>
-	</li>
-	<li>
-		<b>src/Sample/Dependency/Container.php</b>
-		<p>DI container which overwrites the <code>connection</code> service to
-		use a sqlite database.</p>
-	</li>
-	<li>
-		<b>tests/Sample/Api/Population/CollectionTest.php</b>
-		<p>Contains the <a href="https://phpunit.de/">PHPUnit</a> test case for
-		the <code>/population</code> endpoint. If you have phpunit installed you
-		can run the tests in the root of the project with the 
-		<code>phpunit</code> command.</p>
-	</li>
-</ul>
-
-<h3 id="conclusion">Conclusion</h2>
-
-<p>This was a quick walk through of the PSX sample project. If you are as 
+<div class="psx-section">
+    <div class="psx-max-width">
+        <div class="psx-text">
+            <h3 class="mdl-typography--title-color-contrast">Conclusion</h3>
+            <div class="mdl-typography--body-1-color-contrast">
+				<p>This was a quick walk through of the PSX sample project. If you are as 
 excited as we are about the possibilities of PSX you can dive deeper by reading 
 the offical <a href="http://psx.readthedocs.org/">documentation</a>.</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php include($location . '/inc/footer.html'); ?>
 

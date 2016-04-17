@@ -3,6 +3,7 @@ GET /humans.txt              Phpsx\Website\Application\Index::doHumans
 GET /about                   Phpsx\Website\Application\About::doIndex
 GET /get-started             Phpsx\Website\Application\Bootstrap::doIndex
 GET /download                Phpsx\Website\Application\Download::doIndex
+GET /components              Phpsx\Website\Application\Components::doIndex
 GET /documentation           Phpsx\Website\Application\Documentation::doIndex
 GET /security                Phpsx\Website\Application\Security::doIndex
 GET /disclosure              Phpsx\Website\Application\Disclosure::doIndex

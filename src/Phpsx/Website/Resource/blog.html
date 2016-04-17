@@ -4,42 +4,37 @@
 	<?php include($location . '/inc/meta.html'); ?>
 	<?php echo \PSX\Atom\Writer::link('PSX', $router->getUrl('Phpsx\Website\Application\Blog::doFeed')); ?>
 </head>
-<body>
+<body class="psx mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
 
 <?php include($location . '/inc/header.html'); ?>
 
-<h2 id="blog">Blog</h2>
-<?php if(!empty($entry)): ?>
-	<?php foreach($entry as $row): ?>
-	<div class="psx-entry">
-		<h3><a href="<?php echo $router->getUrl('Phpsx\Website\Application\Blog::doDetail', ['title' => $row->getTitleSlug()]); ?>"><?php echo $row->getTitle(); ?></a></h3>
-		<p><small>posted by <a href="<?php echo $row->getAuthorUri(); ?>"><?php echo $row->getAuthorName(); ?></a> on <?php echo $row->getUpdated()->format('Y-m-d'); ?></small></p>
-		<div class="psx-summary"><?php echo $row->getSummary(); ?></div>
-		<div class="psx-categories">
-			<span>category: </span>
-			<ul>
-				<?php foreach($row->getCategory() as $category): ?>
-				<li><a href="<?php echo $router->getUrl('Phpsx\Website\Application\Blog::doCategory', ['category' => $category]); ?>"><?php echo $category; ?></a></li>
-				<?php endforeach; ?>
-			</ul>
+<div class="psx-section">
+    <div class="psx-max-width">
+        <div class="psx-cards mdl-grid">
+		<?php if(!empty($entry)): ?>
+			<?php foreach($entry as $row): ?>
+			<div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
+				<div class="mdl-card__title"><h4 class="mdl-card__title-text"><a href="<?php echo $router->getUrl('Phpsx\Website\Application\Blog::doDetail', ['title' => $row->getTitleSlug()]); ?>" class="mdl-color-text--primary"><?php echo $row->getTitle(); ?></a></h4></div>
+				<div class="mdl-card__supporting-text mdl-card--expand">
+					<p class="mdl-typography--menu"><small>posted by <a href="<?php echo $row->getAuthorUri(); ?>"><?php echo $row->getAuthorName(); ?></a> on <?php echo $row->getUpdated()->format('Y-m-d'); ?></small></p>
+					<div class="psx-summary mdl-typography--subhead-color-contrast"><?php echo $row->getSummary(); ?></div>
+				</div>
+			</div>
+			<?php endforeach; ?>
+		<?php endif; ?>
+        </div>
+        <div class="psx-text">
+			<nav style="text-align: center">
+				<?php if($startIndex == 0): ?>
+				<a href="#" class="mdl-button mdl-js-button"><span aria-hidden="true">&larr;</span> Next</a>
+				<?php else: ?>
+				<a href="<?php echo $links[2]['href']; ?>" class="mdl-button mdl-js-button"><span aria-hidden="true">&larr;</span> Next</a>
+				<?php endif; ?>
+				<a href="<?php echo $links[1]['href']; ?>" class="mdl-button mdl-js-button">Previous <span aria-hidden="true">&rarr;</span></a>
+			</nav>
 		</div>
-	</div>
-	<hr />
-	<?php endforeach; ?>
-
-	<nav>
-		<ul class="pager">
-			<?php if($startIndex == 0): ?>
-			<li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Next</a></li>
-			<?php else: ?>
-			<li class="previous"><a href="<?php echo $links[2]['href']; ?>"><span aria-hidden="true">&larr;</span> Next</a></li>
-			<?php endif; ?>
-			<li class="next"><a href="<?php echo $links[1]['href']; ?>">Previous <span aria-hidden="true">&rarr;</span></a></li>
-		</ul>
-	</nav>
-<?php else: ?>
-	<div class="alert alert-danger">No blog entry available</div>
-<?php endif; ?>
+    </div>
+</div>
 
 <?php include($location . '/inc/footer.html'); ?>
 

@@ -1,234 +1,225 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
     <?php include($location . '/inc/meta.html'); ?>
 </head>
-<body>
+<body class="psx mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
 
 <?php include($location . '/inc/header.html'); ?>
 
-
-
-<div class="row">
-    <div class="col-md-12">
-    <br>
-    <br>
-    <h3 style="text-align:center;">Welcome, PSX is a framework written in PHP which helps you<br>to build
+<div class="psx-section mdl-color--primary-contrast psx-welcome">
+    <div class="psx-max-width">
+        <div class="psx-text">
+            <h3 style="text-align:center;">PSX is a framework written in PHP which helps <br>to build
     clean and documented REST APIs.</h3>
-    <br>
-    <br>
-    <br>
+        </div>
     </div>
 </div>
 
+<div class="psx-section">
+    <div class="psx-max-width">
+        <div class="psx-text">
+            <p class="mdl-typography--subhead-color-contrast">
+            PSX is a framework which helps to expose/consume data through a REST 
+            API. The controller contains all informations how the endpoint is 
+            structured thus it is possible to automatically generate a API 
+            documentation or other schema specifications. PSX validates incoming 
+            data based on a specific schema and transforms it into defined POPOs. 
+            So you can concentrate on building the actual buisness logic of your 
+            API. Some reasons you might want to use PSX:
+            </p>
+            <ul class="mdl-typography--subhead-color-contrast">
+                <li>Automatic <a href="http://example.phpsx.org/documentation/#/api/" class="mdl-color-text--primary">documentation</a> generation</li>
+                <li>Validate incoming data based on JsonSchema</li>
+                <li>Work with POPOs for incoming and outgoing data</li>
+                <li>Automatic generation of schema specifications (RAML, Swagger)</li>
+                <li>Based on multiple independent components</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
-<ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#annotation" aria-controls="annotation" role="tab" data-toggle="tab">Annotation</a></li>
-    <li role="presentation"><a href="#raml" aria-controls="profile" role="tab" data-toggle="tab">RAML</a></li>
-</ul>
-
-<div class="tab-content">
-    <!-- ANNOTATION ======================================================== -->
-    <div role="tabpanel" class="tab-pane active" id="annotation">
-
-<div class="row">
-    <div class="col-md-6">
-        <div class="psx-code-box">
-            <h4>Controller</h4>
-            <pre><code class="php">class Collection extends AnnotationApiAbstract
+<div class="psx-section mdl-color--primary-contrast">
+    <div class="psx-max-width">
+        <div class="psx-text">
+            <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                <div class="mdl-tabs__tab-bar">
+                    <a href="#controller" class="mdl-tabs__tab is-active">Controller</a>
+                    <a href="#model-news" class="mdl-tabs__tab">Model (News)</a>
+                    <a href="#model-collection" class="mdl-tabs__tab">Model (Collection)</a>
+                </div>
+                <div class="mdl-tabs__panel is-active" id="controller">
+                    <pre><code class="php">class Controller extends SchemaApiAbstract
 {
     /**
-     * @QueryParam(name="count", type="integer")
-     * @Outgoing(code=200, schema="<a href="#" onclick="loadSpec('jsonschema-collection', 'json');return false;">../Resource/schema/collection.json</a>")
+     * @Inject
      */
-    protected function doGet(Version $version)
-    {
-        $count  = $this-&gt;queryParameters-&gt;getProperty('count') ?: 8;
-        $result = $this-&gt;repository-&gt;fetchAll($count);
+    protected $repository;
 
-        return [
-            'entry' =&gt; $result
-        ];
+    /**
+     * @QueryParam(name="startIndex", type="integer")
+     * @Outgoing(code=200, schema="Acme\Model\Collection")
+     */
+    protected function doGet()
+    {
+        $startIndex = $this-&gt;queryParameters-&gt;getProperty('startIndex') ?: 0;
+        
+        return $this-&gt;repository-&gt;fetchAll($startIndex);
     }
 
     /**
-     * @Incoming(schema="<a href="#" onclick="loadSpec('jsonschema-entity', 'json');return false;">../Resource/schema/entity.json</a>")
-     * @Outgoing(code=201, schema="<a href="#" onclick="loadSpec('jsonschema-message', 'json');return false;">../Resource/schema/message.json</a>")
+     * @Incoming(schema="Acme\Model\News")
+     * @Outgoing(code=201, schema="Acme\Model\Message")
      */
-    protected function doPost(RecordInterface $record, Version $version)
+    protected function doPost($news)
     {
         $this-&gt;repository-&gt;insert('acme_news', [
-            'title'      => $record-&gt;getTitle(),
-            'content'    => $record-&gt;getContent(),
+            'title'      => $news-&gt;getTitle(),
+            'content'    => $news-&gt;getContent(),
             'createDate' => new \DateTime(),
         ]);
 
-        return [
-            'success' =&gt; true,
-            'message' =&gt; 'Create successful',
-        ];
+        return new Message(true, 'Create successful');
     }
 }
-
 </code></pre>
-        </div>
-    </div>
-    <div class="col-md-6 hidden-xs hidden-sm">
-        <br>
-        <br>
-        <br>
-        <div class="psx-annotation">
-            <p>
-            <br>
-            We can use annotations to describe our web service. Because of
-            that PSX can automatically validate incoming data and generate a
-            <a href="http://example.phpsx.org/documentation/#/api/">documentation</a>
-            for the API endpoints.
-            <br>
-            <br>
-            Inside PSX you can use any ORM or database library to fetch the 
-            response data.
-            <br>
-            <br>
-            </p>
-        </div>
-        <br>
-        <br>
-        <br>
-        <div class="psx-annotation">
-            <p>
-            <br>
-            We can use the <a href="http://json-schema.org/">JsonSchema</a> format 
-            to describe our incoming and outgoing data. PSX comes with an 
-            advanced JsonSchema parser which validates the 
-            incoming data according to the schema.
-            <br>
-            <br>
-            In our example we use an imagined repository service which
-            acts on a database but your are free to use any service you like. 
-            All services come from a Symfony compatible DI container.
-            <br>
-            <br>
-            </p>
-        </div>
-    </div>
-</div>
-
-    </div>
-    <!-- RAML ============================================================== -->
-    <div role="tabpanel" class="tab-pane" id="raml">
-
-<div class="row">
-    <div class="col-md-6">
-        <div class="psx-code-box">
-            <h4>Controller</h4>
-            <pre><code class="php">class Collection extends SchemaApiAbstract
+                </div>
+                <div class="mdl-tabs__panel" id="model-news">
+                    <pre><code class="php">class News
 {
-    public function getDocumentation()
+    /**
+     * @Type("string")
+     * @MinLength(3)
+     * @MaxLength(64)
+     */
+    protected $title;
+
+    /**
+     * @Type("string")
+     * @MaxLength(255)
+     */
+    protected $content;
+
+    /**
+     * @Type("datetime")
+     */
+    protected $createDate;
+
+    public function getTitle()
     {
-        return Raml::fromFile(
-            __DIR__ . '<a href="#" onclick="loadSpec('raml-population', 'yaml');return false;">/../Resource/population.raml</a>', 
-            $this-&gt;context-&gt;get(Context::KEY_PATH)
-        );
+        return $this->title;
     }
 
-    protected function doGet(Version $version)
+    public function setTitle($title)
     {
-        $count  = $this-&gt;queryParameters-&gt;getProperty('count') ?: 8;
-        $result = $this-&gt;repository-&gt;fetchAll($count);
-
-        return [
-            'entry' =&gt; $result
-        ];
+        $this->title = $title;
     }
 
-    protected function doPost(RecordInterface $record, Version $version)
+    public function getContent()
     {
-        $this-&gt;repository-&gt;insert('acme_news', [
-            'title'      => $record-&gt;getTitle(),
-            'content'    => $record-&gt;getContent(),
-            'createDate' => new \DateTime(),
-        ]);
+        return $this->content;
+    }
 
-        return [
-            'success' =&gt; true,
-            'message' =&gt; 'Create successful',
-        ];
+    public function setContent($content)
+    {
+        $this->content = $content;
+    }
+
+    public function getCreateDate()
+    {
+        return $this->createDate;
+    }
+
+    public function setCreateDate(\DateTime $createDate)
+    {
+        $this->createDate = $createDate;
     }
 }
-
 </code></pre>
+                </div>
+                <div class="mdl-tabs__panel" id="model-collection">
+                    <pre><code class="php">class Collection
+{
+    /**
+     * @Type("integer")
+     */
+    protected $totalResults;
+
+    /**
+     * @Type("array&lt;Acme\Model\News&gt;")
+     */
+    protected $entry;
+
+    public function getTotalResults()
+    {
+        return $this->totalResults;
+    }
+
+    public function setTotalResults($totalResults)
+    {
+        $this->totalResults = $totalResults;
+    }
+
+    public function getEntry()
+    {
+        return $this->entry;
+    }
+
+    public function setEntry(array $entry)
+    {
+        $this->entry = $entry;
+    }
+}
+</code></pre>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="col-md-6 hidden-xs hidden-sm">
-        <br>
-        <br>
-        <br>
-        <div class="psx-annotation">
-            <p>
+</div>
+
+<div class="psx-section" style="padding-top:32px;">
+    <div class="psx-max-width">
+        <div class="psx-text">
+            <p class="mdl-typography--subhead-color-contrast">This was only a short introduction to give you an insight how a PSX 
+            application works. If you are excited about the possibilities as we are you 
+            can read the <a href="<?php echo $router->getUrl('Phpsx\Website\Application\About::doIndex'); ?>">about</a>
+            page for more informations or checkout the offical <a href="http://psx.readthedocs.org/en/latest/">documentation</a>.</p>
             <br>
-            It is also possible to use a <a href="http://raml.org/">RAML</a> 
-            specification to describe you API endpoint. PSX will parse the 
-            specification and validates the request accordingly.
-            <br>
-            <br>
-            Besides the <code>getDocumentation</code> method the controller 
-            behaves exactly like the annotation controller. In fact the 
-            annotation controller has also a <code>getDocumentation</code> 
-            implementation which reads the annotations. This architecture gives 
-            PSX the flexibility to implement future API specification formats.
-            <br>
-            <br>
-            </p>
+            <div style="text-align:center">
+                <a href="<?php echo $router->getUrl('Phpsx\Website\Application\Bootstrap::doIndex'); ?>" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Get started</a>
+                <a href="<?php echo $router->getUrl('Phpsx\Website\Application\Download::doIndex'); ?>" class="mdl-button mdl-js-button mdl-button--raised">Download</a>
+            </div>
         </div>
     </div>
 </div>
 
-    </div>
-</div>
-
-<div class="psx-body-ruler"></div>
-
-<div class="row">
-    <div class="col-md-12">
-    <p>This was only a short introduction to give you an insight how a PSX 
-    application works. If you are excited about the possibilities as we are you 
-    can read the <a href="<?php echo $router->getUrl('Phpsx\Website\Application\About::doIndex'); ?>">about</a>
-    page for more informations or checkout the offical <a href="http://psx.readthedocs.org/en/latest/">documentation</a>.</p>
-    <br>
-    <div style="text-align:center">
-        <a href="<?php echo $router->getUrl('Phpsx\Website\Application\Bootstrap::doIndex'); ?>" class="btn btn-primary">Get started</a>
-        <a href="<?php echo $router->getUrl('Phpsx\Website\Application\Download::doIndex'); ?>" class="btn btn-default">Download</a>
-    </div>
-    <br>
-    <br>
-    </div>
-</div>
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Source</h4>
-      </div>
-      <div class="modal-body">
-        <div id="modalSource"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <?php include($location . '/inc/footer.html'); ?>
 
+<dialog class="mdl-dialog" style="min-width:800px;">
+    <h4 class="mdl-dialog__title">Source</h4>
+    <div class="mdl-dialog__content">
+        <div id="modalSource"></div>
+    </div>
+    <div class="mdl-dialog__actions">
+    <button type="button" class="mdl-button close">Close</button>
+    </div>
+</dialog>
+
 <script type="text/javascript">
 function loadSpec(id, lang) {
-    $('#modalSource').html('<pre class="' + lang + '"><code>' + $('#' + id).html() + '</code></pre>');
-    hljs.highlightBlock($('#modalSource pre')[0]);
-    $('#myModal').modal({
-        show: true
-    });
+    var code = document.querySelector('#' + id).innerHTML;
+    var dialog = document.querySelector('dialog');
+    document.querySelector('#modalSource').innerHTML = '<pre class="' + lang + '"><code>' + code + '</code></pre>';
+    console.log(document.querySelector('#modalSource'));
+    hljs.highlightBlock(document.querySelector('#modalSource pre'));
+    dialog.showModal();
 }
+
+var dialog = document.querySelector('dialog');
+dialog.querySelector('.close').addEventListener('click', function() {
+  dialog.close();
+});
 </script>
 
 <script type="text/yaml" id="raml-population">#%RAML 0.8
