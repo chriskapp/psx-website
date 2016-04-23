@@ -8,20 +8,17 @@
 
 <?php include($location . '/inc/header.html'); ?>
 
-<?php if(!empty($entry)): ?>
-	<?php foreach($entry as $row): ?>
-		<div class="mdl-cell mdl-cell--12-col mdl-shadow--2dp">
-			<div class="psx-section mdl-color--primary-contrast">
+<div class="mdl-cell mdl-cell--12-col mdl-shadow--2dp">
+	<?php if(!empty($entry)): ?>
+		<?php foreach($entry as $i => $row): ?>
+			<div class="psx-section mdl-color--primary-contrast psx-blog-entry">
 		        <h3 class="mdl-typography--title-color-contrast"><a href="<?php echo $router->getUrl('Phpsx\Website\Application\Blog::doDetail', ['title' => $row->getTitleSlug()]); ?>" class="mdl-color-text--primary"><?php echo $row->getTitle(); ?></a></h3>
 				<p><small>posted by <a href="<?php echo $row->getAuthorUri(); ?>"><?php echo $row->getAuthorName(); ?></a> on <?php echo $row->getUpdated()->format('Y-m-d'); ?></small></p>
 				<div class="mdl-typography--body-1-color-contrast"><?php echo $row->getSummary(); ?></div>
 			</div>
-		</div>
-	<?php endforeach; ?>
-<?php endif; ?>
-
-<div class="mdl-cell mdl-cell--12-col">
-	<nav style="text-align: center">
+		<?php endforeach; ?>
+	<?php endif; ?>
+	<nav style="text-align: center" class="mdl-color--primary-contrast">
 		<?php if($startIndex == 0): ?>
 		<a href="#" class="mdl-button mdl-js-button"><span aria-hidden="true">&larr;</span> Next</a>
 		<?php else: ?>
