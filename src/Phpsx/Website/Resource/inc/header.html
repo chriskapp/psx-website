@@ -1,36 +1,37 @@
 
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-<header class="psx-layout mdl-layout__header mdl-layout__header--scroll mdl-color--primary-dark">
-  <div class="mdl-layout__header-row">
+<header class="psx-layout mdl-layout__header mdl-color--primary-dark">
+    <div class="mdl-layout__header-row">
     <div class="mdl-logo mdl-layout--large-screen-only"><img src="<?php echo $base; ?>/img/logo.png" width="48" /></div>
     <span class="mdl-layout-title mdl-color-text--accent"><a href="<?php echo $url; ?>">PSX</a></span>
     <div class="mdl-layout-spacer"></div>
-    <nav class="mdl-navigation mdl-layout--large-screen-only">
-      <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Index::doIndex'); ?>" class="mdl-navigation__link">Home</a>
-      <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\About::doIndex'); ?>" class="mdl-navigation__link">About</a>
-      <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Bootstrap::doIndex'); ?>" class="mdl-navigation__link">Getting started</a>
-      <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Download::doIndex'); ?>" class="mdl-navigation__link">Download</a>
-      <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Components::doIndex'); ?>" class="mdl-navigation__link">Components</a>
-      <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Documentation::doIndex'); ?>" class="mdl-navigation__link">Documentation</a>
-      <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Blog::doIndex'); ?>" class="mdl-navigation__link">Blog</a>
-    </nav>
-  </div>
+        <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Index::doIndex'); ?>" class="mdl-navigation__link">Home</a>
+            <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\About::doIndex'); ?>" class="mdl-navigation__link">About</a>
+            <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Bootstrap::doIndex'); ?>" class="mdl-navigation__link">Getting started</a>
+            <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Download::doIndex'); ?>" class="mdl-navigation__link">Download</a>
+            <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Components::doIndex'); ?>" class="mdl-navigation__link">Components</a>
+            <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Documentation::doIndex'); ?>" class="mdl-navigation__link">Documentation</a>
+            <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Blog::doIndex'); ?>" class="mdl-navigation__link">Blog</a>
+        </nav>
+    </div>
 </header>
 
 <div class="mdl-layout__drawer mdl-layout--small-screen-only">
-  <nav class="mdl-navigation">
-    <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Index::doIndex'); ?>" class="mdl-navigation__link">Home</a>
-    <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\About::doIndex'); ?>" class="mdl-navigation__link">About</a>
-    <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Bootstrap::doIndex'); ?>" class="mdl-navigation__link">Getting started</a>
-    <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Download::doIndex'); ?>" class="mdl-navigation__link">Download</a>
-    <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Components::doIndex'); ?>" class="mdl-navigation__link">Components</a>
-    <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Documentation::doIndex'); ?>" class="mdl-navigation__link">Documentation</a>
-    <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Blog::doIndex'); ?>" class="mdl-navigation__link">Blog</a>
-  </nav>
+    <nav class="mdl-navigation">
+        <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Index::doIndex'); ?>" class="mdl-navigation__link">Home</a>
+        <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\About::doIndex'); ?>" class="mdl-navigation__link">About</a>
+        <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Bootstrap::doIndex'); ?>" class="mdl-navigation__link">Getting started</a>
+        <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Download::doIndex'); ?>" class="mdl-navigation__link">Download</a>
+        <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Components::doIndex'); ?>" class="mdl-navigation__link">Components</a>
+        <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Documentation::doIndex'); ?>" class="mdl-navigation__link">Documentation</a>
+        <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Blog::doIndex'); ?>" class="mdl-navigation__link">Blog</a>
+    </nav>
 </div>
 
 <main class="mdl-layout__content">
-  <div class="psx-content">
-
+    <div class="psx-content">
+        <div class="psx-max-width">
+            <div class="mdl-grid">
 

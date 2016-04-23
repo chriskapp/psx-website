@@ -3,50 +3,39 @@
 <head>
     <?php include($location . '/inc/meta.html'); ?>
 </head>
-<body class="psx mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+<body class="psx mdl-color--grey-200 mdl-color-text--grey-700 mdl-base">
 
 <?php include($location . '/inc/header.html'); ?>
 
-<div class="psx-section mdl-color--primary-contrast psx-welcome">
-    <div class="psx-max-width">
-        <div class="psx-text">
-            <h3 style="text-align:center;">PSX is a framework written in PHP which helps <br>to build
-    clean and documented REST APIs.</h3>
-        </div>
+<div class="mdl-cell mdl-cell--12-col mdl-shadow--2dp">
+    <div class="psx-section mdl-color--primary-contrast psx-welcome">
+        <h3 style="text-align:center;">PSX is a framework written in PHP which helps <br>to build
+clean and documented REST APIs.</h3>
     </div>
-</div>
-
-<div class="psx-section">
-    <div class="psx-max-width">
-        <div class="psx-text">
-            <p class="mdl-typography--subhead-color-contrast">
-            PSX provides tools to handle common API tasks like data serialization, 
-            validation, documentation, API versioning and testing. So you can 
-            concentrate on building the actual buisness logic of your API. Some 
-            reasons you might want to use PSX:
-            </p>
-            <ul class="mdl-typography--subhead-color-contrast">
-                <li>Automatic <a href="http://example.phpsx.org/documentation/#/api/" class="mdl-color-text--primary">documentation</a> generation</li>
-                <li>Validate incoming data based on <a href="http://json-schema.org/" class="mdl-color-text--primary">JsonSchema</a></li>
-                <li>Work with POPOs for incoming and outgoing data</li>
-                <li>Automatic generation of schema specifications (<a href="http://raml.org/" class="mdl-color-text--primary">RAML</a>, <a href="https://openapis.org/" class="mdl-color-text--primary">OAI</a>)</li>
-                <li>Based on multiple independent <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Components::doIndex'); ?>" class="mdl-color-text--primary">components</a></li>
-            </ul>
-        </div>
+    <div class="psx-section mdl-color--grey-100">
+        <p class="mdl-typography--subhead-color-contrast">
+        PSX provides tools to handle common API tasks like data serialization, 
+        validation, documentation, API versioning and testing. So you can 
+        concentrate on building the actual buisness logic of your API. Some 
+        reasons you might want to use PSX:
+        </p>
+        <ul class="mdl-typography--subhead-color-contrast">
+            <li>Automatic <a href="http://example.phpsx.org/documentation/#/api/" class="mdl-color-text--primary">documentation</a> generation</li>
+            <li>Validate incoming data based on <a href="http://json-schema.org/" class="mdl-color-text--primary">JsonSchema</a></li>
+            <li>Work with POPOs for incoming and outgoing data</li>
+            <li>Automatic generation of schema specifications (<a href="http://raml.org/" class="mdl-color-text--primary">RAML</a>, <a href="https://openapis.org/" class="mdl-color-text--primary">OAI</a>)</li>
+            <li>Based on multiple independent <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Components::doIndex'); ?>" class="mdl-color-text--primary">components</a></li>
+        </ul>
     </div>
-</div>
-
-<div class="psx-section mdl-color--primary-contrast">
-    <div class="psx-max-width">
-        <div class="psx-text">
-            <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-                <div class="mdl-tabs__tab-bar">
-                    <a href="#controller" class="mdl-tabs__tab is-active">Controller</a>
-                    <a href="#model-news" class="mdl-tabs__tab">Model (News)</a>
-                    <a href="#model-collection" class="mdl-tabs__tab">Model (Collection)</a>
-                </div>
-                <div class="mdl-tabs__panel is-active" id="controller">
-                    <pre><code class="php">class Controller extends SchemaApiAbstract
+    <div class="psx-section mdl-color--primary-contrast">
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+            <div class="mdl-tabs__tab-bar">
+                <a href="#controller" class="mdl-tabs__tab is-active">Controller</a>
+                <a href="#model-news" class="mdl-tabs__tab">Model (News)</a>
+                <a href="#model-collection" class="mdl-tabs__tab">Model (Collection)</a>
+            </div>
+            <div class="mdl-tabs__panel is-active" id="controller">
+                <pre><code class="php">class Controller extends SchemaApiAbstract
 {
     /**
      * @Inject
@@ -80,9 +69,9 @@
     }
 }
 </code></pre>
-                </div>
-                <div class="mdl-tabs__panel" id="model-news">
-                    <pre><code class="php">class News
+            </div>
+            <div class="mdl-tabs__panel" id="model-news">
+                <pre><code class="php">class News
 {
     /**
      * @Type("string")
@@ -133,9 +122,9 @@
     }
 }
 </code></pre>
-                </div>
-                <div class="mdl-tabs__panel" id="model-collection">
-                    <pre><code class="php">class Collection
+            </div>
+            <div class="mdl-tabs__panel" id="model-collection">
+                <pre><code class="php">class Collection
 {
     /**
      * @Type("integer")
@@ -168,28 +157,21 @@
     }
 }
 </code></pre>
-                </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="psx-section" style="padding-top:32px;">
-    <div class="psx-max-width">
-        <div class="psx-text">
-            <p class="mdl-typography--subhead-color-contrast">This was only a short introduction to give you an insight how a PSX 
-            application works. If you are excited about the possibilities as we are you 
-            can read the <a href="<?php echo $router->getUrl('Phpsx\Website\Application\About::doIndex'); ?>">about</a>
-            page for more informations or checkout the offical <a href="http://psx.readthedocs.org/en/latest/">documentation</a>.</p>
-            <br>
-            <div style="text-align:center">
-                <a href="<?php echo $router->getUrl('Phpsx\Website\Application\Bootstrap::doIndex'); ?>" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Get started</a>
-                <a href="<?php echo $router->getUrl('Phpsx\Website\Application\Download::doIndex'); ?>" class="mdl-button mdl-js-button mdl-button--raised">Download</a>
-            </div>
+    <div class="psx-section mdl-color--grey-100">
+        <p class="mdl-typography--subhead-color-contrast">This was only a short introduction to give you an insight how a PSX 
+        application works. If you are excited about the possibilities as we are you 
+        can read the <a href="<?php echo $router->getUrl('Phpsx\Website\Application\About::doIndex'); ?>">about</a>
+        page for more informations or checkout the offical <a href="http://psx.readthedocs.org/en/latest/">documentation</a>.</p>
+        <br>
+        <div style="text-align:center">
+            <a href="<?php echo $router->getUrl('Phpsx\Website\Application\Bootstrap::doIndex'); ?>" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Get started</a>
+            <a href="<?php echo $router->getUrl('Phpsx\Website\Application\Download::doIndex'); ?>" class="mdl-button mdl-js-button mdl-button--raised">Download</a>
         </div>
     </div>
 </div>
-
 
 <?php include($location . '/inc/footer.html'); ?>
 

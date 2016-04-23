@@ -24,6 +24,8 @@ html, body {
 pre {
   background-color: rgb(69, 90, 100);
   color: #fff;
+  padding: 0.5em;
+  overflow-x: auto;
 }
 
 code {
@@ -49,13 +51,6 @@ code {
   width: 100%;
 }
 
-.psx-text pre {
-  padding: 0.5em;
-}
-
-.psx-code-box {
-}
-
 .psx-index-intro {
   padding-top:32px;
   padding-bottom:32px;
@@ -68,15 +63,19 @@ code {
 }
 
 .psx-section {
+  padding: 16px;
 }
 
-.psx-text {
-  margin: 16px;
-  margin-bottom: 48px;
+.psx-section h2 {
+  margin-top: 0px;
 }
 
-.psx-cards {
-  margin-bottom: 48px;
+.psx-section h3 {
+  margin-top: 0px;
+}
+
+.psx-section pre {
+  margin-top: 0px;
 }
 
 .psx-card-features .mdl-card__title {
@@ -120,8 +119,6 @@ Sunburst-like style (c) Vasily Polovnyov <vast@whiteants.net>
 
 .hljs {
   display: block;
-  overflow-x: auto;
-  padding: 0.5em;
   background-color: rgb(69, 90, 100);
   color: #f8f8f8;
 }

@@ -4,36 +4,31 @@
 	<?php include($location . '/inc/meta.html'); ?>
 	<?php echo \PSX\Atom\Writer::link('PSX', $router->getUrl('Phpsx\Website\Application\Blog::doFeed')); ?>
 </head>
-<body class="psx mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+<body class="psx mdl-color--grey-200 mdl-color-text--grey-700 mdl-base">
 
 <?php include($location . '/inc/header.html'); ?>
 
-<div class="psx-section">
-    <div class="psx-max-width">
-        <div class="psx-cards mdl-grid">
-		<?php if(!empty($entry)): ?>
-			<?php foreach($entry as $row): ?>
-			<div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
-				<div class="mdl-card__title"><h4 class="mdl-card__title-text"><a href="<?php echo $router->getUrl('Phpsx\Website\Application\Blog::doDetail', ['title' => $row->getTitleSlug()]); ?>" class="mdl-color-text--primary"><?php echo $row->getTitle(); ?></a></h4></div>
-				<div class="mdl-card__supporting-text mdl-card--expand">
-					<p class="mdl-typography--menu"><small>posted by <a href="<?php echo $row->getAuthorUri(); ?>"><?php echo $row->getAuthorName(); ?></a> on <?php echo $row->getUpdated()->format('Y-m-d'); ?></small></p>
-					<div class="psx-summary mdl-typography--subhead-color-contrast"><?php echo $row->getSummary(); ?></div>
-				</div>
+<?php if(!empty($entry)): ?>
+	<?php foreach($entry as $row): ?>
+		<div class="mdl-cell mdl-cell--12-col mdl-shadow--2dp">
+			<div class="psx-section mdl-color--primary-contrast">
+		        <h3 class="mdl-typography--title-color-contrast"><a href="<?php echo $router->getUrl('Phpsx\Website\Application\Blog::doDetail', ['title' => $row->getTitleSlug()]); ?>" class="mdl-color-text--primary"><?php echo $row->getTitle(); ?></a></h3>
+				<p><small>posted by <a href="<?php echo $row->getAuthorUri(); ?>"><?php echo $row->getAuthorName(); ?></a> on <?php echo $row->getUpdated()->format('Y-m-d'); ?></small></p>
+				<div class="mdl-typography--body-1-color-contrast"><?php echo $row->getSummary(); ?></div>
 			</div>
-			<?php endforeach; ?>
-		<?php endif; ?>
-        </div>
-        <div class="psx-text">
-			<nav style="text-align: center">
-				<?php if($startIndex == 0): ?>
-				<a href="#" class="mdl-button mdl-js-button"><span aria-hidden="true">&larr;</span> Next</a>
-				<?php else: ?>
-				<a href="<?php echo $links[2]['href']; ?>" class="mdl-button mdl-js-button"><span aria-hidden="true">&larr;</span> Next</a>
-				<?php endif; ?>
-				<a href="<?php echo $links[1]['href']; ?>" class="mdl-button mdl-js-button">Previous <span aria-hidden="true">&rarr;</span></a>
-			</nav>
 		</div>
-    </div>
+	<?php endforeach; ?>
+<?php endif; ?>
+
+<div class="mdl-cell mdl-cell--12-col">
+	<nav style="text-align: center">
+		<?php if($startIndex == 0): ?>
+		<a href="#" class="mdl-button mdl-js-button"><span aria-hidden="true">&larr;</span> Next</a>
+		<?php else: ?>
+		<a href="<?php echo $links[2]['href']; ?>" class="mdl-button mdl-js-button"><span aria-hidden="true">&larr;</span> Next</a>
+		<?php endif; ?>
+		<a href="<?php echo $links[1]['href']; ?>" class="mdl-button mdl-js-button">Previous <span aria-hidden="true">&rarr;</span></a>
+	</nav>
 </div>
 
 <?php include($location . '/inc/footer.html'); ?>
