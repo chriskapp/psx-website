@@ -43,7 +43,7 @@
             <div class="mdl-cell mdl-cell--6-col">
                 <h3 class="mdl-typography--title-color-contrast">Schema definition</h3>
                 <div class="mdl-typography--body-1-color-contrast">
-                    <p>PSX gives you the possibility to define a clear schema for your API 
+                    <p>PSX gives you the possibility to define a clear schema for each API 
                     endpoint. The schema can be defined through annotations, as <b><a href="http://raml.org/">RAML</a></b>
                     specification or directly in PHP. Because PSX has all informations how 
                     the API is structured it can validate incoming and outgoing data according 
@@ -72,14 +72,14 @@
      *
      * @QueryParam(name="startIndex", type="integer")
      * @QueryParam(name="count", type="integer")
-     * @Outgoing(code=200, schema="schema/collection.json")
+     * @Outgoing(code=200, schema="Acme\Collection")
      */
     public function doGet()
     {
     }
 
     /**
-     * @Incoming(schema="schema/entry.json")
+     * @Incoming(schema="Acme\Entry")
      */
     public function doPost($entry)
     {
@@ -123,7 +123,7 @@ version: v1
                     <div class="mdl-tabs__panel" id="schema-php">
                         <pre><code class="php">class Endpoint extends SchemaApiAbstract
 {
-    public function getDocumentation()
+    public function getDocumentation($version = null)
     {
         $resource = new Resource(
             Resource::STATUS_ACTIVE, 
@@ -146,7 +146,7 @@ version: v1
             -&gt;setRequest($this-&gt;schemaManager-&gt;getSchema('Acme\Schema\Entry'))
         );
 
-        return new Documentation\Simple($resource);
+        return $resource;
     }
 }</code></pre>
                     </div>
@@ -231,7 +231,7 @@ version: v1
                 <div class="mdl-typography--body-1-color-contrast">
                     <p>PSX analyzes the data structure of the response and uses a data 
                     writer to generate the response. By default PSX comes with multiple data 
-                    writers which can generate different data formats like i.e. Json or XML. 
+                    writers which can generate different data formats like i.e. JSON or XML. 
                     The writer which gets used depends on the <code>Accept</code> 
                     header field or the GET parameter <code>format</code>. In the example you
                     can see a controller and the corresponding responses from different 
@@ -242,10 +242,10 @@ version: v1
                 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
                     <div class="mdl-tabs__tab-bar">
                         <a href="#response-controller" class="mdl-tabs__tab is-active">Controller</a>
-                        <a href="#response-json" class="mdl-tabs__tab">Json</a>
+                        <a href="#response-json" class="mdl-tabs__tab">JSON</a>
                         <a href="#response-xml" class="mdl-tabs__tab">XML</a>
                         <a href="#response-atom" class="mdl-tabs__tab">Atom</a>
-                        <a href="#response-soap" class="mdl-tabs__tab">Soap</a>
+                        <a href="#response-soap" class="mdl-tabs__tab">SOAP</a>
                     </div>
                     <div class="mdl-tabs__panel is-active" id="response-controller">
                         <pre><code class="php">class Endpoint extends SchemaApiAbstract
@@ -358,6 +358,44 @@ version: v1
     <div class="psx-section mdl-color--grey-100">
         <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--6-col">
+                <pre>&gt; psx generate spec.raml /acme/news Acme\News
+&gt; created directory src/Acme/News
+&gt; created file src/Acme/News/Endpoint.php
+&gt; created file src/Acme/News/Schema.php
+&gt; Generation successful!
+</pre>
+            </div>
+            <div class="mdl-cell mdl-cell--6-col">
+                <h3 class="mdl-typography--title-color-contrast">Code generation</h3>
+                <div class="mdl-typography--body-1-color-contrast">
+                    <p>PSX provides a CLI command to generate controller and 
+                    model classes based on a API specification file. These 
+                    classes can be used to rapidly develop the defined API 
+                    endpoint.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="psx-section mdl-color--primary-contrast">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--6-col">
+                <h3 class="mdl-typography--title-color-contrast">API testing</h3>
+                <div class="mdl-typography--body-1-color-contrast">
+                    <p>Because PSX is build around a HTTP request and response object we 
+                    can easily test our API code. We dont need to start a webserver 
+                    or mock the request we can simply call our controller from the test. Internally this 
+                    is the same code as when we make a call to the webserver except that we 
+                    manually create the HTTP request and response.</p>
+
+                    <p>In this way we can easily make an integration test for the API endpoint by 
+                    looking at the actual response. In our example we call the GET method
+                    of the controller and check whether the response is a JSON object 
+                    <code>{"hello": "world"}</code>.</p>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--6-col">
                 <pre><code class="php">class HelloWorldApiTest extends ControllerTestCase
 {
     public function testHelloWorld()
@@ -372,40 +410,16 @@ version: v1
 
     protected function getPaths()
     {
-        return array(
-            '/foo' =&gt; 'Acme\TestViewController::doIndex',
-        );
+        return [
+            [['GET'], '/foo', 'Acme\HelloWorldController'],
+        ];
     }
 }</code></pre>
             </div>
-            <div class="mdl-cell mdl-cell--6-col">
-                <h3 class="mdl-typography--title-color-contrast">API testing</h3>
-                <div class="mdl-typography--body-1-color-contrast">
-                    <p>Because PSX is build around a HTTP request and response object we 
-                    can easily test our API code. We dont need to start a webserver 
-                    or mock the request we can simply call our controller from the test. Internally this 
-                    is the same code as when we make a call to the webserver except that we 
-                    manually create the HTTP request and response.</p>
-
-                    <p>In this way we can easily make an integration test for the API endpoint by 
-                    looking at the actually response. In our example we call the doIndex method
-                    of the controller and check whether the response is a JSON object 
-                    <code>{"hello": "world"}</code>.</p>
-                </div>
-            </div>
         </div>
     </div>
-    <div class="psx-section mdl-color--primary-contrast">
+    <div class="psx-section mdl-color--grey-100">
         <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--6-col">
-                <h3 class="mdl-typography--title-color-contrast">Routing</h3>
-                <div class="mdl-typography--body-1-color-contrast">
-                    <p>PSX uses a simple routing file which was inspired by the Java <a href="https://www.playframework.com/">Play-Framework</a>.
-                    We can specify the allowed request methods, the path and the controller which 
-                    should be called. In the example controller we access the dynamic part 
-                    of the path.</p>
-                </div>
-            </div>
             <div class="mdl-cell mdl-cell--6-col">
                 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
                     <div class="mdl-tabs__tab-bar">
@@ -413,16 +427,16 @@ version: v1
                         <a href="#routing-controller" class="mdl-tabs__tab">Controller</a>
                     </div>
                     <div class="mdl-tabs__panel is-active" id="routing-file">
-                        <pre><code class="http">GET      /news             Acme\News\Application\Index::doIndex
+                        <pre>GET      /news             Acme\News\Application\Index::doIndex
 GET      /news/:news_id    Acme\News\Application\Index::doDetail
 GET      /bar/$foo&lt;[0-9]+&gt; Acme\News\Application\Article
 GET      /download/*file   Acme\News\Application\Download
-GET|POST /bar              Acme\News\Application\BarApi</code></pre>
+GET|POST /bar              Acme\News\Application\BarApi</pre>
                     </div>
                     <div class="mdl-tabs__panel" id="routing-controller">
-                        <pre><code class="php">class Index extends ControllerAbstract
+                        <pre><code class="php">class Index extends SchemaApiAbstract
 {
-    public function doDetail()
+    public function doGet()
     {
         $newsId = $this-&gt;getUriFragment('news_id');
 
@@ -430,6 +444,15 @@ GET|POST /bar              Acme\News\Application\BarApi</code></pre>
     }
 }</code></pre>
                     </div>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--6-col">
+                <h3 class="mdl-typography--title-color-contrast">Routing</h3>
+                <div class="mdl-typography--body-1-color-contrast">
+                    <p>PSX uses a simple routing file which was inspired by the Java <a href="https://www.playframework.com/">Play-Framework</a>.
+                    We can specify the allowed request methods, the path and the controller which 
+                    should be called. In the example controller we access the dynamic part 
+                    of the path.</p>
                 </div>
             </div>
         </div>
