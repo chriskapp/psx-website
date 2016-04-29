@@ -2,7 +2,35 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>urn:phpsx.org:blog</id>
 	<title>PSX Blog</title>
-	<updated>2016-02-07T18:59:00Z</updated>
+	<updated>2016-04-29T22:06:00Z</updated>
+	<entry>
+		<id>urn:phpsx.org:blog:29</id>
+		<title>Version 2.0 RC1</title>
+		<author>
+			<name>christoph.kappestein</name>
+			<uri>http://github.com/k42b3</uri>
+		</author>
+		<updated>2016-04-29T22:06:00Z</updated>
+		<summary>
+Announcement of the release 2.0 RC1
+		</summary>
+		<category term="announcement" />
+		<category term="psx" />
+		<content type="html"><![CDATA[
+<p>We like to announce the first release candidate of the 2.x branch. With this
+release we move from a monolithic library to a component based. Because of this 
+it is now possible to use specific components independently of the framework. 
+All components are available on <a href="https://github.com/apioo">GitHub</a>.
+Please take a look at the <a href="https://github.com/k42b3/psx/blob/2.0/UPGRADE-2.0.md">UPGRADE</a> 
+doc for detailed informations howto move a 1.x code base to 2.x.</p>
+
+<p>As next step we try to implement the RC1 in various projects to stabilize the
+API. If we are ready to release a stable 2.0 we will bump all components to 
+version 1.0. From there each component will have a independent release 
+lifecycle.</p>
+
+]]></content>
+	</entry>
 	<entry>
 		<id>urn:phpsx.org:blog:28</id>
 		<title>Version 1.2.1 released</title>
