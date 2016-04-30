@@ -24,10 +24,8 @@
     <div class="mdl-card__actions">
         <a id="github-<?php echo $id; ?>" href="<?php echo $project->git; ?>" class="mdl-button mdl-js-button mdl-button--primary"><i class="material-icons">code</i></a>
         <div class="mdl-tooltip mdl-tooltip--top" for="github-<?php echo $id; ?>">GitHub</div>
-        <a id="api-<?php echo $id; ?>" href="<?php echo $base . '/api/' . $name; ?>" class="mdl-button mdl-js-button"><i class="material-icons">list</i></a>
+        <a id="api-<?php echo $id; ?>" href="<?php echo $base . '/api/' . $name; ?>" class="mdl-button mdl-js-button"><i class="material-icons">search</i></a>
         <div class="mdl-tooltip mdl-tooltip--top" for="api-<?php echo $id; ?>">API</div>
-        <a id="coverage-<?php echo $id; ?>" href="<?php echo $base . '/coverage/' . $name; ?>" class="mdl-button mdl-js-button"><i class="material-icons">search</i></a>
-        <div class="mdl-tooltip mdl-tooltip--top" for="coverage-<?php echo $id; ?>">Code coverage</div>
     </div>
 </div>
 <?php endforeach; ?>
