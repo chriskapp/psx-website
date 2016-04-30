@@ -30,7 +30,7 @@ foreach ($result as $project => $row) {
         // install composer
         chdir($gitDir);
 
-        executeCmd('composer install');
+        executeCmd('composer --ignore-platform-reqs install');
 
         // generate api doc
         executeCmd('apigen --source ' . $basePath . '/build/' . $project . '/src --destination ' . $basePath . '/public/api/' . $project);
