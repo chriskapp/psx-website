@@ -26,6 +26,8 @@ foreach ($result as $project => $row) {
     $gitDir = $basePath . '/build/' . $project;
     executeCmd('git clone ' . $row->git . ' ' . $gitDir);
 
+    clearstatcache();
+
     if (is_dir($gitDir)) {
         // install composer
         chdir($gitDir);
@@ -36,7 +38,7 @@ foreach ($result as $project => $row) {
         executeCmd('apigen --source ' . $basePath . '/build/' . $project . '/src --destination ' . $basePath . '/public/api/' . $project);
 
         // generate code coverage
-        executeCmd('phpunit --coverage-html ' . $basePath . '/public/coverage/' . $project);
+        executeCmd('vendor/bin/phpunit --coverage-html ' . $basePath . '/public/coverage/' . $project);
 
         chdir($cwd);
 
