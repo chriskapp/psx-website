@@ -2,7 +2,86 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>urn:phpsx.org:blog</id>
 	<title>PSX Blog</title>
-	<updated>2016-04-29T22:06:00Z</updated>
+	<updated>2016-05-08T23:26:00Z</updated>
+	<entry>
+		<id>urn:phpsx.org:blog:30</id>
+		<title>Version 2.0 released</title>
+		<author>
+			<name>christoph.kappestein</name>
+			<uri>http://github.com/k42b3</uri>
+		</author>
+		<updated>2016-05-08T23:26:00Z</updated>
+		<summary>
+Converage of the 2.0 release
+		</summary>
+		<category term="announcement" />
+		<category term="psx" />
+		<content type="html"><![CDATA[
+<p>We are really proud to announce version 2.0 of the PSX framework. This post 
+will cover all changes.</p>
+
+<p><b>Code changes:</b></p>
+
+<ul>
+	<li>
+		<b>Split the framework into components</b>
+		<p>Previously PSX was a monolithic library which contained many different
+		components. We wanted to make these components available for other users 
+		so they dont have to require the complete framework. Because of this we
+		have split up library into multiple components. Please take a look at
+		the <a href="https://github.com/apioo/psx/blob/master/UPGRADE-2.0.md">upgrade</a> 
+		document to see what classes have changed.</p>
+	</li>
+	<li>
+		<b>Decoupled and improved each component</b>
+		<p>Through the decoupling process we could improve the code of each 
+		component so that it can be used standalone and only depends on the 
+		needed libraries.</p>
+	</li>
+	<li>
+		<b>Reading and writing data works now with POPOs</b>
+		<p>By default it is now possible to use POPOs containing annotations to 
+		describe the schema. This simplifies the process to parse the request 
+		data into the fitting object model.</p>
+	</li>
+	<li>
+		<b>Add generator to generate PHP classes from a RAML and JsonSchema specification</b>
+		<p>We have cleaned up the console commands and added two new commands
+		which can generate PHP code based a RAML or JsonSchema specifiction. 
+		This helps to quickly create an API based on existing specifications.</p>
+	</li>
+	<li>
+		<b>Removed command system</b>
+		<p>We have removed the command system since it does not target the main
+		problem which PSX tries to solve.</p>
+	</li>
+	<li>
+		<b>Improved documentation</b>
+		<p>We have adjusted and improved the documentation so that it is easier
+		to start with PSX. Of course this is an ongoing process so in case you
+		have any questions do not hesitate to contact us.</p>
+	</li>
+</ul>
+
+<p><b>Organizational changes:</b></p>
+
+<ul>
+	<li>
+		<b>Moved the PSX repository to the apioo organization.</b>
+		<p>I have moved the repository from my personal account to the <b>apioo</b> 
+		organization. This organization includes now all components of the PSX 
+		framework.</p>
+	</li>
+	<li>
+		<b>Created PSX google group</b>
+		<p>We have restored the <a href="https://groups.google.com/forum/#!forum/phpsx">PSX google group</a> 
+		which acts now as a support forum and news channel for any questions and 
+		informations regarding the PSX framework and its components.</p>
+	</li>
+</ul>
+
+]]></content>
+	</entry>
 	<entry>
 		<id>urn:phpsx.org:blog:29</id>
 		<title>Version 2.0 RC1</title>
