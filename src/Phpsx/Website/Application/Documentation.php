@@ -33,7 +33,7 @@ class Documentation extends ViewAbstract
 			],[
 				'rel'         => 'source',
 				'title'       => 'Github',
-				'href'        => 'https://github.com/k42b3/psx',
+				'href'        => 'https://github.com/apioo/psx',
 				'description' => 'The repository of PSX',
 			]]
 		]);
