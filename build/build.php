@@ -32,13 +32,13 @@ foreach ($result as $project => $row) {
         // install composer
         chdir($gitDir);
 
-        executeCmd('composer --ignore-platform-reqs install');
+        executeCmd('composer install');
 
         // generate api doc
-        executeCmd('apigen --source ' . $basePath . '/build/' . $project . '/src --destination ' . $basePath . '/public/api/' . $project);
+        executeCmd('apigen generate --source ' . $basePath . '/build/' . $project . '/src --destination ' . $basePath . '/public/api/' . $project);
 
         // generate code coverage
-        executeCmd('vendor/bin/phpunit --coverage-html ' . $basePath . '/public/coverage/' . $project);
+        //executeCmd('vendor/bin/phpunit --coverage-html ' . $basePath . '/public/coverage/' . $project);
 
         chdir($cwd);
 
