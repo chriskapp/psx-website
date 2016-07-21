@@ -15,7 +15,7 @@ return array(
 
 	// GIT repo data
 	'git_api'                 => 'https://api.github.com',
-	'git_owner'               => 'k42b3',
+	'git_owner'               => 'apioo',
 	'git_repo'                => 'psx',
 
 	// The url to the psx public folder (i.e. http://127.0.0.1/psx/public or 
