@@ -24,7 +24,7 @@ foreach ($result as $project => $row) {
 
     // clone repo
     $gitDir = $basePath . '/build/' . $project;
-    if (is_dir($gitDir)) {
+    if (!is_dir($gitDir)) {
         executeCmd('git clone ' . $row->git . ' ' . $gitDir);
     } else {
         executeCmd('cd ' . $gitDir . ' && git pull');
