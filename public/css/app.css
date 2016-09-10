@@ -115,6 +115,34 @@ code {
   border-bottom: 1px solid #ccc;
 }
 
+.psx-alert {
+  padding:12px;
+}
+
+.psx-alert a {
+  color:rgb(96,125,139)!important;
+}
+
+.psx-alert-success {
+  background-color: #dff0d8;
+  border:1px solid #3c763d;
+}
+
+.psx-alert-info {
+  background-color: #d9edf7;
+  border:1px solid #31708f;
+}
+
+.psx-alert-warning {
+  background-color: #fcf8e3;
+  border:1px solid #8a6d3b;
+}
+
+.psx-alert-danger {
+  background-color: #f2dede;
+  border:1px solid #a94442;
+}
+
 /*
 
 Sunburst-like style (c) Vasily Polovnyov <vast@whiteants.net>
