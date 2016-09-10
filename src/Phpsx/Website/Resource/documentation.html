@@ -18,10 +18,18 @@
     <div class="psx-section mdl-color--grey-100">
         <dl class="mdl-typography--body-1-color-contrast">
             <?php foreach($links as $link): ?>
-                <dt><a href="<?php echo $link['href']; ?>" class="mdl-color-text--primary"><?php echo $link['title']; ?></a></dt>
-                <dd><?php echo $link['description']; ?></dd>
+                <dt><a href="<?php echo $link->href; ?>" class="mdl-color-text--primary"><?php echo $link->title; ?></a></dt>
+                <dd><?php echo $link->description; ?></dd>
             <?php endforeach; ?>
         </dl>
+    </div>
+    <div class="psx-section mdl-color--primary-contrast">
+        <h3 class="mdl-typography--title-color-contrast">Tutorials</h3>
+        <p>The following tutorials are complete step by step guides. They cover
+        different use cases of the PSX framework.</p>
+        <ul>
+            <li><a href="<?php echo $router->getUrl('Phpsx\Website\Application\Documentation\TutorialMysql::doIndex'); ?>">Create a REST API from MySQL database</a></li>
+        </ul>
     </div>
 </div>
 

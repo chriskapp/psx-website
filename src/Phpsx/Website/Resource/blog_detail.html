@@ -2,7 +2,7 @@
 <html>
 <head>
 	<?php include($location . '/inc/meta.html'); ?>
-	<?php echo \PSX\Atom\Writer::link('PSX', $router->getUrl('Phpsx\Website\Application\Blog::doFeed')); ?>
+	<?php echo \PSX\Data\Writer\Atom\Writer::link('PSX', $router->getUrl('Phpsx\Website\Application\Blog::doFeed')); ?>
 </head>
 <body class="psx mdl-color--grey-200 mdl-color-text--grey-700 mdl-base">
 
