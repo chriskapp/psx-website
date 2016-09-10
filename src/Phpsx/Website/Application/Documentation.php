@@ -2,13 +2,13 @@
 
 namespace Phpsx\Website\Application;
 
-use PSX\Controller\ViewAbstract;
+use PSX\Framework\Controller\ViewAbstract;
 
 class Documentation extends ViewAbstract
 {
 	/**
 	 * @Inject
-	 * @var PSX\Loader\ReverseRouter
+	 * @var \PSX\Framework\Loader\ReverseRouter
 	 */
 	protected $reverseRouter;
 

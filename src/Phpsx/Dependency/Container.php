@@ -4,33 +4,19 @@ namespace Phpsx\Dependency;
 
 use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\DriverManager;
-use PSX\Data\Writer;
-use PSX\Dependency\DefaultContainer;
+use PSX\Framework\Data\Writer as FrameworkWriter;
+use PSX\Framework\Dependency\DefaultContainer;
 use Phpsx\Website\Console;
 use Symfony\Component\Console\Application;
 
 class Container extends DefaultContainer
 {
-	/**
-	 * @return Doctrine\DBAL\Connection
-	 */
-	public function getConnection()
+	public function getIo()
 	{
-		$config = new Configuration();
-		$params = array(
-			'path'   => PSX_PATH_CACHE . '/blog.db',
-			'driver' => 'pdo_sqlite',
-		);
+		$processor = parent::getIo();
+        $processor->getConfiguration()->getWriterFactory()->addWriter(new FrameworkWriter\Text($this->get('template'), $this->get('reverse_router')), 39);
 
-		return DriverManager::getConnection($params, $config);
-	}
-
-	public function getWriterFactory()
-	{
-		$writer = parent::getWriterFactory();
-		$writer->addWriter(new Writer\Text($this->get('template'), $this->get('reverse_router')), 39);
-
-		return $writer;
+		return $processor;
 	}
 
 	protected function appendConsoleCommands(Application $application)

@@ -11,3 +11,6 @@ GET /blog                    Phpsx\Website\Application\Blog::doIndex
 GET /blog/post/:title        Phpsx\Website\Application\Blog::doDetail
 GET /blog/category/:category Phpsx\Website\Application\Blog::doCategory
 GET /blog/feed               Phpsx\Website\Application\Blog::doFeed
+
+# tutorials
+GET /create-a-rest-api-from-mysql Phpsx\Website\Application\Documentation\TutorialMysql::doIndex

@@ -2,7 +2,7 @@
 
 namespace Phpsx\Website\Application;
 
-use PSX\Controller\ViewAbstract;
+use PSX\Framework\Controller\ViewAbstract;
 
 class Security extends ViewAbstract
 {

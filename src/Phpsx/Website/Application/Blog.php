@@ -2,8 +2,8 @@
 
 namespace Phpsx\Website\Application;
 
-use PSX\Controller\ViewAbstract;
-use PSX\Data\RecordInterface;
+use PSX\Framework\Controller\ViewAbstract;
+use PSX\Record\RecordInterface;
 use PSX\Http\Exception as StatusCode;
 use PSX\Http\Stream\TempStream;
 use PSX\Sql\Condition;
@@ -14,13 +14,13 @@ class Blog extends ViewAbstract
 
 	/**
 	 * @Inject
-	 * @var PSX\Sql\TableManager
+	 * @var \PSX\Sql\TableManager
 	 */
 	protected $tableManager;
 
 	/**
 	 * @Inject
-	 * @var PSX\Loader\ReverseRouter
+	 * @var \PSX\Framework\Loader\ReverseRouter
 	 */
 	protected $reverseRouter;
 

@@ -2,22 +2,22 @@
 
 namespace Phpsx\Website\Application;
 
-use PSX\Controller\ViewAbstract;
-use PSX\Data\WriterInterface;
+use PSX\Framework\Controller\ViewAbstract;
+use PSX\Framework\Data\Writer\Text as WriterText;
 
 class Index extends ViewAbstract
 {
 	/**
 	 * @Inject
-	 * @var PSX\Loader\ReverseRouter
+	 * @var \PSX\Framework\Loader\ReverseRouter
 	 */
 	protected $reverseRouter;
 
 	/**
 	 * @Inject
-	 * @var PSX\Data\WriterFactory
+	 * @var \PSX\Data\Processor
 	 */
-	protected $writerFactory;
+	protected $io;
 
 	public function doIndex()
 	{
@@ -41,6 +41,6 @@ class Index extends ViewAbstract
 
 	public function doHumans()
 	{
-		$this->writerFactory->setContentNegotiation('*/*', WriterInterface::TEXT);
+        $this->io->getConfiguration()->getWriterFactory()->setContentNegotiation('*/*', WriterText::class);
 	}
 }

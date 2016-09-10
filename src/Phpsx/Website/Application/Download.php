@@ -2,21 +2,20 @@
 
 namespace Phpsx\Website\Application;
 
-use PSX\Controller\ViewAbstract;
+use PSX\Framework\Controller\ViewAbstract;
 use PSX\Sql;
 
 class Download extends ViewAbstract
 {
 	/**
 	 * @Inject
-	 * @var PSX\Sql\TableManager
+	 * @var \PSX\Sql\TableManager
 	 */
 	protected $tableManager;
 
 	public function doIndex()
 	{
-		$releases = $this->tableManager->getTable('Phpsx\Website\Table\Release')->getAll(0, 1, 'publishedAt', Sql::SORT_DESC);
-		$release  = current($releases);
+        $release = $this->tableManager->getTable('Phpsx\Website\Table\Release')->getLatestRelease();
 
 		$this->setBody([
 			'links' => [[

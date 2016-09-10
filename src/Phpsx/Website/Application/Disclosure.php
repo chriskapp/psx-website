@@ -2,7 +2,7 @@
 
 namespace Phpsx\Website\Application;
 
-use PSX\ControllerAbstract;
+use PSX\Framework\Controller\ControllerAbstract;
 use PSX\Http\Stream\TempStream;
 
 class Disclosure extends ControllerAbstract
