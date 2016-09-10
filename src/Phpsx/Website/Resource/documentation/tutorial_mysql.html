@@ -1,0 +1,597 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <?php include($location . '/inc/meta.html'); ?>
+</head>
+<body class="psx mdl-color--grey-200 mdl-color-text--grey-700 mdl-base">
+
+<?php include($location . '/inc/header.html'); ?>
+
+<div class="mdl-cell mdl-cell--12-col mdl-shadow--2dp">
+    <div class="psx-section mdl-color--primary-contrast">
+        <h2 class="mdl-typography--display-1-color-contrast">Create a REST API from MySQL database</h2>
+        <p class="mdl-typography--subhead-color-contrast">This tutorial is a 
+        step by step guide howto build a simple REST API with a MySQL database 
+        as backend using the PSX framework. We will create a API around a table 
+        where we can receive and create todo entries.</p>
+    </div>
+    <div class="psx-section mdl-color--grey-100">
+        <h3 class="mdl-typography--title-color-contrast">Preparation</h3>
+        <p class="mdl-typography--body-1-color-contrast">As basis we use the 
+        sample project. The <a href="<?php echo $router->getUrl('Phpsx\Website\Application\Bootstrap::doIndex'); ?>">getting started</a> 
+        guide covers in detail howto setup the sample project. Basically you 
+        need to install the project through composer:</p>
+        <pre>composer create-project psx/sample .</pre>
+        <p>The sample project contains already a sample API but since we develop
+        a new API from scratch we can delete the folder <code>src/Sample</code>.</p>
+    </div>
+    <div class="psx-section mdl-color--primary-contrast">
+        <h3 class="mdl-typography--title-color-contrast">SQL-Schema</h3>
+        <p class="mdl-typography--body-1-color-contrast">Execute the following
+        SQL statments on the database to create the needed tables.</p>
+        <pre><code class="sql">CREATE TABLE IF NOT EXISTS `todo_author` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `uri` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `todo_entry` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `authorId` int(10) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `insertDate` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+        </code></pre>
+        <pre><code class="sql">INSERT INTO `todo_author` (`id`, `name`, `uri`) VALUES
+(1, 'admin', 'foo@bar.com');
+
+INSERT INTO `todo_entry` (`id`, `authorId`, `title`, `insertDate`) VALUES
+(1, 1, 'lorem ipsum', '2016-05-21 19:33:02'),
+(2, 1, 'lorem ipsum', '2016-05-21 19:33:14');
+        </code></pre>
+    </div>
+    <div class="psx-section mdl-color--grey-100">
+        <h3 class="mdl-typography--title-color-contrast">Configuration</h3>
+        <p class="mdl-typography--body-1-color-contrast">In order to work with a
+        database we need to provide the database credentials to the 
+        configuration. By default the sample project works with an SQLite 
+        database because of that we have to change the connection. Therefor open 
+        the file <code>configuration.php</code> and enter the credentials in the 
+        <code>psx_connection</code> keys.</p>
+        <pre>
+'psx_connection' => [
+    'dbname'   => 'psx',
+    'user'     => 'root',
+    'password' => '',
+    'host'     => 'localhost',
+    'driver'   => 'pdo_mysql',
+]</pre>
+        <p>You can test the connection settings with the following command:</p>
+        <pre>vendor/bin/psx dbal:run-sql "SELECT * FROM todo_entry;"</pre>
+    </div>
+
+    <div class="psx-section mdl-color--primary-contrast">
+        <h3 class="mdl-typography--title-color-contrast">Models</h3>
+        <p class="mdl-typography--body-1-color-contrast">At first we model simple
+        POPOs which will contain the request and response data of our API. We 
+        add also annotations to the properties so that we can automatically 
+        generate a JsonSchema from these models.</p>
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+            <div class="mdl-tabs__tab-bar">
+                <a href="#model-entry" class="mdl-tabs__tab is-active">Entry</a>
+                <a href="#model-author" class="mdl-tabs__tab">Author</a>
+                <a href="#model-collection" class="mdl-tabs__tab">Collection</a>
+                <a href="#model-message" class="mdl-tabs__tab">Message</a>
+            </div>
+            <div class="mdl-tabs__panel is-active" id="model-entry">
+                <pre><code class="php">&lt;?php
+
+namespace Acme\Model\Todo;
+
+use DateTime;
+
+class Entry
+{
+    /**
+     * @Type(&quot;integer&quot;)
+     */
+    protected $id;
+
+    /**
+     * @Type(&quot;string&quot;)
+     */
+    protected $title;
+
+    /**
+     * @Type(&quot;Acme\Model\Todo\Author&quot;)
+     */
+    protected $author;
+
+    /**
+     * @Type(&quot;datetime&quot;)
+     */
+    protected $insertDate;
+
+    /**
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this-&gt;id;
+    }
+
+    /**
+     * @param integer $id
+     */
+    public function setId($id)
+    {
+        $this-&gt;id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this-&gt;title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this-&gt;title = $title;
+    }
+
+    /**
+     * @return \Acme\Model\Todo\Author
+     */
+    public function getAuthor()
+    {
+        return $this-&gt;author;
+    }
+
+    /**
+     * @param \Acme\Model\Todo\Author $author
+     */
+    public function setAuthor(Author $author)
+    {
+        $this-&gt;author = author;
+    }
+    
+    /**
+     * @return \DateTime
+     */
+    public function getInsertDate()
+    {
+        return $this-&gt;insertDate;
+    }
+
+    /**
+     * @param \DateTime $insertDate
+     */
+    public function setInsertDate(DateTime $insertDate)
+    {
+        $this-&gt;insertDate = $insertDate;
+    }
+}
+</code></pre>
+            </div>
+            <div class="mdl-tabs__panel" id="model-author">
+                <pre><code class="php">&lt;?php
+
+namespace Acme\Model\Todo;
+
+class Author
+{
+    /**
+     * @Type(&quot;integer&quot;)
+     */
+    protected $id;
+
+    /**
+     * @Type(&quot;string&quot;)
+     */
+    protected $name;
+
+    /**
+     * @Type(&quot;string&quot;)
+     */
+    protected $uri;
+
+    /**
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this-&gt;id;
+    }
+
+    /**
+     * @param integer $id
+     */
+    public function setId($id)
+    {
+        $this-&gt;id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this-&gt;name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this-&gt;name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUri()
+    {
+        return $this-&gt;uri;
+    }
+
+    /**
+     * @param string $uri
+     */
+    public function setUri($uri)
+    {
+        $this-&gt;uri = $uri;
+    }
+}
+</code></pre>
+            </div>
+            <div class="mdl-tabs__panel" id="model-collection">
+        <pre><code class="php">&lt;?php
+
+namespace Acme\Model\Todo;
+
+class Collection
+{
+    /**
+     * @Type(&quot;integer&quot;)
+     */
+    protected $totalResults;
+
+    /**
+     * @Type(&quot;array&lt;Acme\Model\Todo\Entry&gt;&quot;)
+     */
+    protected $entry;
+
+    /**
+     * @return integer
+     */
+    public function getTotalResults()
+    {
+        return $this-&gt;totalResults;
+    }
+
+    /**
+     * @param integer $totalResults
+     */
+    public function setTotalResults($totalResults)
+    {
+        $this-&gt;totalResults = $totalResults;
+    }
+
+    /**
+     * @return array
+     */
+    public function getEntry()
+    {
+        return $this-&gt;entry;
+    }
+
+    /**
+     * @param array $entry
+     */
+    public function setEntry(array $entry)
+    {
+        $this-&gt;entry = $entry;
+    }
+}
+</code></pre>
+            </div>
+            <div class="mdl-tabs__panel" id="model-message">
+                <pre><code class="php">&lt;?php
+
+namespace Acme\Model\Todo;
+
+class Message
+{
+    /**
+     * @Type(&quot;boolean&quot;)
+     */
+    protected $success;
+
+    /**
+     * @Type(&quot;string&quot;)
+     */
+    protected $message;
+
+    /**
+     * @return boolean
+     */
+    public function getSuccess()
+    {
+        return $this-&gt;success;
+    }
+
+    /**
+     * @param boolean $success
+     */
+    public function setSuccess($success)
+    {
+        $this-&gt;success = $success;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this-&gt;message;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function setMessage($message)
+    {
+        $this-&gt;message = $message;
+    }
+}
+</code></pre>
+            </div>
+        </div>
+    </div>
+    <div class="psx-section mdl-color--grey-100">
+        <h3 class="mdl-typography--title-color-contrast">Controller</h3>
+        <p class="mdl-typography--body-1-color-contrast">Each controller represents
+        an endpoint which can handle HTTP verbs. In our case we want that the
+        endpoint should handle GET and POST requests. Therefor we add a <code>doGet</code>
+        and <code>doPost</code> method. Through the <code>@Incoming</code> and 
+        <code>@Outgoing</code> annotation we declare which request and response 
+        format is allowed. Since our model classes already contain JsonSchema 
+        annotations we can simply refer to the class but it is also possible to 
+        provide a path to a JsonSchema file.</p>
+        <pre><code class="php">&lt;?php
+
+namespace Acme\Endpoint;
+
+use Acme\Table\Todo\Entry;
+use PSX\Framework\Controller\SchemaApiAbstract;
+
+class Todo extends SchemaApiAbstract
+{
+    /**
+     * @Outgoing(code=200, schema=&quot;Acme\Model\Todo\Collection&quot;)
+     */
+    protected function doGet()
+    {
+    }
+
+    /**
+     * @Incoming(schema=&quot;Acme\Model\Todo\Entry&quot;)
+     * @Outgoing(code=200, schema=&quot;Acme\Model\Todo\Message&quot;)
+     */
+    protected function doPost($record)
+    {
+    }
+}
+</code></pre>
+        <p>We have now provided all informations how the endpoint is structured.
+        Based on such controllers we can automatically generate a <a href="http://example.phpsx.org/documentation/#/api/">API documentation</a>
+        or other API schema formats. Now we have to implement the logic where we
+        actually CRUD data.</p>
+    </div>
+    
+    <div class="psx-section mdl-color--primary-contrast">
+        <h3 class="mdl-typography--title-color-contrast">Generate Table-Classes</h3>
+        <p>PSX provides a database layer which is especially designed to create
+        nested API responses from complex SQL queries. Per table we have one 
+        repository class which provides basic CRUD operations but it is also easy
+        to implement custom queries. At first we can generate the table classes 
+        through the folowing commands:</p>
+
+        <pre>vendor/bin/psx sql:generate todo_author > src/Acme/Table/Todo/Author.php</pre>
+        <pre>vendor/bin/psx sql:generate todo_entry > src/Acme/Table/Todo/Entry.php</pre>
+
+        <p>We have to adjust the namespace and add also a new method <code>getEntries</code>
+        which creates the response for our controller:</p>
+
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+            <div class="mdl-tabs__tab-bar">
+                <a href="#table-todo_entry" class="mdl-tabs__tab is-active">todo_entry</a>
+                <a href="#table-todo_author" class="mdl-tabs__tab">todo_author</a>
+            </div>
+            <div class="mdl-tabs__panel" id="table-todo_entry">
+                <pre><code class="php">&lt;?php
+
+namespace Acme\Table\Todo;
+
+use PSX\Sql\TableAbstract;
+
+class Entry extends TableAbstract
+{
+    public function getName()
+    {
+        return 'todo_entry';
+    }
+
+    public function getColumns()
+    {
+        return array(
+            'id' =&gt; self::TYPE_INT | self::PRIMARY_KEY | self::AUTO_INCREMENT,
+            'authorId' =&gt; self::TYPE_INT,
+            'title' =&gt; self::TYPE_VARCHAR | 255,
+            'insertDate' =&gt; self::TYPE_DATETIME
+        );
+    }
+
+    /**
+     * Custom method to produce a complex result
+     */
+    public function getEntries()
+    {
+        $sql = '    SELECT entry.id,
+                           entry.title,
+                           entry.insertDate,
+                           author.name AS authorName,
+                           author.uri AS authorUri
+                      FROM todo_entry entry
+                INNER JOIN todo_author author
+                        ON entry.authorId = author.id 
+                  ORDER BY entry.insertDate DESC 
+                     LIMIT 0, 16';
+
+        $definition = [
+            'totalResults' =&gt; $this-&gt;doValue('SELECT COUNT(*) FROM todo_entry', [], []),
+            'entry' =&gt; $this-&gt;doCollection($sql, [], [
+                'id' =&gt; 'id',
+                'title' =&gt; 'title',
+                'insertDate' =&gt; 'insertDate',
+                'author' =&gt; [
+                    'name' =&gt; 'authorName',
+                    'uri' =&gt; 'authorUri',
+                ]
+            ]),
+        ];
+
+        return $this-&gt;build($definition);
+    }
+}
+</code></pre>
+            </div>
+            <div class="mdl-tabs__panel is-active" id="table-todo_author">
+                <pre><code class="php">&lt;?php
+
+namespace Acme\Table\Todo;
+
+use PSX\Sql\TableAbstract;
+
+class Author extends TableAbstract
+{
+    public function getName()
+    {
+        return 'todo_author';
+    }
+    
+    public function getColumns()
+    {
+        return array(
+            'id' =&gt; self::TYPE_INT | self::PRIMARY_KEY | self::AUTO_INCREMENT,
+            'name' =&gt; self::TYPE_VARCHAR | 32,
+            'uri' =&gt; self::TYPE_VARCHAR | 128
+        );
+    }
+}
+</code></pre>
+            </div>
+        </div>
+
+        <p class="psx-alert psx-alert-info"><b>Note:</b> To simplify things we use the table classes directly in the controller.
+        Normally it is best practice to use only services in the controller and
+        the service has then access to the database layer.</p>
+
+        <p>We can then use the generated table classes inside the controller:</p>
+        <pre><code class="php">&lt;?php
+
+namespace Acme\Endpoint;
+
+use Acme\Table\Todo\Entry;
+use PSX\Framework\Controller\SchemaApiAbstract;
+
+class Todo extends SchemaApiAbstract
+{
+    /**
+     * @Inject
+     * @var \PSX\Sql\TableManagerInterface
+     */
+    protected $tableManager;
+
+    /**
+     * @Outgoing(code=200, schema=&quot;Acme\Model\Todo\Collection&quot;)
+     */
+    protected function doGet()
+    {
+        return $this-&gt;tableManager-&gt;getTable('Acme\Model\Todo\Entry')-&gt;getEntries();
+    }
+
+    /**
+     * @Incoming(schema=&quot;Acme\Model\Todo\Entry&quot;)
+     * @Outgoing(code=200, schema=&quot;Acme\Model\Todo\Message&quot;)
+     */
+    protected function doPost($record)
+    {
+        $this-&gt;tableManager-&gt;getTable('Acme\Model\Todo\Entry')-&gt;insert([
+            'title' =&gt; $record-&gt;title,
+            'authorId' =&gt; 1,
+            'insertDate' =&gt; new \DateTime(),
+        ]);
+
+        return [
+            'success' =&gt; true,
+            'message' =&gt; 'Entry successful inserted!',
+        ];
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="psx-section mdl-color--grey-100">
+        <h3 class="mdl-typography--title-color-contrast">Routing</h3>
+        <p class="mdl-typography--body-1-color-contrast">To make the controller
+        accessible we have to define a route. PSX uses a simple routing file
+        which contains all available routes. Add the following entry to the 
+        <code>routing</code> file to make the controller accessible.</p>
+        <pre>GET|POST|PUT|DELETE /todo Acme\Endpoint\Todo</pre>
+    </div>
+
+    <div class="psx-section mdl-color--primary-contrast">
+        <h3 class="mdl-typography--title-color-contrast">Done</h3>
+        <p class="mdl-typography--body-1-color-contrast">It is now possible to
+        test the endpoint at the uri <code>/todo</code>. The API should return
+        the following JSON response:</p>
+        <pre><code class="json">{
+    "totalResults": 2,
+    "entry": [
+        {
+            "id": 2,
+            "title": "lorem ipsum",
+            "author": {
+                "name": "admin",
+                "uri": "foo@bar.com"
+            },
+            "insertDate": "2016-05-21T19:33:14Z"
+        },
+        {
+            "id": 1,
+            "title": "lorem ipsum",
+            "author": {
+                "name": "admin",
+                "uri": "foo@bar.com"
+            },
+            "insertDate": "2016-05-21T19:33:02Z"
+        }
+    ]
+}
+</code></pre>
+    </div>
+</div>
+
+<?php include($location . '/inc/footer.html'); ?>
+
+</body>
+</html>
