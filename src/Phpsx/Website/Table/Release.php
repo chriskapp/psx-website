@@ -2,6 +2,7 @@
 
 namespace Phpsx\Website\Table;
 
+use PSX\Sql\Sql;
 use PSX\Sql\TableAbstract;
 
 /**
@@ -32,4 +33,12 @@ class Release extends TableAbstract
 			'assetMime' => self::TYPE_VARCHAR,
 		);
 	}
+
+    public function getLatestRelease()
+    {
+        $releases = $this->getAll(0, 1, 'publishedAt', Sql::SORT_DESC);
+        $release  = current($releases);
+
+        return $release;
+    }
 }
