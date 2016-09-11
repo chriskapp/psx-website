@@ -2,7 +2,43 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>urn:phpsx.org:blog</id>
 	<title>PSX Blog</title>
-	<updated>2016-05-08T23:26:00Z</updated>
+	<updated>2016-09-11T10:05:00Z</updated>
+    <entry>
+        <id>urn:phpsx.org:blog:31</id>
+        <title>Project status and updates</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2016-09-11T10:05:00Z</updated>
+        <summary>
+            Short announcement of the current state of the project and future 
+            plans
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
+<p>Since version 2.0 we moved from a monolithic library to a component based
+architecture. This means that the PSX project itself is actually only a 
+wrapper which requires the components and contains the documentation. Because
+of this the main project does not change very often since each component has
+its own release cycle. Which is in fact really great i.e. if we want to fix
+a bug in the SQL component we can quickly tag a new version and dont have to
+release the complete framework because of this. This means we <cite>Release early, 
+release often</cite>. In the future we are planing to post a summary of the 
+component changes to make the progress more visible.</p>
+
+<p>We think that building APIs is still one of the hottest topics in the IT 
+scene and we are happy to provide with PSX a framework which helps to develop
+such APIs. So if you want to make API development in PHP better feel free to 
+contribute.</p>
+
+<p>Currently we use PSX to build a great new and exciting API management product
+called <a href="http://fusio-project.org">Fusio</a> which helps everybody to 
+quickly setup an API programm.</p>
+
+]]></content>
+    </entry>
 	<entry>
 		<id>urn:phpsx.org:blog:30</id>
 		<title>Version 2.0 released</title>
