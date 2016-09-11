@@ -15,6 +15,7 @@
         as backend using the PSX framework. We will create a API around a table 
         where we can receive and create todo entries.</p>
     </div>
+
     <div class="psx-section mdl-color--grey-100">
         <h3 class="mdl-typography--title-color-contrast">Preparation</h3>
         <p class="mdl-typography--body-1-color-contrast">As basis we use the 
@@ -22,9 +23,11 @@
         guide covers in detail howto setup the sample project. Basically you 
         need to install the project through composer:</p>
         <pre>composer create-project psx/sample .</pre>
-        <p>The sample project contains already a sample API but since we develop
-        a new API from scratch we can delete the folder <code>src/Sample</code>.</p>
+        <p class="mdl-typography--body-1-color-contrast">The sample project 
+        contains already a sample API but since we develop a new API from scratch 
+        we can delete the folder <code>src/Sample</code>.</p>
     </div>
+
     <div class="psx-section mdl-color--primary-contrast">
         <h3 class="mdl-typography--title-color-contrast">SQL-Schema</h3>
         <p class="mdl-typography--body-1-color-contrast">Execute the following
@@ -52,6 +55,7 @@ INSERT INTO `todo_entry` (`id`, `authorId`, `title`, `insertDate`) VALUES
 (2, 1, 'lorem ipsum', '2016-05-21 19:33:14');
         </code></pre>
     </div>
+
     <div class="psx-section mdl-color--grey-100">
         <h3 class="mdl-typography--title-color-contrast">Configuration</h3>
         <p class="mdl-typography--body-1-color-contrast">In order to work with a
@@ -68,7 +72,8 @@ INSERT INTO `todo_entry` (`id`, `authorId`, `title`, `insertDate`) VALUES
     'host'     => 'localhost',
     'driver'   => 'pdo_mysql',
 ]</pre>
-        <p>You can test the connection settings with the following command:</p>
+        <p class="mdl-typography--body-1-color-contrast">You can test the 
+        connection settings with the following command:</p>
         <pre>vendor/bin/psx dbal:run-sql "SELECT * FROM todo_entry;"</pre>
     </div>
 
@@ -356,6 +361,7 @@ class Message
             </div>
         </div>
     </div>
+ 
     <div class="psx-section mdl-color--grey-100">
         <h3 class="mdl-typography--title-color-contrast">Controller</h3>
         <p class="mdl-typography--body-1-color-contrast">Each controller represents
@@ -391,15 +397,16 @@ class Todo extends SchemaApiAbstract
     }
 }
 </code></pre>
-        <p>We have now provided all informations how the endpoint is structured.
-        Based on such controllers we can automatically generate a <a href="http://example.phpsx.org/documentation/#/api/">API documentation</a>
+        <p class="mdl-typography--body-1-color-contrast">We have now provided 
+        all informations how the endpoint is structured. Based on such controllers 
+        we can automatically generate a <a href="http://example.phpsx.org/documentation/#/api/">API documentation</a>
         or other API schema formats. Now we have to implement the logic where we
         actually CRUD data.</p>
     </div>
     
     <div class="psx-section mdl-color--primary-contrast">
         <h3 class="mdl-typography--title-color-contrast">Generate Table-Classes</h3>
-        <p>PSX provides a database layer which is especially designed to create
+        <p class="mdl-typography--body-1-color-contrast">PSX provides a database layer which is especially designed to create
         nested API responses from complex SQL queries. Per table we have one 
         repository class which provides basic CRUD operations but it is also easy
         to implement custom queries. At first we can generate the table classes 
@@ -408,7 +415,7 @@ class Todo extends SchemaApiAbstract
         <pre>vendor/bin/psx sql:generate todo_author > src/Acme/Table/Todo/Author.php</pre>
         <pre>vendor/bin/psx sql:generate todo_entry > src/Acme/Table/Todo/Entry.php</pre>
 
-        <p>We have to adjust the namespace and add also a new method <code>getEntries</code>
+        <p class="mdl-typography--body-1-color-contrast">We have to adjust the namespace and add also a new method <code>getEntries</code>
         which creates the response for our controller:</p>
 
         <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
@@ -501,11 +508,11 @@ class Author extends TableAbstract
             </div>
         </div>
 
-        <p class="psx-alert psx-alert-info"><b>Note:</b> To simplify things we use the table classes directly in the controller.
+        <p class="mdl-typography--body-1-color-contrast psx-alert psx-alert-info"><b>Note:</b> To simplify things we use the table classes directly in the controller.
         Normally it is best practice to use only services in the controller and
         the service has then access to the database layer.</p>
 
-        <p>We can then use the generated table classes inside the controller:</p>
+        <p class="mdl-typography--body-1-color-contrast">We can then use the generated table classes inside the controller:</p>
         <pre><code class="php">&lt;?php
 
 namespace Acme\Endpoint;
@@ -588,6 +595,8 @@ class Todo extends SchemaApiAbstract
     ]
 }
 </code></pre>
+        <p class="mdl-typography--body-1-color-contrast">For more informations
+        please take a look at the <a href="<?php echo $router->getUrl('Phpsx\Website\Application\Documentation::doIndex'); ?>">documentation</a> page</p>
     </div>
 </div>
 
