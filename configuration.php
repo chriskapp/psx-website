@@ -20,10 +20,10 @@ return array(
 
     // The url to the psx public folder (i.e. http://127.0.0.1/psx/public or 
     // http://localhost.com)
-    'psx_url'                 => 'http://127.0.0.1/websites/phpsx.org/public',
+    'psx_url'                 => 'http://phpsx.org',
 
     // The input path 'index.php/' or '' if you use mod_rewrite
-    'psx_dispatch'            => 'index.php/',
+    'psx_dispatch'            => '',
 
     // The default timezone
     'psx_timezone'            => 'UTC',
