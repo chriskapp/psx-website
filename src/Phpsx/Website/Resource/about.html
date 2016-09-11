@@ -15,7 +15,7 @@
             It provides tools to handle routing, API versioning, data transformation, 
             authentication, documentation and testing. With PSX you can easily build 
             a REST API around an existing application or create a new one from 
-            scratch. Take a look at the <a href="http://example.phpsx.org">example</a> 
+            scratch. Take a look at the <a href="http://example.phpsx.org" class="mdl-color-text--primary">example</a> 
             to see an API in action. The following chapter shows some features of 
             PSX which should give you a first impression how it works.
         </p>
@@ -27,14 +27,13 @@
             </div>
             <div class="mdl-cell mdl-cell--6-col">
                 <h3 class="mdl-typography--title-color-contrast">Documentation</h3>
-                <div class="mdl-typography--body-1-color-contrast">
-                    <p>PSX provides tools to automatically generate a documentation from 
-                    the defined API controllers. The documentation is generated 
-                    from the code and is therefore always up to date. To see a 
-                    documentation you can view the <b><a href="http://example.phpsx.org/documentation/">example</a></b> 
-                    project or take a look at the <b><a href="https://github.com/k42b3/psx-examples">source</a></b>.
-                    </p>
-                </div>
+                <p class="mdl-typography--body-1-color-contrast">PSX provides 
+                tools to automatically generate a documentation from the defined 
+                API controllers. The documentation is generated from the code 
+                and is therefore always up to date. To see a documentation you 
+                can view the <b><a href="http://example.phpsx.org/documentation/" class="mdl-color-text--primary">example</a></b> 
+                project or take a look at the <b><a href="https://github.com/k42b3/psx-examples" class="mdl-color-text--primary">source</a></b>.
+                </p>
             </div>
         </div>
     </div>
@@ -42,20 +41,20 @@
         <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--6-col">
                 <h3 class="mdl-typography--title-color-contrast">Schema definition</h3>
-                <div class="mdl-typography--body-1-color-contrast">
-                    <p>PSX gives you the possibility to define a clear schema for each API 
-                    endpoint. The schema can be defined through annotations, as <b><a href="http://raml.org/">RAML</a></b>
-                    specification or directly in PHP. Because PSX has all informations how 
-                    the API is structured it can validate incoming and outgoing data according 
-                    to the schema.</p>
+                <p class="mdl-typography--body-1-color-contrast">PSX gives you the 
+                possibility to define a clear schema for each API endpoint. The schema 
+                can be defined through annotations, as <b><a href="http://raml.org/" class="mdl-color-text--primary">RAML</a></b>
+                specification or directly in PHP. Because PSX has all informations how
+                the API is structured it can validate incoming and outgoing data according
+                to the schema.</p>
 
-                    <p>Based on the defined schema PSX can also generate different API  
-                    definition formats like: <b><a href="http://example.phpsx.org/tool/raml/1/population">RAML</a></b>, 
-                    <b><a href="http://example.phpsx.org/tool/swagger/1/population">Swagger</a></b>
-                    and <b><a href="http://example.phpsx.org/tool/wsdl/1/population">WSDL</a></b>.
-                    These formats can be used i.e. to automatically generate client-side
-                    code.</p>
-                </div>
+                <p class="mdl-typography--body-1-color-contrast">Based on the defined 
+                schema PSX can also generate different API definition formats like: 
+                <b><a href="http://example.phpsx.org/tool/raml/1/population" class="mdl-color-text--primary">RAML</a></b>,
+                <b><a href="http://example.phpsx.org/tool/swagger/1/population" class="mdl-color-text--primary">Swagger</a></b>
+                and <b><a href="http://example.phpsx.org/tool/wsdl/1/population" class="mdl-color-text--primary">WSDL</a></b>.
+                These formats can be used i.e. to automatically generate client-side
+                code.</p>
             </div>
             <div class="mdl-cell mdl-cell--6-col">
                 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
@@ -213,14 +212,14 @@ version: v1
             </div>
             <div class="mdl-cell mdl-cell--6-col">
                 <h3 class="mdl-typography--title-color-contrast">Request parsing</h3>
-                <div class="mdl-typography--body-1-color-contrast">
-                    <p>PSX parses the incoming request into an object graph according to
-                    the defined data model. The data model can be defined as simple
-                    POPO which can contain annotations to describe the schema.</p>
+                <p class="mdl-typography--body-1-color-contrast">PSX parses the 
+                incoming request into an object graph according to the defined 
+                data model. The data model can be defined as simple POPO which 
+                can contain annotations to describe the schema.</p>
 
-                    <p>In the example we see an API controller which consumes the request
-                    data of a POST request. In the tabs you can see the used data model.</p>
-                </div>
+                <p class="mdl-typography--body-1-color-contrast">In the example we 
+                see an API controller which consumes the request data of a POST 
+                request. In the tabs you can see the used data model.</p>
             </div>
         </div>
     </div>
@@ -228,15 +227,14 @@ version: v1
         <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--6-col">
                 <h3 class="mdl-typography--title-color-contrast">Response generation</h3>
-                <div class="mdl-typography--body-1-color-contrast">
-                    <p>PSX analyzes the data structure of the response and uses a data 
-                    writer to generate the response. By default PSX comes with multiple data 
-                    writers which can generate different data formats like i.e. JSON or XML. 
-                    The writer which gets used depends on the <code>Accept</code> 
-                    header field or the GET parameter <code>format</code>. In the example you
-                    can see a controller and the corresponding responses from different 
-                    data writers.</p>
-                </div>
+                <p class="mdl-typography--body-1-color-contrast">PSX analyzes the 
+                data structure of the response and uses a data writer to generate 
+                the response. By default PSX comes with multiple data writers which 
+                can generate different data formats like i.e. JSON or XML. The 
+                writer which gets used depends on the <code>Accept</code> header 
+                field or the GET parameter <code>format</code>. In the example you
+                can see a controller and the corresponding responses from different
+                data writers.</p>
             </div>
             <div class="mdl-cell mdl-cell--6-col">
                 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
@@ -367,13 +365,10 @@ version: v1
             </div>
             <div class="mdl-cell mdl-cell--6-col">
                 <h3 class="mdl-typography--title-color-contrast">Code generation</h3>
-                <div class="mdl-typography--body-1-color-contrast">
-                    <p>PSX provides a CLI command to generate controller and 
-                    model classes based on a API specification file. These 
-                    classes can be used to rapidly develop the defined API 
-                    endpoint.
-                    </p>
-                </div>
+                <p class="mdl-typography--body-1-color-contrast">PSX provides a 
+                CLI command to generate controller and model classes based on a 
+                API specification file. These classes can be used to rapidly 
+                develop the defined API endpoint.</p>
             </div>
         </div>
     </div>
@@ -382,18 +377,18 @@ version: v1
         <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--6-col">
                 <h3 class="mdl-typography--title-color-contrast">API testing</h3>
-                <div class="mdl-typography--body-1-color-contrast">
-                    <p>Because PSX is build around a HTTP request and response object we 
-                    can easily test our API code. We dont need to start a webserver 
-                    or mock the request we can simply call our controller from the test. Internally this 
-                    is the same code as when we make a call to the webserver except that we 
-                    manually create the HTTP request and response.</p>
+                <p class="mdl-typography--body-1-color-contrast">Because PSX is 
+                build around a HTTP request and response object we can easily 
+                test our API code. We dont need to start a webserver or mock the 
+                request we can simply call our controller from the test. Internally 
+                this is the same code as when we make a call to the webserver 
+                except that we manually create the HTTP request and response.</p>
 
-                    <p>In this way we can easily make an integration test for the API endpoint by 
-                    looking at the actual response. In our example we call the GET method
-                    of the controller and check whether the response is a JSON object 
-                    <code>{"hello": "world"}</code>.</p>
-                </div>
+                <p class="mdl-typography--body-1-color-contrast">In this way we 
+                can easily make an integration test for the API endpoint by 
+                looking at the actual response. In our example we call the GET method
+                of the controller and check whether the response is a JSON object
+                <code>{"hello": "world"}</code>.</p>
             </div>
             <div class="mdl-cell mdl-cell--6-col">
                 <pre><code class="php">class HelloWorldApiTest extends ControllerTestCase
@@ -448,12 +443,11 @@ GET|POST /bar              Acme\News\Application\BarApi</pre>
             </div>
             <div class="mdl-cell mdl-cell--6-col">
                 <h3 class="mdl-typography--title-color-contrast">Routing</h3>
-                <div class="mdl-typography--body-1-color-contrast">
-                    <p>PSX uses a simple routing file which was inspired by the Java <a href="https://www.playframework.com/">Play-Framework</a>.
-                    We can specify the allowed request methods, the path and the controller which 
-                    should be called. In the example controller we access the dynamic part 
-                    of the path.</p>
-                </div>
+                <p class="mdl-typography--body-1-color-contrast">PSX uses a simple 
+                routing file which was inspired by the Java <a href="https://www.playframework.com/" class="mdl-color-text--primary">Play-Framework</a>.
+                We can specify the allowed request methods, the path and the controller which
+                should be called. In the example controller we access the dynamic part
+                of the path.</p>
             </div>
         </div>
     </div>
