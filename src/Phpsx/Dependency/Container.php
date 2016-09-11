@@ -2,31 +2,29 @@
 
 namespace Phpsx\Dependency;
 
-use Doctrine\DBAL\Configuration;
-use Doctrine\DBAL\DriverManager;
+use Phpsx\Website\Console;
 use PSX\Framework\Data\Writer as FrameworkWriter;
 use PSX\Framework\Dependency\DefaultContainer;
-use Phpsx\Website\Console;
 use Symfony\Component\Console\Application;
 
 class Container extends DefaultContainer
 {
-	public function getIo()
-	{
-		$processor = parent::getIo();
+    public function getIo()
+    {
+        $processor = parent::getIo();
         $processor->getConfiguration()->getWriterFactory()->addWriter(new FrameworkWriter\Text($this->get('template'), $this->get('reverse_router')), 39);
 
-		return $processor;
-	}
+        return $processor;
+    }
 
-	protected function appendConsoleCommands(Application $application)
-	{
-		parent::appendConsoleCommands($application);
+    protected function appendConsoleCommands(Application $application)
+    {
+        parent::appendConsoleCommands($application);
 
-		$application->add(new Console\CreateSchemaCommand($this->get('connection')));
-		$application->add(new Console\FetchReleaseCommand($this->get('table_manager'), $this->get('http'), $this->get('config')));
-		$application->add(new Console\ShowReleaseCommand($this->get('table_manager')));
-		$application->add(new Console\UpdateBlogCommand($this->get('table_manager'), $this->get('importer'), $this->get('config')->get('blog_file')));
-		$application->add(new Console\ShowBlogCommand($this->get('table_manager')));
-	}
+        $application->add(new Console\CreateSchemaCommand($this->get('connection')));
+        $application->add(new Console\FetchReleaseCommand($this->get('table_manager'), $this->get('http_client'), $this->get('config')));
+        $application->add(new Console\ShowReleaseCommand($this->get('table_manager')));
+        $application->add(new Console\UpdateBlogCommand($this->get('table_manager'), $this->get('io'), $this->get('config')->get('blog_file')));
+        $application->add(new Console\ShowBlogCommand($this->get('table_manager')));
+    }
 }

@@ -4,8 +4,8 @@ namespace Phpsx\Website;
 
 class Slugify
 {
-	public function slugify($title)
-	{
-		return strtolower(str_replace(' ', '-', $title));
-	}
+    public function slugify($title)
+    {
+        return strtolower(str_replace(' ', '-', $title));
+    }
 }

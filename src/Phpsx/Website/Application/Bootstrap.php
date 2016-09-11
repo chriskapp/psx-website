@@ -6,7 +6,7 @@ use PSX\Framework\Controller\ViewAbstract;
 
 class Bootstrap extends ViewAbstract
 {
-	public function doIndex()
-	{
-	}
+    public function doIndex()
+    {
+    }
 }
