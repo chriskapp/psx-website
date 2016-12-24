@@ -90,7 +90,8 @@ clean and documented REST APIs.</h3>
     protected $content;
 
     /**
-     * @Type("datetime")
+     * @Type("string")
+     * @Format("date-time")
      */
     protected $createDate;
 
@@ -135,7 +136,8 @@ clean and documented REST APIs.</h3>
     protected $totalResults;
 
     /**
-     * @Type("array&lt;Acme\Model\News&gt;")
+     * @Type("array")
+     * @Items(@Ref("Acme\Model\News"))
      */
     protected $entry;
 

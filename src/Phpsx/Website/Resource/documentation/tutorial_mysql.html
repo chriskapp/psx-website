@@ -118,23 +118,23 @@ use DateTime;
 class Entry
 {
     /**
-     * @Type(&quot;integer&quot;)
+     * @Type("integer")
      */
     protected $id;
 
     /**
-     * @Type(&quot;string&quot;)
+     * @Type("string")
      */
     protected $title;
 
     /**
-     * @Ref(&quot;Acme\Model\Todo\Author&quot;)
+     * @Ref("Acme\Model\Todo\Author")
      */
     protected $author;
 
     /**
-     * @Type(&quot;string&quot;)
-     * @Format(&quot;date-time&quot;)
+     * @Type("string")
+     * @Format("date-time")
      */
     protected $insertDate;
 
@@ -213,17 +213,17 @@ namespace Acme\Model\Todo;
 class Author
 {
     /**
-     * @Type(&quot;integer&quot;)
+     * @Type("integer")
      */
     protected $id;
 
     /**
-     * @Type(&quot;string&quot;)
+     * @Type("string")
      */
     protected $name;
 
     /**
-     * @Type(&quot;string&quot;)
+     * @Type("string")
      */
     protected $uri;
 
@@ -286,13 +286,13 @@ namespace Acme\Model\Todo;
 class Collection
 {
     /**
-     * @Type(&quot;integer&quot;)
+     * @Type("integer")
      */
     protected $totalResults;
 
     /**
-     * @Type(&quot;array&quot;)
-     * @Items(@Ref(&quot;Acme\Model\Todo\Entry&quot;))
+     * @Type("array")
+     * @Items(@Ref("Acme\Model\Todo\Entry"))
      */
     protected $entry;
 
@@ -339,12 +339,12 @@ namespace Acme\Model\Todo;
 class Message
 {
     /**
-     * @Type(&quot;boolean&quot;)
+     * @Type("boolean")
      */
     protected $success;
 
     /**
-     * @Type(&quot;string&quot;)
+     * @Type("string")
      */
     protected $message;
 
@@ -406,15 +406,15 @@ use PSX\Framework\Controller\SchemaApiAbstract;
 class Todo extends SchemaApiAbstract
 {
     /**
-     * @Outgoing(code=200, schema=&quot;Acme\Model\Todo\Collection&quot;)
+     * @Outgoing(code=200, schema="Acme\Model\Todo\Collection")
      */
     protected function doGet()
     {
     }
 
     /**
-     * @Incoming(schema=&quot;Acme\Model\Todo\Entry&quot;)
-     * @Outgoing(code=200, schema=&quot;Acme\Model\Todo\Message&quot;)
+     * @Incoming(schema="Acme\Model\Todo\Entry")
+     * @Outgoing(code=200, schema="Acme\Model\Todo\Message")
      */
     protected function doPost($record)
     {
@@ -556,7 +556,7 @@ class Todo extends SchemaApiAbstract
     protected $tableManager;
 
     /**
-     * @Outgoing(code=200, schema=&quot;Acme\Model\Todo\Collection&quot;)
+     * @Outgoing(code=200, schema="Acme\Model\Todo\Collection")
      */
     protected function doGet()
     {
@@ -564,8 +564,8 @@ class Todo extends SchemaApiAbstract
     }
 
     /**
-     * @Incoming(schema=&quot;Acme\Model\Todo\Entry&quot;)
-     * @Outgoing(code=200, schema=&quot;Acme\Model\Todo\Message&quot;)
+     * @Incoming(schema="Acme\Model\Todo\Entry")
+     * @Outgoing(code=200, schema="Acme\Model\Todo\Message")
      */
     protected function doPost($record)
     {

@@ -50,9 +50,8 @@
 
                 <p class="mdl-typography--body-1-color-contrast">Based on the defined 
                 schema PSX can also generate different API definition formats like: 
-                <b><a href="http://example.phpsx.org/tool/raml/1/population" class="mdl-color-text--primary">RAML</a></b>,
-                <b><a href="http://example.phpsx.org/tool/swagger/1/population" class="mdl-color-text--primary">Swagger</a></b>
-                and <b><a href="http://example.phpsx.org/tool/wsdl/1/population" class="mdl-color-text--primary">WSDL</a></b>.
+                <b><a href="http://example.phpsx.org/tool/raml/1/population" class="mdl-color-text--primary">RAML</a></b>
+                and <b><a href="http://example.phpsx.org/tool/swagger/1/population" class="mdl-color-text--primary">Swagger</a></b>.
                 These formats can be used i.e. to automatically generate client-side
                 code.</p>
             </div>
@@ -60,8 +59,6 @@
                 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
                     <div class="mdl-tabs__tab-bar">
                         <a href="#schema-annotation" class="mdl-tabs__tab is-active">Annotation</a>
-                        <a href="#schema-raml" class="mdl-tabs__tab">RAML</a>
-                        <a href="#schema-php" class="mdl-tabs__tab">PHP</a>
                     </div>
                     <div class="mdl-tabs__panel is-active" id="schema-annotation">
                         <pre><code class="php">class Endpoint extends SchemaApiAbstract
@@ -82,70 +79,6 @@
      */
     public function doPost($entry)
     {
-    }
-}</code></pre>
-                    </div>
-                    <div class="mdl-tabs__panel" id="schema-raml">
-                        <pre><code class="php">class Endpoint extends SchemaApiAbstract
-{
-    public function getDocumentation()
-    {
-        return new Raml::fromFile(
-            'endpoint.raml', 
-            $this-&gt;context-&gt;get(Context::KEY_PATH)
-        );
-    }
-}</code></pre>
-                        <pre><code class="yaml">#%RAML 0.8
-title: Acme api
-baseUri: http://api.acme.com
-version: v1
-/population:
-  description: Returns a collection of population entries
-  get:
-    queryParameters:
-      startIndex:
-        type: integer
-      count:
-        type: integer
-    responses:
-      200:
-        body:
-          application/json:
-            schema: !include schema/collection.json
-  post:
-    body:
-      application/json:
-        schema: !include schema/entry.json
-</code></pre>
-                    </div>
-                    <div class="mdl-tabs__panel" id="schema-php">
-                        <pre><code class="php">class Endpoint extends SchemaApiAbstract
-{
-    public function getDocumentation($version = null)
-    {
-        $resource = new Resource(
-            Resource::STATUS_ACTIVE, 
-            $this-&gt;context-&gt;get(Context::KEY_PATH)
-        );
-
-        $resource-&gt;setTitle('Acme api');
-        $resource-&gt;setDescription('Returns a collection of population entries');
-
-        $resource-&gt;addMethod(Resource\Factory::getMethod('GET')
-            -&gt;addQueryParameter(Property::getInteger('startIndex'))
-            -&gt;addQueryParameter(Property::getInteger('count'))
-            -&gt;addResponse(
-                200, 
-                $this-&gt;schemaManager-&gt;getSchema('Acme\Schema\Collection')
-            )
-        );
-
-        $resource-&gt;addMethod(Resource\Factory::getMethod('POST')
-            -&gt;setRequest($this-&gt;schemaManager-&gt;getSchema('Acme\Schema\Entry'))
-        );
-
-        return $resource;
     }
 }</code></pre>
                     </div>
@@ -182,7 +115,11 @@ version: v1
 }</code></pre>
                     </div>
                     <div class="mdl-tabs__panel" id="request-model">
-                        <pre><code class="php">class News
+                        <pre><code class="php">/**
+ * @Title("news")
+ * @Required({"content"})
+ */
+class News
 {
     /**
      * @Type("string")
@@ -192,7 +129,7 @@ version: v1
     protected $title;
 
     /**
-     * @Type("Acme\Author")
+     * @Ref("Acme\Author")
      */
     protected $author;
 
@@ -200,7 +137,6 @@ version: v1
      * @Type("string")
      * @MinLength(3)
      * @MaxLength(512)
-     * @Required
      */
     protected $content;
 
@@ -229,10 +165,10 @@ version: v1
                 <h3 class="mdl-typography--title-color-contrast">Response generation</h3>
                 <p class="mdl-typography--body-1-color-contrast">PSX analyzes the 
                 data structure of the response and uses a data writer to generate 
-                the response. By default PSX comes with multiple data writers which 
-                can generate different data formats like i.e. JSON or XML. The 
-                writer which gets used depends on the <code>Accept</code> header 
-                field or the GET parameter <code>format</code>. In the example you
+                the fitting response format. By default PSX comes with multiple 
+                data writers which can generate different data formats like i.e. 
+                JSON or XML. The writer which gets used depends on the <code>Accept</code> 
+                header field or the GET parameter <code>format</code>. In the example you
                 can see a controller and the corresponding responses from different
                 data writers.</p>
             </div>
@@ -356,19 +292,18 @@ version: v1
     <div class="psx-section mdl-color--grey-100">
         <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--6-col">
-                <pre>&gt; psx generate spec.raml /acme/news Acme\News
-&gt; created directory src/Acme/News
-&gt; created file src/Acme/News/Endpoint.php
-&gt; created file src/Acme/News/Schema.php
-&gt; Generation successful!
+                <pre>&gt; vendor/bin/psx api spec.raml php > Controller.php
+&gt; vendor/bin/psx schema schema.json php > Model.php
 </pre>
             </div>
             <div class="mdl-cell mdl-cell--6-col">
                 <h3 class="mdl-typography--title-color-contrast">Code generation</h3>
                 <p class="mdl-typography--body-1-color-contrast">PSX provides a 
-                CLI command to generate controller and model classes based on a 
-                API specification file. These classes can be used to rapidly 
-                develop the defined API endpoint.</p>
+                CLI command to generate different classes. I.e. it is possible
+                to generate a POPO based on a jsonschema or to generate a 
+                controller class based on a RAML specification. These generated 
+                classes can then be used to rapidly develop the defined API 
+                endpoint.</p>
             </div>
         </div>
     </div>
