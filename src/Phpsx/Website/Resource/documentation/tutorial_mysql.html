@@ -128,12 +128,13 @@ class Entry
     protected $title;
 
     /**
-     * @Type(&quot;Acme\Model\Todo\Author&quot;)
+     * @Ref(&quot;Acme\Model\Todo\Author&quot;)
      */
     protected $author;
 
     /**
-     * @Type(&quot;datetime&quot;)
+     * @Type(&quot;string&quot;)
+     * @Format(&quot;date-time&quot;)
      */
     protected $insertDate;
 
@@ -290,7 +291,8 @@ class Collection
     protected $totalResults;
 
     /**
-     * @Type(&quot;array&lt;Acme\Model\Todo\Entry&gt;&quot;)
+     * @Type(&quot;array&quot;)
+     * @Items(@Ref(&quot;Acme\Model\Todo\Entry&quot;))
      */
     protected $entry;
 
