@@ -1,8 +1,44 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-	<id>urn:phpsx.org:blog</id>
-	<title>PSX Blog</title>
-	<updated>2016-09-11T10:05:00Z</updated>
+    <id>urn:phpsx.org:blog</id>
+    <title>PSX Blog</title>
+    <updated>2016-12-24T13:47:00Z</updated>
+    <entry>
+        <id>urn:phpsx.org:blog:32</id>
+        <title>Version 3.0 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2016-12-24T13:47:00Z</updated>
+        <summary>
+            Coverage of the 3.0 release
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
+<p>We are proud to announce version 3.0 of PSX. This release updates the API 
+spec generation so that it is possible to generate swagger 2.0 and RAML 1.0 
+specifications based on a controller.</p>
+
+<p>In the previous 2.x release the response data of a controller was adjusted to 
+the schema. That means that fields which were not declared in the schema were 
+removed from the response. In the 3.x release the response schema is only used 
+for documentation purpose and does not change the response in any way. This 
+increases the performance and simplifies the development.</p>
+
+<p>With the 3.x release the json schema implementation was extended to cover all 
+aspects of the specification (the library passes now also the official json 
+schema test suite). Because of this we have removed the XSD implementation since 
+it is not possible to fully transform a json schema to XSD. The WSDL generator 
+was also removed since it is based on the XSD generator.</p>
+
+<p>Please take a look at the <a href="https://github.com/apioo/psx/blob/master/UPGRADE-3.0.md">upgrade guide</a> 
+to see a detailed list of the changes and how to upgrade a 2.x installation to 
+3.x. So have fun with this release and merry christmas!</p>
+
+]]></content>
+    </entry>
     <entry>
         <id>urn:phpsx.org:blog:31</id>
         <title>Project status and updates</title>
@@ -35,103 +71,103 @@ contribute.</p>
 
 <p>Currently we use PSX to build a great new and exciting API management product
 called <a href="http://fusio-project.org">Fusio</a> which helps everybody to 
-quickly setup an API programm.</p>
+quickly setup an API program.</p>
 
 ]]></content>
     </entry>
-	<entry>
-		<id>urn:phpsx.org:blog:30</id>
-		<title>Version 2.0 released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2016-05-08T23:26:00Z</updated>
-		<summary>
+    <entry>
+        <id>urn:phpsx.org:blog:30</id>
+        <title>Version 2.0 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2016-05-08T23:26:00Z</updated>
+        <summary>
 Converage of the 2.0 release
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>We are really proud to announce version 2.0 of the PSX framework. This post 
 will cover all changes.</p>
 
 <p><b>Code changes:</b></p>
 
 <ul>
-	<li>
-		<b>Split the framework into components</b>
-		<p>Previously PSX was a monolithic library which contained many different
-		components. We wanted to make these components available for other users 
-		so they dont have to require the complete framework. Because of this we
-		have split up library into multiple components. Please take a look at
-		the <a href="https://github.com/apioo/psx/blob/master/UPGRADE-2.0.md">upgrade</a> 
-		document to see what classes have changed.</p>
-	</li>
-	<li>
-		<b>Decoupled and improved each component</b>
-		<p>Through the decoupling process we could improve the code of each 
-		component so that it can be used standalone and only depends on the 
-		needed libraries.</p>
-	</li>
-	<li>
-		<b>Reading and writing data works now with POPOs</b>
-		<p>By default it is now possible to use POPOs containing annotations to 
-		describe the schema. This simplifies the process to parse the request 
-		data into the fitting object model.</p>
-	</li>
-	<li>
-		<b>Add generator to generate PHP classes from a RAML and JsonSchema specification</b>
-		<p>We have cleaned up the console commands and added two new commands
-		which can generate PHP code based a RAML or JsonSchema specifiction. 
-		This helps to quickly create an API based on existing specifications.</p>
-	</li>
-	<li>
-		<b>Removed command system</b>
-		<p>We have removed the command system since it does not target the main
-		problem which PSX tries to solve.</p>
-	</li>
-	<li>
-		<b>Improved documentation</b>
-		<p>We have adjusted and improved the documentation so that it is easier
-		to start with PSX. Of course this is an ongoing process so in case you
-		have any questions do not hesitate to contact us.</p>
-	</li>
+    <li>
+        <b>Split the framework into components</b>
+        <p>Previously PSX was a monolithic library which contained many different
+        components. We wanted to make these components available for other users 
+        so they dont have to require the complete framework. Because of this we
+        have split up library into multiple components. Please take a look at
+        the <a href="https://github.com/apioo/psx/blob/master/UPGRADE-2.0.md">upgrade</a> 
+        document to see what classes have changed.</p>
+    </li>
+    <li>
+        <b>Decoupled and improved each component</b>
+        <p>Through the decoupling process we could improve the code of each 
+        component so that it can be used standalone and only depends on the 
+        needed libraries.</p>
+    </li>
+    <li>
+        <b>Reading and writing data works now with POPOs</b>
+        <p>By default it is now possible to use POPOs containing annotations to 
+        describe the schema. This simplifies the process to parse the request 
+        data into the fitting object model.</p>
+    </li>
+    <li>
+        <b>Add generator to generate PHP classes from a RAML and JsonSchema specification</b>
+        <p>We have cleaned up the console commands and added two new commands
+        which can generate PHP code based a RAML or JsonSchema specifiction. 
+        This helps to quickly create an API based on existing specifications.</p>
+    </li>
+    <li>
+        <b>Removed command system</b>
+        <p>We have removed the command system since it does not target the main
+        problem which PSX tries to solve.</p>
+    </li>
+    <li>
+        <b>Improved documentation</b>
+        <p>We have adjusted and improved the documentation so that it is easier
+        to start with PSX. Of course this is an ongoing process so in case you
+        have any questions do not hesitate to contact us.</p>
+    </li>
 </ul>
 
 <p><b>Organizational changes:</b></p>
 
 <ul>
-	<li>
-		<b>Moved the PSX repository to the apioo organization.</b>
-		<p>I have moved the repository from my personal account to the <b>apioo</b> 
-		organization. This organization includes now all components of the PSX 
-		framework.</p>
-	</li>
-	<li>
-		<b>Created PSX google group</b>
-		<p>We have restored the <a href="https://groups.google.com/forum/#!forum/phpsx">PSX google group</a> 
-		which acts now as a support forum and news channel for any questions and 
-		informations regarding the PSX framework and its components.</p>
-	</li>
+    <li>
+        <b>Moved the PSX repository to the apioo organization.</b>
+        <p>I have moved the repository from my personal account to the <b>apioo</b> 
+        organization. This organization includes now all components of the PSX 
+        framework.</p>
+    </li>
+    <li>
+        <b>Created PSX google group</b>
+        <p>We have restored the <a href="https://groups.google.com/forum/#!forum/phpsx">PSX google group</a> 
+        which acts now as a support forum and news channel for any questions and 
+        informations regarding the PSX framework and its components.</p>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:29</id>
-		<title>Version 2.0 RC1</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2016-04-29T22:06:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:29</id>
+        <title>Version 2.0 RC1</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2016-04-29T22:06:00Z</updated>
+        <summary>
 Announcement of the release 2.0 RC1
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>We like to announce the first release candidate of the 2.x branch. With this
 release we move from a monolithic library to a component based. Because of this 
 it is now possible to use specific components independently of the framework. 
@@ -145,78 +181,78 @@ version 1.0. From there each component will have a independent release
 lifecycle.</p>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:28</id>
-		<title>Version 1.2.1 released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2016-02-07T18:59:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:28</id>
+        <title>Version 1.2.1 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2016-02-07T18:59:00Z</updated>
+        <summary>
 Coverage of the 1.2.1 release
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>We like to announce version 1.2.1 of PSX. This release contains some new 
 features and we have cleaned up the code at some places. In the following the
 coverage of the changelog:</p>
 
 <ul>
-	<li>
-		<b>Add pseudo ANY request method to the routing parser</b>
-		<p>It is now possible to use the <code>ANY</code> request method inside
-		a routing file. If used the route is called for every request method if 
-		the path matches</p>
-	</li>
-	<li>
-		<b>Removed annotation loader</b>
-		<p>The annotation loader was an alternative loader implementation which
-		was not actively used. Since the routing file works really well we 
-		removed this option</p>
-	</li>
-	<li>
-		<b>Dispatcher add option to disable sending the response to the client</b>
-		<p>An option was added to the dispatcher to disable sending the content
-		to the client. This is useful in case the dispatcher is used inside a 
-		command</p>
-	</li>
-	<li>
-		<b>Add SoapProxyController which handles all SOAP communication</b>
-		<p>The <code>SoapProxyController</code> is a new controller which 
-		handles all SOAP communication. Previously it was possible to send SOAP
-		requests to any endpoint now all communication is bundled through the
-		SOAP proxy. This solves also the problem that you can access endpoints
-		with dynamic path fragments. In case you are accessing an endpoint 
-		through SOAP you have to add the following routes entry:</p>
-		<pre>ANY /soap PSX\Controller\Tool\SoapProxyController</pre>
-	</li>
-	<li>
-		<b>Add option to restrict fields at the table abstract class</b>
-		<p>The <code>TableAbstract</code> class has now a option to specify the
-		fields which a select should return. It is possible to white/blacklist 
-		fields</p>
-	</li>
+    <li>
+        <b>Add pseudo ANY request method to the routing parser</b>
+        <p>It is now possible to use the <code>ANY</code> request method inside
+        a routing file. If used the route is called for every request method if 
+        the path matches</p>
+    </li>
+    <li>
+        <b>Removed annotation loader</b>
+        <p>The annotation loader was an alternative loader implementation which
+        was not actively used. Since the routing file works really well we 
+        removed this option</p>
+    </li>
+    <li>
+        <b>Dispatcher add option to disable sending the response to the client</b>
+        <p>An option was added to the dispatcher to disable sending the content
+        to the client. This is useful in case the dispatcher is used inside a 
+        command</p>
+    </li>
+    <li>
+        <b>Add SoapProxyController which handles all SOAP communication</b>
+        <p>The <code>SoapProxyController</code> is a new controller which 
+        handles all SOAP communication. Previously it was possible to send SOAP
+        requests to any endpoint now all communication is bundled through the
+        SOAP proxy. This solves also the problem that you can access endpoints
+        with dynamic path fragments. In case you are accessing an endpoint 
+        through SOAP you have to add the following routes entry:</p>
+        <pre>ANY /soap PSX\Controller\Tool\SoapProxyController</pre>
+    </li>
+    <li>
+        <b>Add option to restrict fields at the table abstract class</b>
+        <p>The <code>TableAbstract</code> class has now a option to specify the
+        fields which a select should return. It is possible to white/blacklist 
+        fields</p>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:27</id>
-		<title>Version 1.2 released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2016-01-24T20:28:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:27</id>
+        <title>Version 1.2 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2016-01-24T20:28:00Z</updated>
+        <summary>
 Coverage of the 1.2 release
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>We like to announce version 1.2 of PSX. This release contains a new API 
 controller where you can define the API format through annotations. The 
 annotations are based on the JAX-RS annotations. Since the annotations contain
@@ -224,180 +260,180 @@ more complex values we have switched to the doctrine annotation parser. In the
 following we go in detail through the changelog:</p>
 
 <ul>
-	<li>
-		<b>Add annotation API controller which can be used to specify the API 
-		behaviour through annotations</b>
-		<p>The class <code>PSX\Controller\AnnotationApiAbstract</code> was added
-		which can be used as alternative to the RAML or programmatic schema
-		definition</p>
-	</li>
-	<li>
-		<b>Improved api generation command</b>
-		<p>The <code>--raml</code> option was improved so that the include path 
-		is relative to the location of the class</p>
-	</li>
-	<li>
-		<b>Add doctrine annotation reader for annotation parsing</b>
-		<p>Since we use the annotation reader for the annotation API controller
-		we use it now also for the object builder to parse the <code>@Inject</code>
-		annotation. Note this has the implication that the notation of a custom 
-		service name has changed. I.e. previously you could define a service 
-		name with <code>@Inject test_service</code> since this release it must
-		be <code>@Inject("test_service")</code>. In most cases this wont affect
-		your code because you rarely need to define a custom service name</p>
-	</li>
-	<li>
-		<b>Unify doctrine cache usage and improve entity manager integration</b>
-		<p>The doctrine cache is used in several services like the JMS serializer,
-		doctrine annotation reader or doctrine ORM. We have unified the usage
-		so that it is simple to change the storage from the filesystem to a 
-		different implementation
-		</p>
-	</li>
-	<li>
-		<b>Oauth2 token endpoint handle also client_id and client_secret parameter</b>
-		<p>The OAuth2 endpoint implementation handles now also <code>client_id</code> and 
-		<code>client_secret</code> parameters which are send through POST</p>
-	</li>
+    <li>
+        <b>Add annotation API controller which can be used to specify the API 
+        behaviour through annotations</b>
+        <p>The class <code>PSX\Controller\AnnotationApiAbstract</code> was added
+        which can be used as alternative to the RAML or programmatic schema
+        definition</p>
+    </li>
+    <li>
+        <b>Improved api generation command</b>
+        <p>The <code>--raml</code> option was improved so that the include path 
+        is relative to the location of the class</p>
+    </li>
+    <li>
+        <b>Add doctrine annotation reader for annotation parsing</b>
+        <p>Since we use the annotation reader for the annotation API controller
+        we use it now also for the object builder to parse the <code>@Inject</code>
+        annotation. Note this has the implication that the notation of a custom 
+        service name has changed. I.e. previously you could define a service 
+        name with <code>@Inject test_service</code> since this release it must
+        be <code>@Inject("test_service")</code>. In most cases this wont affect
+        your code because you rarely need to define a custom service name</p>
+    </li>
+    <li>
+        <b>Unify doctrine cache usage and improve entity manager integration</b>
+        <p>The doctrine cache is used in several services like the JMS serializer,
+        doctrine annotation reader or doctrine ORM. We have unified the usage
+        so that it is simple to change the storage from the filesystem to a 
+        different implementation
+        </p>
+    </li>
+    <li>
+        <b>Oauth2 token endpoint handle also client_id and client_secret parameter</b>
+        <p>The OAuth2 endpoint implementation handles now also <code>client_id</code> and 
+        <code>client_secret</code> parameters which are send through POST</p>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:26</id>
-		<title>Website update and version 1.1.4 released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2015-12-29T12:03:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:26</id>
+        <title>Website update and version 1.1.4 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2015-12-29T12:03:00Z</updated>
+        <summary>
 Explanation of the website update and version 1.1.4 coverage
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>We have introduced a new landing page which contains a short explanation of 
 a simple PSX schema controller. This should give new users a quick insight how
 PSX works. Also we have released a new version which contains some improvements. 
 In the following the coverage of the changelog:</p>
 
 <ul>
-	<li>
-		<b>The schema API handles now automatically HEAD requests</b>
-		<p>That means the <code>doGet</code> method is called on a 
-		<a href="http://tools.ietf.org/html/rfc7231#section-4.3.2">HEAD</a> 
-		request but the response body is not sent</p>
-	</li>
-	<li>
-		<b>Add support for PATCH request method</b>
-		<p>All controller can handle now PATCH request methods</p>
-	</li>
-	<li>
-		<b>Fix automatic template detection for psr4 namespaces</b>
-		<p>Previously there was a problem with the template detection if your 
-		controller class was in a psr4 style folder because the template engine 
-		created the template file based on the class name. This is now fixed
-		as we use the class file path to resolve the correct template file. 
-		This works now for psr0 and psr4 autoloading</p>
-	</li>
-	<li>
-		<b>Renamed doCreate and doUpdate method to doPost and doPut to follow the http request method naming scheme</b>
-		<p>This is no BC since we have also added a compatibility layer which 
-		calls the <code>doCreate</code> and <code>doUpdate</code> method in case 
-		they are available. But we recommend to rename all methods in your 
-		schema controller from <code>doCreate</code> to <code>doPost</code> and 
-		<code>doUpdate</code> to <code>doPut</code>. This compatibility layer 
-		will be removed on the next major release</p>
-	</li>
-	<li>
-		<b>Json schema document throw an exception if a json pointer could not be resolved</b>
-		<p>Since there is no gracefully way to handle an invalid json pointer we
-		now throw an exception which also helps to debug the json schema</p>
-	</li>
+    <li>
+        <b>The schema API handles now automatically HEAD requests</b>
+        <p>That means the <code>doGet</code> method is called on a 
+        <a href="http://tools.ietf.org/html/rfc7231#section-4.3.2">HEAD</a> 
+        request but the response body is not sent</p>
+    </li>
+    <li>
+        <b>Add support for PATCH request method</b>
+        <p>All controller can handle now PATCH request methods</p>
+    </li>
+    <li>
+        <b>Fix automatic template detection for psr4 namespaces</b>
+        <p>Previously there was a problem with the template detection if your 
+        controller class was in a psr4 style folder because the template engine 
+        created the template file based on the class name. This is now fixed
+        as we use the class file path to resolve the correct template file. 
+        This works now for psr0 and psr4 autoloading</p>
+    </li>
+    <li>
+        <b>Renamed doCreate and doUpdate method to doPost and doPut to follow the http request method naming scheme</b>
+        <p>This is no BC since we have also added a compatibility layer which 
+        calls the <code>doCreate</code> and <code>doUpdate</code> method in case 
+        they are available. But we recommend to rename all methods in your 
+        schema controller from <code>doCreate</code> to <code>doPost</code> and 
+        <code>doUpdate</code> to <code>doPut</code>. This compatibility layer 
+        will be removed on the next major release</p>
+    </li>
+    <li>
+        <b>Json schema document throw an exception if a json pointer could not be resolved</b>
+        <p>Since there is no gracefully way to handle an invalid json pointer we
+        now throw an exception which also helps to debug the json schema</p>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:25</id>
-		<title>Version 1.1.2 released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2015-12-27T02:05:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:25</id>
+        <title>Version 1.1.2 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2015-12-27T02:05:00Z</updated>
+        <summary>
 Announcement of the 1.1.2 release
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>This release contains some small changes and few new features. In the 
 following the coverage of the changelog.</p>
 
 <ul>
-	<li>
-		<b>Add option to specify global middlewares</b>
-		<p>It is now possible to specify global middlewares which are applied 
-		before or after every request. The filter can be specified in the 
-		configuration with the key <code>psx_filter_pre</code> and 
-		<code>psx_filter_post</code></p>
-	</li>
-	<li>
-		<b>Updated composer dependencies</b>
-		<p>We have updated the composer dependencies to the latest stable 
-		versions</p>
-	</li>
-	<li>
-		<b>Graph traverser handle also objects which implement JsonSerializable, ArrayObject or Traversable</b>
-		<p>The graph traverser handles now also the following classes: JsonSerializable, ArrayObject or Traversable.
-		Traversable classes are resolved through the <code>iterator_to_array</code> function</p>
-	</li>
-	<li>
-		<b>JsonSchema parser set default id if not available</b>
-		<p>Previously it was required that a json schema has an <code>id</code> property. 
-		This is not longer required because we set a default id if not 
-		available</p>
-	</li>
-	<li>
-		<b>Improve dispatcher dont send the response for nested calls</b>
-		<p>We send only the response for the outer dispatch call all other
-		dispatch calls will not produce any output</p>
-	</li>
-	<li>
-		<b>Fixed comperator record comparsion and add test case</b>
-		<p>Added a test case and fixed the comparsion logic</p>
-	</li>
+    <li>
+        <b>Add option to specify global middlewares</b>
+        <p>It is now possible to specify global middlewares which are applied 
+        before or after every request. The filter can be specified in the 
+        configuration with the key <code>psx_filter_pre</code> and 
+        <code>psx_filter_post</code></p>
+    </li>
+    <li>
+        <b>Updated composer dependencies</b>
+        <p>We have updated the composer dependencies to the latest stable 
+        versions</p>
+    </li>
+    <li>
+        <b>Graph traverser handle also objects which implement JsonSerializable, ArrayObject or Traversable</b>
+        <p>The graph traverser handles now also the following classes: JsonSerializable, ArrayObject or Traversable.
+        Traversable classes are resolved through the <code>iterator_to_array</code> function</p>
+    </li>
+    <li>
+        <b>JsonSchema parser set default id if not available</b>
+        <p>Previously it was required that a json schema has an <code>id</code> property. 
+        This is not longer required because we set a default id if not 
+        available</p>
+    </li>
+    <li>
+        <b>Improve dispatcher dont send the response for nested calls</b>
+        <p>We send only the response for the outer dispatch call all other
+        dispatch calls will not produce any output</p>
+    </li>
+    <li>
+        <b>Fixed comperator record comparsion and add test case</b>
+        <p>Added a test case and fixed the comparsion logic</p>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:24</id>
-		<title>Version 1.1.1 released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2015-11-21T21:10:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:24</id>
+        <title>Version 1.1.1 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2015-11-21T21:10:00Z</updated>
+        <summary>
 Coverage of the 1.1.1 release
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>The most notable changes of this release are that we now have a 
 <a href="https://tools.ietf.org/html/rfc6902">JSON patch</a> implementation. 
 Also it is now possible to define a custom validator before importing data. In
 the following the complete changelog.</p>
 
 <ul>
-	<li>
-		<b>Add logger configuration settings and factory</b>
-		<p>It is now possible to configure the logging behaviour through the <code>configuration.php</code>.
-		Therefor you can use the following config parameters.</p>
-		<pre><code class="php">return array(
+    <li>
+        <b>Add logger configuration settings and factory</b>
+        <p>It is now possible to configure the logging behaviour through the <code>configuration.php</code>.
+        Therefor you can use the following config parameters.</p>
+        <pre><code class="php">return array(
     // ...
 
     // Log settings, the handler is one of: stream, logcaster, void, system
@@ -407,94 +443,94 @@ the following the complete changelog.</p>
 
     // ...
 );</code></pre>
-	</li>
-	<li>
-		<b>Add json patch and pointer implementation. The accessor uses now also the json pointer syntax</b>
-		<p>The JSON patch implementation can apply patch operations on an arbitrary data structure. The accessor 
-		uses now also the JSON pointer syntax (i.e. <code>/foo/bar</code>)</p>
-	</li>
-	<li>
-		<b>Add record serializer and add transformer which builds a record graph from arbitrary data</b>
-		<p>The transformer can generate an object graph. The object graph is based either on a record or stdclass</p>
-	</li>
-	<li>
-		<b>Add option to attach a validator to the importer inside a controller</b>
-		<p>Through the method <code>getImportValidator</code> we can now return a custom validator in our
-		controller which gets applied before importing any data</p>
-	</li>
-	<li>
-		<b>Make ImporterManager immutable so that it is not possible to globally change a importer object</b>
-		<p>The ImporterManager returns now always a new instance of the importer. This ensures that we dont
-		have any side-effects if the importer has changed</p>
-	</li>
-	<li>
-		<b>Improved validator</b>
-		<p>The validator uses now overall the JSON pointer syntax to reference fields. Also the error messages were improved</p>
-	</li>
-	<li>
-		<b>Renamed some classes for PHP7 compatibility</b>
-		<p>We have renamed the following classes because the class names are not allowed in PHP7</p>
-		<table>
-		<tr>
-			<td>PSX\Cache\Handler\Void</td>
-			<td>&nbsp;-&gt;&nbsp;</td>
-			<td>PSX\Cache\Handler\Noop</td>
-		</tr>
-		<tr>
-			<td>PSX\Command\Output\Void</td>
-			<td>&nbsp;-&gt;&nbsp;</td>
-			<td>PSX\Command\Output\Noop</td>
-		</tr>
-		<tr>
-			<td>PSX\Dispatch\Sender\Void</td>
-			<td>&nbsp;-&gt;&nbsp;</td>
-			<td>PSX\Dispatch\Sender\Noop</td>
-		</tr>
-		<tr>
-			<td>PSX\Session\Void</td>
-			<td>&nbsp;-&gt;&nbsp;</td>
-			<td>PSX\Session\Memory</td>
-		</tr>
-		<tr>
-			<td>PSX\ActivityStream\Object</td>
-			<td>&nbsp;-&gt;&nbsp;</td>
-			<td>PSX\ActivityStream\ObjectType</td>
-		</tr>
-		<tr>
-			<td>PSX\Data\Object</td>
-			<td>&nbsp;-&gt;&nbsp;</td>
-			<td>-removed-</td>
-		</tr>
-		</table>
-	</li>
-	<li>
-		<b>Removed class PSX\Data\Object and added static factory method fromArray to PSX\Data\Record</b>
-		<p>The record class has now the static method <code>fromArray</code> which creates a record
-		from an array. This is the replacement for the object class which was removed because the class
-		name is not allowed in PHP7</p>
-	</li>
-	<li>
-		<b>Adjust visitor exception messages</b>
-		<p>The wording of the visitor exception messages were unified</p>
-	</li>
+    </li>
+    <li>
+        <b>Add json patch and pointer implementation. The accessor uses now also the json pointer syntax</b>
+        <p>The JSON patch implementation can apply patch operations on an arbitrary data structure. The accessor 
+        uses now also the JSON pointer syntax (i.e. <code>/foo/bar</code>)</p>
+    </li>
+    <li>
+        <b>Add record serializer and add transformer which builds a record graph from arbitrary data</b>
+        <p>The transformer can generate an object graph. The object graph is based either on a record or stdclass</p>
+    </li>
+    <li>
+        <b>Add option to attach a validator to the importer inside a controller</b>
+        <p>Through the method <code>getImportValidator</code> we can now return a custom validator in our
+        controller which gets applied before importing any data</p>
+    </li>
+    <li>
+        <b>Make ImporterManager immutable so that it is not possible to globally change a importer object</b>
+        <p>The ImporterManager returns now always a new instance of the importer. This ensures that we dont
+        have any side-effects if the importer has changed</p>
+    </li>
+    <li>
+        <b>Improved validator</b>
+        <p>The validator uses now overall the JSON pointer syntax to reference fields. Also the error messages were improved</p>
+    </li>
+    <li>
+        <b>Renamed some classes for PHP7 compatibility</b>
+        <p>We have renamed the following classes because the class names are not allowed in PHP7</p>
+        <table>
+        <tr>
+            <td>PSX\Cache\Handler\Void</td>
+            <td>&nbsp;-&gt;&nbsp;</td>
+            <td>PSX\Cache\Handler\Noop</td>
+        </tr>
+        <tr>
+            <td>PSX\Command\Output\Void</td>
+            <td>&nbsp;-&gt;&nbsp;</td>
+            <td>PSX\Command\Output\Noop</td>
+        </tr>
+        <tr>
+            <td>PSX\Dispatch\Sender\Void</td>
+            <td>&nbsp;-&gt;&nbsp;</td>
+            <td>PSX\Dispatch\Sender\Noop</td>
+        </tr>
+        <tr>
+            <td>PSX\Session\Void</td>
+            <td>&nbsp;-&gt;&nbsp;</td>
+            <td>PSX\Session\Memory</td>
+        </tr>
+        <tr>
+            <td>PSX\ActivityStream\Object</td>
+            <td>&nbsp;-&gt;&nbsp;</td>
+            <td>PSX\ActivityStream\ObjectType</td>
+        </tr>
+        <tr>
+            <td>PSX\Data\Object</td>
+            <td>&nbsp;-&gt;&nbsp;</td>
+            <td>-removed-</td>
+        </tr>
+        </table>
+    </li>
+    <li>
+        <b>Removed class PSX\Data\Object and added static factory method fromArray to PSX\Data\Record</b>
+        <p>The record class has now the static method <code>fromArray</code> which creates a record
+        from an array. This is the replacement for the object class which was removed because the class
+        name is not allowed in PHP7</p>
+    </li>
+    <li>
+        <b>Adjust visitor exception messages</b>
+        <p>The wording of the visitor exception messages were unified</p>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:23</id>
-		<title>Version 1.1.0 released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2015-10-05T18:35:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:23</id>
+        <title>Version 1.1.0 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2015-10-05T18:35:00Z</updated>
+        <summary>
 Announcement of the 1.1.0 release
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>The most notable change of this release is that the documentation controller
 returns now a different format. Previously the controller returned a HTML 
 presentation of the schema. This generation is now moved to the client so that
@@ -506,52 +542,52 @@ Because of this change we have increased a minor version. In the following
 the complete changlog.</p>
 
 <ul>
-	<li>
-		<b>Curve array nest method handle indexed arrays</b>
-		<p>The method handles now also objects which are inside of an index based array</p>
-	</li>
-	<li>
-		<b>JSON Schema add title property to complex types</b>
-		<p>The json schema generator adds now title properties to the schema</p>
-	</li>
-	<li>
-		<b>Documentation controller returns also the API endpoint url</b>
-		<p>The endpoint returns now the API url as HATEOAS link</p>
-	</li>
-	<li>
-		<b>XML generator validate element names</b>
-		<p>Not allowed characters are now replaced with an underscore</p>
-	</li>
-	<li>
-		<b>Documentation controller returns now the complete json schema which can be used by the API client to generate a documentation</b>
-		<p>The response format has changed we return now the complete json schema for each method request/response</p>
-	</li>
-	<li>
-		<b>Improved swagger and json schema generator</b>
-		<p>Add method to get the schema also as array which is useful if we want to modify the result</p>
-	</li>
-	<li>
-		<b>Extended api resource methods</b>
-		<p>For completeness add hasPathParameters and hasQueryParameters to the resource method class</p>
-	</li>
+    <li>
+        <b>Curve array nest method handle indexed arrays</b>
+        <p>The method handles now also objects which are inside of an index based array</p>
+    </li>
+    <li>
+        <b>JSON Schema add title property to complex types</b>
+        <p>The json schema generator adds now title properties to the schema</p>
+    </li>
+    <li>
+        <b>Documentation controller returns also the API endpoint url</b>
+        <p>The endpoint returns now the API url as HATEOAS link</p>
+    </li>
+    <li>
+        <b>XML generator validate element names</b>
+        <p>Not allowed characters are now replaced with an underscore</p>
+    </li>
+    <li>
+        <b>Documentation controller returns now the complete json schema which can be used by the API client to generate a documentation</b>
+        <p>The response format has changed we return now the complete json schema for each method request/response</p>
+    </li>
+    <li>
+        <b>Improved swagger and json schema generator</b>
+        <p>Add method to get the schema also as array which is useful if we want to modify the result</p>
+    </li>
+    <li>
+        <b>Extended api resource methods</b>
+        <p>For completeness add hasPathParameters and hasQueryParameters to the resource method class</p>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:22</id>
-		<title>Version 1.0.6 and 1.0.7 released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2015-08-22T13:19:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:22</id>
+        <title>Version 1.0.6 and 1.0.7 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2015-08-22T13:19:00Z</updated>
+        <summary>
 Coverage of the 1.0.6 and 1.0.7 release
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>Since the 1.0.6 and 1.0.7 release include only some small changes I will 
 cover both releases in one post. The bigest changes are that a new "any" schema
 porperty type was introduced and the condition component was improved. In the 
@@ -559,217 +595,217 @@ following the coverage of both changelogs.</p>
 
 <p><b>1.0.7</b></p>
 <ul>
-	<li>
-		<b>Improved condition class</b>
-		<p>The condition class has new methods i.e <code>equals</code>, 
-		<code>greaterThen</code> etc. which add specific constraints to the
-		condition. It is recommended to use these methods over the old
-		<code>add</code> method. Also it is now possible to pass an DBAL 
-		<code>DatabasePlatform</code> object to the condition to generate db
-		vendor independent SQL. By default it uses still the MySQL dialect.</p>
-	</li>
-	<li>
-		<b>Schema html generator fix traversing nested schema properties</b>
-		<p>There was a problem that a nested schema was not added to the html
-		markup which is now fixed</p>
-	</li>
+    <li>
+        <b>Improved condition class</b>
+        <p>The condition class has new methods i.e <code>equals</code>, 
+        <code>greaterThen</code> etc. which add specific constraints to the
+        condition. It is recommended to use these methods over the old
+        <code>add</code> method. Also it is now possible to pass an DBAL 
+        <code>DatabasePlatform</code> object to the condition to generate db
+        vendor independent SQL. By default it uses still the MySQL dialect.</p>
+    </li>
+    <li>
+        <b>Schema html generator fix traversing nested schema properties</b>
+        <p>There was a problem that a nested schema was not added to the html
+        markup which is now fixed</p>
+    </li>
 </ul>
 
 <p><b>1.0.6</b></p>
 <ul>
-	<li>
-		<b>Fix schema parse read description of array and scalar types</b>
-		<p>When parsing an JsonSchema the description properties of array and 
-		scalar types are now correctly used</p>
-	</li>
-	<li>
-		<b>Add any schema property type</b>
-		<p>With this property you can define an object which can contain 
-		arbitrary key value pairs. Like an array property there must be an
-		prototype for the value</p>
-	</li>
-	<li>
-		<b>Messages of StatusCodeException are now shown to the user when in production mode</b>
-		<p>The <code>StatusCodeException</code> extends now from the <code>DisplayException</code>
-		so that the message is shown to the enduser</p>
-	</li>
-	<li>
-		<b>Add title and required parameter to accessor</b>
-		<p>It is now possible to pass the <code>title</code> and <code>required</code> 
-		parameter to the accessor which is then passed to the validate object</p>
-	</li>
-	<li>
-		<b>Set controllerClass variable for template writers</b>
-		<p>The class name of the controller gets now passed to the template. This 
-		is in some cases useful i.e. if you want to highlite a navigation point
-		for a specific controller</p>
-	</li>
+    <li>
+        <b>Fix schema parse read description of array and scalar types</b>
+        <p>When parsing an JsonSchema the description properties of array and 
+        scalar types are now correctly used</p>
+    </li>
+    <li>
+        <b>Add any schema property type</b>
+        <p>With this property you can define an object which can contain 
+        arbitrary key value pairs. Like an array property there must be an
+        prototype for the value</p>
+    </li>
+    <li>
+        <b>Messages of StatusCodeException are now shown to the user when in production mode</b>
+        <p>The <code>StatusCodeException</code> extends now from the <code>DisplayException</code>
+        so that the message is shown to the enduser</p>
+    </li>
+    <li>
+        <b>Add title and required parameter to accessor</b>
+        <p>It is now possible to pass the <code>title</code> and <code>required</code> 
+        parameter to the accessor which is then passed to the validate object</p>
+    </li>
+    <li>
+        <b>Set controllerClass variable for template writers</b>
+        <p>The class name of the controller gets now passed to the template. This 
+        is in some cases useful i.e. if you want to highlite a navigation point
+        for a specific controller</p>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:21</id>
-		<title>Version 1.0.5 released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2015-07-23T18:36:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:21</id>
+        <title>Version 1.0.5 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2015-07-23T18:36:00Z</updated>
+        <summary>
 Short description of the changes in the 1.0.5 release
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>This release fixes a content negotiation bug. Because of this IE (and perhaps 
 other browsers) users received XML instead of HTML. This affects only users who
 use PSX for HTML presentation. In the following the changelog.</p>
 
 <ul>
-	<li>
-		<b>Fix issue with content negotiation</b>
-		<p>The issue was that the media types of the <code>Accept</code> header 
-		were sorted in the wrong order if no quality value was provided. The 
-		position of the media type is no considered.</p>
-	</li>
-	<li>
-		<b>Make api resource and schema classes serializable</b>
-		<p>It is now possible to serialize schema and resource classes. This is 
-		useful if you want to cache these classes.</p>
-	</li>
+    <li>
+        <b>Fix issue with content negotiation</b>
+        <p>The issue was that the media types of the <code>Accept</code> header 
+        were sorted in the wrong order if no quality value was provided. The 
+        position of the media type is no considered.</p>
+    </li>
+    <li>
+        <b>Make api resource and schema classes serializable</b>
+        <p>It is now possible to serialize schema and resource classes. This is 
+        useful if you want to cache these classes.</p>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:20</id>
-		<title>Version 1.0.4 released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2015-07-05T23:21:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:20</id>
+        <title>Version 1.0.4 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2015-07-05T23:21:00Z</updated>
+        <summary>
 Coverage of the changes in the 1.0.4 release
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>The bigest change of this release is the switch to the PSR-2 coding style 
 which should help new developers. In the following the coverage of the complete 
 changelog.</p>
 
 <ul>
-	<li>
-		<b>Switched to PSR-2 coding style and using absolute class paths in phpdocs</b>
-		<p>The previous coding style of PSX was relative similar to PSR-2 but had 
-		some small differences. We fixed these small differences with the  
-		<a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer">PHP-CS-Fixer</a>
-		tool. This should help new developers to go through the code.</p>
-	</li>
-	<li>
-		<b>Improve controller test cases</b>
-		<p>A new method was added to the controller test case which makes an
-		internal request to an controller and returns an response. This method
-		is now also used in every controller test case.</p>
-	</li>
-	<li>
-		<b>Add RecordInterface access to Accessor</b>
-		<p>It is now possible to navigate through an <code>RecordInterface</code> object 
-		structure using the accessor class-</p>
-	</li>
-	<li>
-		<b>Add JsonSerializable interface to record abstract</b>
-		<p>A record can be now easily converted to an JSON object using <code>json_encode</code>.</p>
-	</li>
-	<li>
-		<b>For incoming requests an exception is now throw if the data structure 
-		contains keys which are not available in the schema</b>
-		<p>Previously PSX had simply ignored unknown keys of the request data. To
-		give the consumer an direct feedback and to prevent abuse PSX throws now 
-		an exception if the data contains unknown keys.</p>
-	</li>
-	<li>
-		<b>Add development status for an API resource</b>
-		<p>The API can have a new status "development". If the API has this status
-		everybody can use the API as in production mode but an additional warning header
-		gets returned that the API is likely to change.</p>
-	</li>
+    <li>
+        <b>Switched to PSR-2 coding style and using absolute class paths in phpdocs</b>
+        <p>The previous coding style of PSX was relative similar to PSR-2 but had 
+        some small differences. We fixed these small differences with the  
+        <a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer">PHP-CS-Fixer</a>
+        tool. This should help new developers to go through the code.</p>
+    </li>
+    <li>
+        <b>Improve controller test cases</b>
+        <p>A new method was added to the controller test case which makes an
+        internal request to an controller and returns an response. This method
+        is now also used in every controller test case.</p>
+    </li>
+    <li>
+        <b>Add RecordInterface access to Accessor</b>
+        <p>It is now possible to navigate through an <code>RecordInterface</code> object 
+        structure using the accessor class-</p>
+    </li>
+    <li>
+        <b>Add JsonSerializable interface to record abstract</b>
+        <p>A record can be now easily converted to an JSON object using <code>json_encode</code>.</p>
+    </li>
+    <li>
+        <b>For incoming requests an exception is now throw if the data structure 
+        contains keys which are not available in the schema</b>
+        <p>Previously PSX had simply ignored unknown keys of the request data. To
+        give the consumer an direct feedback and to prevent abuse PSX throws now 
+        an exception if the data contains unknown keys.</p>
+    </li>
+    <li>
+        <b>Add development status for an API resource</b>
+        <p>The API can have a new status "development". If the API has this status
+        everybody can use the API as in production mode but an additional warning header
+        gets returned that the API is likely to change.</p>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:19</id>
-		<title>Version 1.0.3 released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2015-06-14T20:29:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:19</id>
+        <title>Version 1.0.3 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2015-06-14T20:29:00Z</updated>
+        <summary>
 Coverage of the changes in the 1.0.3 release
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>This release adds a new property type choice which allows to define an schema
 property which allows different kind of objects. Also the handling for incoming
 and outgoing data was unified. In the following the changelog</p>
 
 <ul>
-	<li>
-		<b>Added new ChoiceType property which allows different kinds of objects as value</b>
-		<p>Property which allows different kind of complex types. It uses the JsonSchema "oneOf" and
-		XSD "choice" element to generate the fitting schema definition.</p>
-	</li>
-	<li>
-		<b>Use same logic for traversing incoming and outgoing data</b>
-		<p>For parsing incoming and outgoing data we had in some places the same code
-		which essentially goes recursively through an schema and makes an specific 
-		action on an value. We have created a schema traverser class which unifies
-		this traversing through the schema. It is possible to add visitor classes 
-		which can act on the values.</p>
-	</li>
-	<li>
-		<b>Moved schema property methods assimilate and validate into seperate class</b>
-		<p>Because of the traversing class we could remove the assimilate and validate methods
-		from each property and add proper visitor implementations.</p>
-	</li>
-	<li>
-		<b>Improved record factory factory class which uses now the object build to get arbitrary dependencies</b>
-		<p>Inside an record factory it is now possible to define dependencies through an
-		<code>@Inject</code> annotation.</p>
-	</li>
-	<li>
-		<b>Implemented factory to convert requests into PSR-7 objects and vice versa</b>
-		<p>We have added an factory class to convert PSX http objects into PSR-7 objects.
-		Therefor we use the zend-diactoros PSR-7 implementation.</p>
-	</li>
-	<li>
-		<b>Improved many test cases</b>
-		<p>Many test cases were extended and improved. Especially the property schema
-		and controller schema api test cases.</p>
-	</li>
+    <li>
+        <b>Added new ChoiceType property which allows different kinds of objects as value</b>
+        <p>Property which allows different kind of complex types. It uses the JsonSchema "oneOf" and
+        XSD "choice" element to generate the fitting schema definition.</p>
+    </li>
+    <li>
+        <b>Use same logic for traversing incoming and outgoing data</b>
+        <p>For parsing incoming and outgoing data we had in some places the same code
+        which essentially goes recursively through an schema and makes an specific 
+        action on an value. We have created a schema traverser class which unifies
+        this traversing through the schema. It is possible to add visitor classes 
+        which can act on the values.</p>
+    </li>
+    <li>
+        <b>Moved schema property methods assimilate and validate into seperate class</b>
+        <p>Because of the traversing class we could remove the assimilate and validate methods
+        from each property and add proper visitor implementations.</p>
+    </li>
+    <li>
+        <b>Improved record factory factory class which uses now the object build to get arbitrary dependencies</b>
+        <p>Inside an record factory it is now possible to define dependencies through an
+        <code>@Inject</code> annotation.</p>
+    </li>
+    <li>
+        <b>Implemented factory to convert requests into PSR-7 objects and vice versa</b>
+        <p>We have added an factory class to convert PSX http objects into PSR-7 objects.
+        Therefor we use the zend-diactoros PSR-7 implementation.</p>
+    </li>
+    <li>
+        <b>Improved many test cases</b>
+        <p>Many test cases were extended and improved. Especially the property schema
+        and controller schema api test cases.</p>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:18</id>
-		<title>Version 1.0.2 hotfix released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2015-05-23T19:26:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:18</id>
+        <title>Version 1.0.2 hotfix released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2015-05-23T19:26:00Z</updated>
+        <summary>
 Short explanation of the hotfix release
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>This is a hotfix release which fixes a problem introduced in the 1.0.1 
 release. The problem was that the wrong base path was passed to the JsonSchema
 when included in an RAML file. Because of that the sample API endpoint does not 
@@ -777,89 +813,89 @@ work correct. More detailed informations about the problem at the
 <a href="https://github.com/k42b3/psx/issues/8">issue</a>.</p>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:17</id>
-		<title>Version 1.0.1 released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2015-05-22T19:13:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:17</id>
+        <title>Version 1.0.1 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2015-05-22T19:13:00Z</updated>
+        <summary>
 Coverage of the changes in the 1.0.1 release
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>This release adds commands for debugging and dumping the schema of an API. 
 Also the parsing and generation of RAML files was improved. In the following the 
 coverage of the complete changelog.</p>
 
 <ul>
-	<li>
-		<b>Added raml file parameter for api generation command</b>
-		<p>It is now possible to provide an RAML file as option to the API 
-		generation command. If provided the generated API uses the given RAML 
-		file i.e.:</p>
-		<pre>vendor/bin/psx generate:api --raml schema.raml Acme\Api connection,http</pre>
-	</li>
-	<li>
-		<b>Improved raml parser and tests</b>
-		<p>The RAML parser was improved that means we have now support for the 
-		<code>schemas</code> key and we can define nested resources.</p>
-	</li>
-	<li>
-		<b>Add format key to swagger parameter record</b>
-		<p>The Swagger parameter record has a new property <code>format</code>.</p>
-	</li>
-	<li>
-		<b>Add iterator and countable interface to complex type</b>
-		<p>It is now possible to iterate over the childs of an complex type.</p>
-	</li>
-	<li>
-		<b>Improved raml and swagger generation</b>
-		<p>The query and path parameters are now properly included into the 
-		specification also the description field is used where it is possible.</p>
-	</li>
-	<li>
-		<b>Add return $this to MethodAbstract::setDescription</b>
-		<p>The method returns now $this to have a fluent-interface like in the 
-		other methods.</p>
-	</li>
-	<li>
-		<b>Add debug commands to print an raml and jsonschema resource definition</b>
-		<p>A command which prints the structure of the resource definition when 
-		parsing an RAML or JsonSchema. This can be useful for debugging to see 
-		whether PSX understands an specific parameter. I.e. to debug an RAML 
-		file:</p>
-		<pre>vendor/bin/psx debug:raml schema.raml</pre>
-	</li>
-	<li>
-		<b>Add console commands to generate different schema representations of the api</b>
-		<p>With theses commands it is now possible to generate different schema 
-		representations from the console. As example to generate an RAML file of
-		an API:</p>
-		<pre>vendor/bin/psx schema:raml /acme/api</pre>
-	</li>
+    <li>
+        <b>Added raml file parameter for api generation command</b>
+        <p>It is now possible to provide an RAML file as option to the API 
+        generation command. If provided the generated API uses the given RAML 
+        file i.e.:</p>
+        <pre>vendor/bin/psx generate:api --raml schema.raml Acme\Api connection,http</pre>
+    </li>
+    <li>
+        <b>Improved raml parser and tests</b>
+        <p>The RAML parser was improved that means we have now support for the 
+        <code>schemas</code> key and we can define nested resources.</p>
+    </li>
+    <li>
+        <b>Add format key to swagger parameter record</b>
+        <p>The Swagger parameter record has a new property <code>format</code>.</p>
+    </li>
+    <li>
+        <b>Add iterator and countable interface to complex type</b>
+        <p>It is now possible to iterate over the childs of an complex type.</p>
+    </li>
+    <li>
+        <b>Improved raml and swagger generation</b>
+        <p>The query and path parameters are now properly included into the 
+        specification also the description field is used where it is possible.</p>
+    </li>
+    <li>
+        <b>Add return $this to MethodAbstract::setDescription</b>
+        <p>The method returns now $this to have a fluent-interface like in the 
+        other methods.</p>
+    </li>
+    <li>
+        <b>Add debug commands to print an raml and jsonschema resource definition</b>
+        <p>A command which prints the structure of the resource definition when 
+        parsing an RAML or JsonSchema. This can be useful for debugging to see 
+        whether PSX understands an specific parameter. I.e. to debug an RAML 
+        file:</p>
+        <pre>vendor/bin/psx debug:raml schema.raml</pre>
+    </li>
+    <li>
+        <b>Add console commands to generate different schema representations of the api</b>
+        <p>With theses commands it is now possible to generate different schema 
+        representations from the console. As example to generate an RAML file of
+        an API:</p>
+        <pre>vendor/bin/psx schema:raml /acme/api</pre>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:16</id>
-		<title>Security process and website update</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2015-05-04T23:04:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:16</id>
+        <title>Security process and website update</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2015-05-04T23:04:00Z</updated>
+        <summary>
 Short coverage of the defined security process and description of the website changes
-		</summary>
-		<category term="website" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="website" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>We think that correct handling of reported vulnerabilities is an important 
 part of responsible software development. Because of this we have added a 
 <a href="http://phpsx.org/security">security</a> page which describes the formal 
@@ -870,21 +906,21 @@ receive the latest security informations.</p>
 page to help new users to quickly get a running PSX environment.</p>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:15</id>
-		<title>First stable 1.0 release</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2015-05-02T18:37:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:15</id>
+        <title>First stable 1.0 release</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2015-05-02T18:37:00Z</updated>
+        <summary>
 Announcement of the 1.0 release with talk about PSX
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>Iam really proud to announce the first stable version of PSX! This release 
 contains some improvements and fixes over the 0.9.10 release but is mostly 
 backwards compatible. The most important changes are that PSX is now compatible 
@@ -909,98 +945,98 @@ in an early stage there are many things which are planed for the future so stay
 tuned.</p>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:14</id>
-		<title>Version 0.9.10 released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2015-04-19T00:52:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:14</id>
+        <title>Version 0.9.10 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2015-04-19T00:52:00Z</updated>
+        <summary>
 Short coverage of the changes in the 0.9.10 release
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>This release contains only small improvements to the internal code base and 
 is compatible with the 0.9.9 version. So far the API becomes more stable and we
 expect to release soon the first stable version.</p>
 
 <ul>
-	<li>
-		<b>Added getConnection method to table manager to enable easy 
-		transaction handling</b>
-		<p>In order to start a transaction you can now use the <code>getConnection</code> 
-		method on the table manager which returns an doctrine DBAL connection 
-		instance.</p>
-	</li>
-	<li>
-		<b>Moved cache logic from table manager into seperate reader class</b>
-		<p>Previously the table manager contained caching logic for the result
-		of an table reader. This caching logic is now placed in its own reader 
-		which can wrap another reader.</p>
-	</li>
-	<li>
-		<b>Added exception converter service which converts an exception into an 
-		record which gets used to display error messages. This makes it easy to 
-		change the global error response format</b>
-		<p>This simple service provides the global error format for the 
-		application.</p>
-	</li>
-	<li>
-		<b>Send correct content type on exception or send 415 status code</b>
-		<p>If multiple template writer exists and a template is not available
-		for the requested format an 415 status code gets thrown.</p>
-	</li>
-	<li>
-		<b>Handle Accept headers with +json or +xml media types correctly</b>
-		<p>For API versioning where we send a custom content type like i.e. 
-		<code>application/vnd.foobar.v2+json</code> the +[format] part is now
-		recognized by the json and xml writer.</p>
-	</li>
-	<li>
-		<b>Added jsonx format to default api controller</b>
-		<p>The jsonx writer was added as possible writer to the default API
-		controller.</p>
-	</li>
-	<li>
-		<b>Added http StreamInterface and remove psr http dependency</b>
-		<p>Because of its immutability PSR-7 is currently not fitting for PSX.
-		PSX provides its own HTTP interfaces which are essentially a mutable 
-		version of the PSR-7 spec. This release implements the missing 
-		StreamInterface and removes the PSR from the composer dependencies.</p>
-	</li>
-	<li>
-		<b>Updated bootstrap cache generator file list</b>
-		<p>The file list which generates the bootstrap file was updated.</p>
-	</li>
-	<li>
-		<b>Resource listing controller documentation create context in seperate 
-		method which can be overloaded</b>
-		<p>A new method was created which simply creates a new context from the 
-		result of the matched routing definition. This method can be overloaded
-		to provide other informations to the controller.</p>
-	</li>
+    <li>
+        <b>Added getConnection method to table manager to enable easy 
+        transaction handling</b>
+        <p>In order to start a transaction you can now use the <code>getConnection</code> 
+        method on the table manager which returns an doctrine DBAL connection 
+        instance.</p>
+    </li>
+    <li>
+        <b>Moved cache logic from table manager into seperate reader class</b>
+        <p>Previously the table manager contained caching logic for the result
+        of an table reader. This caching logic is now placed in its own reader 
+        which can wrap another reader.</p>
+    </li>
+    <li>
+        <b>Added exception converter service which converts an exception into an 
+        record which gets used to display error messages. This makes it easy to 
+        change the global error response format</b>
+        <p>This simple service provides the global error format for the 
+        application.</p>
+    </li>
+    <li>
+        <b>Send correct content type on exception or send 415 status code</b>
+        <p>If multiple template writer exists and a template is not available
+        for the requested format an 415 status code gets thrown.</p>
+    </li>
+    <li>
+        <b>Handle Accept headers with +json or +xml media types correctly</b>
+        <p>For API versioning where we send a custom content type like i.e. 
+        <code>application/vnd.foobar.v2+json</code> the +[format] part is now
+        recognized by the json and xml writer.</p>
+    </li>
+    <li>
+        <b>Added jsonx format to default api controller</b>
+        <p>The jsonx writer was added as possible writer to the default API
+        controller.</p>
+    </li>
+    <li>
+        <b>Added http StreamInterface and remove psr http dependency</b>
+        <p>Because of its immutability PSR-7 is currently not fitting for PSX.
+        PSX provides its own HTTP interfaces which are essentially a mutable 
+        version of the PSR-7 spec. This release implements the missing 
+        StreamInterface and removes the PSR from the composer dependencies.</p>
+    </li>
+    <li>
+        <b>Updated bootstrap cache generator file list</b>
+        <p>The file list which generates the bootstrap file was updated.</p>
+    </li>
+    <li>
+        <b>Resource listing controller documentation create context in seperate 
+        method which can be overloaded</b>
+        <p>A new method was created which simply creates a new context from the 
+        result of the matched routing definition. This method can be overloaded
+        to provide other informations to the controller.</p>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:13</id>
-		<title>New release 0.9.9 and website update</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2015-04-06T18:30:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:13</id>
+        <title>New release 0.9.9 and website update</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2015-04-06T18:30:00Z</updated>
+        <summary>
 Coverage of the changes in the 0.9.8 and 0.9.9 release
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>This announcement covers both changes of the 0.9.8 and 0.9.9 release. Also 
 the front page was updated so it reflects now the current features of psx. In 
 the following the combined changelog of the 0.9.8 and 0.9.9 release.</p>
@@ -1008,201 +1044,201 @@ the following the combined changelog of the 0.9.8 and 0.9.9 release.</p>
 <p><b>0.9.9</b></p>
 
 <ul>
-	<li>
-		<b>Handle different successful status codes in schema api</b>
-		<p>The schema api searches now for successful status codes and does not
-		simply assume 200.</p>
-	</li>
-	<li>
-		<b>Updated manual</b>
-		<p>The manual was updated to reflect the latest features of PSX.</p>
-	</li>
-	<li>
-		<b>Removed html presentations from tool controllers</b>
-		<p>Because the html/javascript of the templates got to complex we have
-		removed all html presentations from the tool controllers. For the 
-		documentation controller we have build a simple html app called 
-		<a href="https://github.com/k42b3/evid">evid</a> which can be used to
-		display the API documentation.</p>
-	</li>
-	<li>
-		<b>Fixed xml writer nested array definitions</b>
-		<p>There was a problem with multiple nested array definitions because
-		the xml traverser has not used a stack to store the key which is now
-		the case.</p>
-	</li>
-	<li>
-		<b>Removed rest client controller since it contains no logic</b>
-		<p>Since the REST client was only a template containing an javascript
-		client and on the server side was no logic we have removed the 
-		controller.</p>
-	</li>
-	<li>
-		<b>Improved raml parser</b>
-		<p>The RAML parser understands now <code>!include</code> so you can 
-		include an JsonSchema from a different file.</p>
-	</li>
-	<li>
-		<b>Improved json schema parse resolve external resources. Supports 
-		file:// and http:// protocol</b>
-		<p>It is now possible to reference external schema definisions in an
-		JsonSchema using the <code>$ref</code> key. I.e. to reference a schema
-		definition in another file you could use 
-		<code>file:///schema.json#/definitions/array</code>.</p>
-	</li>
+    <li>
+        <b>Handle different successful status codes in schema api</b>
+        <p>The schema api searches now for successful status codes and does not
+        simply assume 200.</p>
+    </li>
+    <li>
+        <b>Updated manual</b>
+        <p>The manual was updated to reflect the latest features of PSX.</p>
+    </li>
+    <li>
+        <b>Removed html presentations from tool controllers</b>
+        <p>Because the html/javascript of the templates got to complex we have
+        removed all html presentations from the tool controllers. For the 
+        documentation controller we have build a simple html app called 
+        <a href="https://github.com/k42b3/evid">evid</a> which can be used to
+        display the API documentation.</p>
+    </li>
+    <li>
+        <b>Fixed xml writer nested array definitions</b>
+        <p>There was a problem with multiple nested array definitions because
+        the xml traverser has not used a stack to store the key which is now
+        the case.</p>
+    </li>
+    <li>
+        <b>Removed rest client controller since it contains no logic</b>
+        <p>Since the REST client was only a template containing an javascript
+        client and on the server side was no logic we have removed the 
+        controller.</p>
+    </li>
+    <li>
+        <b>Improved raml parser</b>
+        <p>The RAML parser understands now <code>!include</code> so you can 
+        include an JsonSchema from a different file.</p>
+    </li>
+    <li>
+        <b>Improved json schema parse resolve external resources. Supports 
+        file:// and http:// protocol</b>
+        <p>It is now possible to reference external schema definisions in an
+        JsonSchema using the <code>$ref</code> key. I.e. to reference a schema
+        definition in another file you could use 
+        <code>file:///schema.json#/definitions/array</code>.</p>
+    </li>
 </ul>
 
 <p><b>0.9.8</b></p>
 
 <ul>
-	<li>
-		<b>Added raml and json schema parser</b>
-		<p>Besides defining the API schema in PHP it is now possible to use an 
-		RAML and JsonSchema parser to define the schema in an external format.</p>
-	</li>
-	<li>
-		<b>Improved html output added psx- prefix for css classes</b>
-		<p>Added the prefix <code>psx-</code> to all css classes and ids to get 
-		sure that now conflict occurs independent of the context where the
-		html might get shown.</p>
-	</li>
-	<li>
-		<b>Renamed Api\View to Api\Resource and redesigned classes containing 
-		the schema. It is now possible to set an response schema for each status 
-		code</b>
-		<p>This is an BC change. All classes where moved to the APi\Resource 
-		namespace and the API how you define an resource was improved.</p>
-	</li>
-	<li>
-		<b>Add possibility to cache resource listing results</b>
-		<p>The resource listing class can now API descriptions. This is useful
-		if we load definitions from external files like i.e. RAML.</p>
-	</li>
-	<li>
-		<b>Improved tool controllers</b>
-		<p>The tool controllers where adjusted and generally improved with the
-		new resource and resource listing classes.</p>
-	</li>
-	<li>
-		<b>Renamed RestController to RestClientController</b>
-		<p>The controller was renmaed to have a better understanding what the
-		controller does.</p>
-	</li>
-	<li>
-		<b>Fixed bug in request factory where sub paths are not handeled 
-		correctly</b>
-		<p>This bug caused problems for PSX installations which doenst use 
-		mod_rewrite.</p>
-	</li>
+    <li>
+        <b>Added raml and json schema parser</b>
+        <p>Besides defining the API schema in PHP it is now possible to use an 
+        RAML and JsonSchema parser to define the schema in an external format.</p>
+    </li>
+    <li>
+        <b>Improved html output added psx- prefix for css classes</b>
+        <p>Added the prefix <code>psx-</code> to all css classes and ids to get 
+        sure that now conflict occurs independent of the context where the
+        html might get shown.</p>
+    </li>
+    <li>
+        <b>Renamed Api\View to Api\Resource and redesigned classes containing 
+        the schema. It is now possible to set an response schema for each status 
+        code</b>
+        <p>This is an BC change. All classes where moved to the APi\Resource 
+        namespace and the API how you define an resource was improved.</p>
+    </li>
+    <li>
+        <b>Add possibility to cache resource listing results</b>
+        <p>The resource listing class can now API descriptions. This is useful
+        if we load definitions from external files like i.e. RAML.</p>
+    </li>
+    <li>
+        <b>Improved tool controllers</b>
+        <p>The tool controllers where adjusted and generally improved with the
+        new resource and resource listing classes.</p>
+    </li>
+    <li>
+        <b>Renamed RestController to RestClientController</b>
+        <p>The controller was renmaed to have a better understanding what the
+        controller does.</p>
+    </li>
+    <li>
+        <b>Fixed bug in request factory where sub paths are not handeled 
+        correctly</b>
+        <p>This bug caused problems for PSX installations which doenst use 
+        mod_rewrite.</p>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:12</id>
-		<title>Version 0.9.7 released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2015-03-22T15:48:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:12</id>
+        <title>Version 0.9.7 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2015-03-22T15:48:00Z</updated>
+        <summary>
 Coverage of the changes in the 0.9.7 release
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>This release contains many internal improvements and as most notable the 
 license was changed from GPLv3 to Apache 2.0. In the following the changelog.</p>
 
 <ul>
-	<li>
-		<b>Added record graph traverser class and various visitor 
-		implementations which are used to produce data from an object graph</b>
-		<p>This change decouples the strucutal meaning of the response data from
-		the writer. Previously there were many recursive methods in each writer
-		which go through the result data. Now we use the graph traverse class
-		which uses the <a href="http://en.wikipedia.org/wiki/Visitor_pattern">visitor pattern</a>.</p>
-	</li>
-	<li>
-		<b>Improved internal data representation for incoming and outgoing data</b>
-		<p>We now use the stdClass to represent an object instead of an 
-		associative array.</p>
-	</li>
-	<li>
-		<b>Added content type aware fallback template generator and move 
-		fallback generation to the html writer</b>
-		<p>This fixes a problem where PSX i.e. generates an text/html response 
-		altough application/svg+xml was requested. If no fallback generator is
-		available for this content type an exception gets thrown.</p>
-	</li>
-	<li>
-		<b>Improved request factory added automatic protocol detection if 
-		"psx_url" is i.e. //foo.com and use buffered reader for request body</b>
-		<p>Previously urls had always the protocol which was set in the 
-		"psx_url" configuration. If we skip now the scheme part of the url the
-		generated urls have the scheme which were used in the request.</p>
-	</li>
-	<li>
-		<b>Table abstract returns now record classes instead of associative 
-		arrays</b>
-		<p>This change does not break any code in user-land since the record 
-		class implements now also the ArrayAccess interface.</p>
-	</li>
-	<li>
-		<b>Log request and response body if in debug mode</b>
-		<p>If we are in debug mode the request and response body gets logged as
-		debug message.</p>
-	</li>
-	<li>
-		<b>Added jsonx support</b>
-		<p>IBM has developed an XML equivalent to JSON called 
-		<a href="https://tools.ietf.org/html/draft-rsalz-jsonx-00">JSONx</a>. 
-		This release adds support to read and write JSONx data. The associated
-		content type is <code>application/jsonx+xml</code>. This might be useful
-		for systems which are only capable of producing XML and want to bypass
-		the limitations of the default XML writer.</p>
-	</li>
-	<li>
-		<b>Improved streams and added buffered stream implementation</b>
-		<p>An buffered stream reader was added to read multiple times from the 
-		body despite that the <code>php://input</code> stream is read only (for 
-		PHP < 5.6).</p>
-	</li>
-	<li>
-		<b>Added logcaster monolog listener</b>
-		<p>Added an monolog handler which writes messages to an 
-		<a href="https://github.com/k42b3/logcaster">logcaster</a> server.</p>
-	</li>
-	<li>
-		<b>Updated PSR http-message to the current version of the spec</b>
-		<p>That means that the method getBodyParams was renamed to getParsedBody.</p>
-	</li>
-	<li>
-		<b>Changed license from GPLv3 to Apache 2.0</b>
-		<p>We have changed our license from GPLv3 to Apache 2.0. From now it is 
-		possible to use PSX in an commercial application without the need to 
-		publish the source code. For more informations please read the 
-		<a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 license</a>.</p>
-	</li>
+    <li>
+        <b>Added record graph traverser class and various visitor 
+        implementations which are used to produce data from an object graph</b>
+        <p>This change decouples the strucutal meaning of the response data from
+        the writer. Previously there were many recursive methods in each writer
+        which go through the result data. Now we use the graph traverse class
+        which uses the <a href="http://en.wikipedia.org/wiki/Visitor_pattern">visitor pattern</a>.</p>
+    </li>
+    <li>
+        <b>Improved internal data representation for incoming and outgoing data</b>
+        <p>We now use the stdClass to represent an object instead of an 
+        associative array.</p>
+    </li>
+    <li>
+        <b>Added content type aware fallback template generator and move 
+        fallback generation to the html writer</b>
+        <p>This fixes a problem where PSX i.e. generates an text/html response 
+        altough application/svg+xml was requested. If no fallback generator is
+        available for this content type an exception gets thrown.</p>
+    </li>
+    <li>
+        <b>Improved request factory added automatic protocol detection if 
+        "psx_url" is i.e. //foo.com and use buffered reader for request body</b>
+        <p>Previously urls had always the protocol which was set in the 
+        "psx_url" configuration. If we skip now the scheme part of the url the
+        generated urls have the scheme which were used in the request.</p>
+    </li>
+    <li>
+        <b>Table abstract returns now record classes instead of associative 
+        arrays</b>
+        <p>This change does not break any code in user-land since the record 
+        class implements now also the ArrayAccess interface.</p>
+    </li>
+    <li>
+        <b>Log request and response body if in debug mode</b>
+        <p>If we are in debug mode the request and response body gets logged as
+        debug message.</p>
+    </li>
+    <li>
+        <b>Added jsonx support</b>
+        <p>IBM has developed an XML equivalent to JSON called 
+        <a href="https://tools.ietf.org/html/draft-rsalz-jsonx-00">JSONx</a>. 
+        This release adds support to read and write JSONx data. The associated
+        content type is <code>application/jsonx+xml</code>. This might be useful
+        for systems which are only capable of producing XML and want to bypass
+        the limitations of the default XML writer.</p>
+    </li>
+    <li>
+        <b>Improved streams and added buffered stream implementation</b>
+        <p>An buffered stream reader was added to read multiple times from the 
+        body despite that the <code>php://input</code> stream is read only (for 
+        PHP < 5.6).</p>
+    </li>
+    <li>
+        <b>Added logcaster monolog listener</b>
+        <p>Added an monolog handler which writes messages to an 
+        <a href="https://github.com/k42b3/logcaster">logcaster</a> server.</p>
+    </li>
+    <li>
+        <b>Updated PSR http-message to the current version of the spec</b>
+        <p>That means that the method getBodyParams was renamed to getParsedBody.</p>
+    </li>
+    <li>
+        <b>Changed license from GPLv3 to Apache 2.0</b>
+        <p>We have changed our license from GPLv3 to Apache 2.0. From now it is 
+        possible to use PSX in an commercial application without the need to 
+        publish the source code. For more informations please read the 
+        <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 license</a>.</p>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:11</id>
-		<title>Version 0.9.6 released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2015-02-23T20:04:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:11</id>
+        <title>Version 0.9.6 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2015-02-23T20:04:00Z</updated>
+        <summary>
 Short explanation of the changes in the release 0.9.6
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>This release contains mostly new features. The only notable change in the 
 userland is the definition of views. Previously you created directly a view 
 object. The view object was really bloated because it had to many 
@@ -1211,24 +1247,24 @@ important class is the builder which is a helper class to create a view. In the
 following a short example to see how to migrate to the new builder.</p>
 
 <div class="row">
-	<div class="col-md-6">
-		<b>Old</b>
+    <div class="col-md-6">
+        <b>Old</b>
 <pre><code class="php">$view = new View();
 $view-&gt;setGet($requestSchema);
 // ...
 
 return new Documentation\Simple($view);
 </code></pre>
-	</div>
-	<div class="col-md-6">
-		<b>New</b>
+    </div>
+    <div class="col-md-6">
+        <b>New</b>
 <pre><code class="php">$builder = new View<span style="background-color:red;color:#fff">\Builder</span>();
 $builder-&gt;setGet($requestSchema);
 // ...
 
 return new Documentation\Simple($builder<span style="background-color:red;color:#fff">-&gt;getView()</span>);
 </code></pre>
-	</div>
+    </div>
 </div>
 
 <br />
@@ -1237,148 +1273,148 @@ return new Documentation\Simple($builder<span style="background-color:red;color:
 following I will cover the points of the changelog:</p>
 
 <ul>
-	<li>
-		<b>Improved documentation</b>
-		<p>A new "Getting started" guide was added to the manual which should 
-		help users to quickly get started with PSX.</p>
-	</li>
-	<li>
-		<b>Added raml generator</b>
-		<p>A new generator was added which produces an <a href="http://raml.org/">RAML</a>
-		definition of the API. RAML is competing with Swagger and several other
-		specifications to become the "standard" in describing RESTful APIs. At the
-		moment it is not clear which standard emerges but RAML looks really promising.</p>
-	</li>
-	<li>
-		<b>Added table api abstract controller</b>
-		<p>The table api abstract controller extends the schema controller but
-		provides all needed schema informations from the given table. So 
-		essentially you can easily build a fully CRUD REST API for an sql table.</p>
-	</li>
-	<li>
-		<b>Improved and unified api view generators</b>
-		<p>All generator classes are now located in the <code>PSX\Api\View\Generator</code> 
-		namespace. A generator is a class which generates a representation of an 
-		API view this can be i.e. an Swagger definition or an HTML documentation.</p>
-	</li>
-	<li>
-		<b>Added Swagger generator and improved related data models</b>
-		<p>A new swagger generator was added and also the data models were 
-		updated to match the 1.2 specification.</p>
-	</li>
-	<li>
-		<b>Added resource listing class and improved the api documentation, 
-		swagger</b>
-		<p>The resource listing class returns all available API controllers for 
-		further processing i.e. for the documentation controller.</p>
-	</li>
-	<li>
-		<b>Move generation of the fallback template into a seperate class</b>
-		<p>It is now possible to exchange the fallback template with a custom
-		implementation. The fallback template gets used if no template file was 
-		set.</p>
-		<p>Unfortunately there is currently a small problem that the fallback 
-		generator always returns an html response. But the template engine is 
-		also used to generate application/svg+xml or text/plain content and in
-		theses cases we dont want to display html content. This problem will be
-		addressed in an future release.</p>
-	</li>
-	<li>
-		<b>Improved activitystreams test and implementation</b>
-		<p>Some implementations from the <a href="http://www.w3.org/wiki/Activity_Streams">W3C activity streams wiki</a>
-		were added as test case.</p>
-	</li>
-	<li>
-		<b>Removed location and added context class which holds parameters 
-		gathered around the controller/command</b>
-		<p>Actually the location class was renamed to <code>Context</code>. The 
-		context class is a simple key value store which holds arbitrary 
-		informations such as the "route". It can be used by 3rd party classes to 
-		transport informations through the system. This is especially useful if 
-		you extend i.e. the loader system to pass other informations to the 
-		controller.</p>
-	</li>
+    <li>
+        <b>Improved documentation</b>
+        <p>A new "Getting started" guide was added to the manual which should 
+        help users to quickly get started with PSX.</p>
+    </li>
+    <li>
+        <b>Added raml generator</b>
+        <p>A new generator was added which produces an <a href="http://raml.org/">RAML</a>
+        definition of the API. RAML is competing with Swagger and several other
+        specifications to become the "standard" in describing RESTful APIs. At the
+        moment it is not clear which standard emerges but RAML looks really promising.</p>
+    </li>
+    <li>
+        <b>Added table api abstract controller</b>
+        <p>The table api abstract controller extends the schema controller but
+        provides all needed schema informations from the given table. So 
+        essentially you can easily build a fully CRUD REST API for an sql table.</p>
+    </li>
+    <li>
+        <b>Improved and unified api view generators</b>
+        <p>All generator classes are now located in the <code>PSX\Api\View\Generator</code> 
+        namespace. A generator is a class which generates a representation of an 
+        API view this can be i.e. an Swagger definition or an HTML documentation.</p>
+    </li>
+    <li>
+        <b>Added Swagger generator and improved related data models</b>
+        <p>A new swagger generator was added and also the data models were 
+        updated to match the 1.2 specification.</p>
+    </li>
+    <li>
+        <b>Added resource listing class and improved the api documentation, 
+        swagger</b>
+        <p>The resource listing class returns all available API controllers for 
+        further processing i.e. for the documentation controller.</p>
+    </li>
+    <li>
+        <b>Move generation of the fallback template into a seperate class</b>
+        <p>It is now possible to exchange the fallback template with a custom
+        implementation. The fallback template gets used if no template file was 
+        set.</p>
+        <p>Unfortunately there is currently a small problem that the fallback 
+        generator always returns an html response. But the template engine is 
+        also used to generate application/svg+xml or text/plain content and in
+        theses cases we dont want to display html content. This problem will be
+        addressed in an future release.</p>
+    </li>
+    <li>
+        <b>Improved activitystreams test and implementation</b>
+        <p>Some implementations from the <a href="http://www.w3.org/wiki/Activity_Streams">W3C activity streams wiki</a>
+        were added as test case.</p>
+    </li>
+    <li>
+        <b>Removed location and added context class which holds parameters 
+        gathered around the controller/command</b>
+        <p>Actually the location class was renamed to <code>Context</code>. The 
+        context class is a simple key value store which holds arbitrary 
+        informations such as the "route". It can be used by 3rd party classes to 
+        transport informations through the system. This is especially useful if 
+        you extend i.e. the loader system to pass other informations to the 
+        controller.</p>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:10</id>
-		<title>Version 0.9.5 released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2015-02-09T22:58:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:10</id>
+        <title>Version 0.9.5 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2015-02-09T22:58:00Z</updated>
+        <summary>
 Coverage of the PSX release 0.9.5
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>This release contains only new features/bugfixes and should be mostly 
 compatible to the 0.9.4 release. We think that the API has reached almost an
 stable state, so we are probably 2-3 patch versions away from the first stable 
 release. In the following the coverage of the changelog:</p>
 
 <ul>
-	<li>
-		<b>Added HTTP request/response interfaces and added an factory to convert 
-		PSX HTTP request/responses into PSR-7 request/responses</b>
-		<p>We have added an HTTP request/response interface which is now used
-		everywhere. Also we have added an PSR-7 factory to convert between 
-		request types which should prepare us for PSR-7.</p>
-	</li>
-	<li>
-		<b>Added HTTP stream handler which uses the native HTTP stream wrapper</b>
-		<p>An simple HTTP handler was added which uses the 
-		<a href="http://php.net/manual/en/context.http.php">HTTP stream context</a>
-		to send an HTTP request.</p>
-	</li>
-	<li>
-		<b>Added missing HTTP status codes</b>
-		<p>The HTTP library contains now all status codes from the <a href="http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">IANA registry</a></p>
-	</li>
-	<li>
-		<b>Add support for array and object sql table column types</b>
-		<p>The TableAbstract class now supports the array and object types which
-		can serialize an array or object to an database column.</p>
-	</li>
-	<li>
-		<b>Added primary key filter which checks whether an id exists in an table</b>
-		<p>An simple filter which checks whether an given ID exists as primary 
-		key in an table.</p>
-	</li>
-	<li>
-		<b>Used dbal query builder in various places for better db vendor support</b>
-		<p>This should make PSX more compatible with different db vendors. Also
-		through this it is possible to run the complete test suite with an in-memory 
-		sqlite database.</p>
-	</li>
-	<li>
-		<b>Added plain text writer</b>
-		<p>A simple writer which can be used to build text/plain responses like
-		i.e. /humans.txt</p>
-	</li>
+    <li>
+        <b>Added HTTP request/response interfaces and added an factory to convert 
+        PSX HTTP request/responses into PSR-7 request/responses</b>
+        <p>We have added an HTTP request/response interface which is now used
+        everywhere. Also we have added an PSR-7 factory to convert between 
+        request types which should prepare us for PSR-7.</p>
+    </li>
+    <li>
+        <b>Added HTTP stream handler which uses the native HTTP stream wrapper</b>
+        <p>An simple HTTP handler was added which uses the 
+        <a href="http://php.net/manual/en/context.http.php">HTTP stream context</a>
+        to send an HTTP request.</p>
+    </li>
+    <li>
+        <b>Added missing HTTP status codes</b>
+        <p>The HTTP library contains now all status codes from the <a href="http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml">IANA registry</a></p>
+    </li>
+    <li>
+        <b>Add support for array and object sql table column types</b>
+        <p>The TableAbstract class now supports the array and object types which
+        can serialize an array or object to an database column.</p>
+    </li>
+    <li>
+        <b>Added primary key filter which checks whether an id exists in an table</b>
+        <p>An simple filter which checks whether an given ID exists as primary 
+        key in an table.</p>
+    </li>
+    <li>
+        <b>Used dbal query builder in various places for better db vendor support</b>
+        <p>This should make PSX more compatible with different db vendors. Also
+        through this it is possible to run the complete test suite with an in-memory 
+        sqlite database.</p>
+    </li>
+    <li>
+        <b>Added plain text writer</b>
+        <p>A simple writer which can be used to build text/plain responses like
+        i.e. /humans.txt</p>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:9</id>
-		<title>HTTP based middlewares</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2015-02-03T21:59:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:9</id>
+        <title>HTTP based middlewares</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2015-02-03T21:59:00Z</updated>
+        <summary>
 This post talks in general about HTTP based middlewares, PSR-7 and how this is
 implemented in PSX
-		</summary>
-		<category term="concept" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="concept" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <h4>Abstract</h4>
 
 <p>In general the concept is to model your application around an HTTP 
@@ -1389,10 +1425,10 @@ can then modify the response and call the next middleware in the stack and so
 on. An application stack of middlewares could look like this:</p>
 
 <ul>
-	<li>AuthenticationMiddleware</li>
-	<li>LogMiddleware</li>
-	<li>CachingMiddleware</li>
-	<li>Application</li>
+    <li>AuthenticationMiddleware</li>
+    <li>LogMiddleware</li>
+    <li>CachingMiddleware</li>
+    <li>Application</li>
 </ul>
 
 <p>I.e. The AuthenticationMiddleware could inspect the <code>Authorization</code>
@@ -1402,10 +1438,10 @@ new middlewares. Infact this concept is not new and many languages have
 developed an standard. To give you some examples:</p>
 
 <ul>
-	<li><a href="http://docs.oracle.com/javaee/7/api/javax/servlet/Filter.html">Java Servlet Filter</a></li>
-	<li><a href="https://www.python.org/dev/peps/pep-0333/">Pythons WSGI</a></li>
-	<li><a href="http://www.rubydoc.info/github/rack/rack/master/file/SPEC">Ruby Rack</a></li>
-	<li><a href="https://github.com/ring-clojure/ring/blob/master/SPEC">Ring Clojure</a></li>
+    <li><a href="http://docs.oracle.com/javaee/7/api/javax/servlet/Filter.html">Java Servlet Filter</a></li>
+    <li><a href="https://www.python.org/dev/peps/pep-0333/">Pythons WSGI</a></li>
+    <li><a href="http://www.rubydoc.info/github/rack/rack/master/file/SPEC">Ruby Rack</a></li>
+    <li><a href="https://github.com/ring-clojure/ring/blob/master/SPEC">Ring Clojure</a></li>
 </ul>
 
 <h4>PHP world</h4>
@@ -1473,130 +1509,130 @@ Iam looking really forward to this PSR and since it is not done yet it could
 also probably go the mutable way.</p>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:8</id>
-		<title>Version 0.9.4 released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2015-01-15T21:20:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:8</id>
+        <title>Version 0.9.4 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2015-01-15T21:20:00Z</updated>
+        <summary>
 A short walkthrough through all changes of the PSX release
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>This release includes mostly API improvements and some new features. In the 
 following I will cover each point of the changelog.</p>
 
 <ul>
-	<li>
-		<b>Sql table query methods return now an array instead of RecordInterface</b>
-		<p>This was done because of performance reasons and now it is possible to 
-		use the CurveArray class to nest an response. The values inside the array 
-		are still converted to the fitting PHP type.</p>
-	</li>
-	<li>
-		<b>Added media type class and improved content negotiation</b>
-		<p>A media type class was added which represents an media type i.e. 
-		<code>application/xml</code> or <code>text/html; encoding=UTF-8</code>. 
-		This improves and simplifies content negotiation.</p>
-	</li>
-	<li>
-		<b>Improved JWT implementation</b>
-		<p>The <a href="https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32">JWT</a> 
-		implementation was improved and is now easier to use.</p>
-	</li>
-	<li>
-		<b>Removed unused methods from Base class which now contains only the getVersion method</b>
-		<p>Previously the Base class was used to provide methods for the current application i.e. 
-		getTag or getUUID. Actually the class has added only the hostname to make the result
-		unique for this application. Since all this can be done by using the static methods
-		of the specific class I have removed the complete "base" service and the methods.</p>
-	</li>
-	<li>
-		<b>Added rfc3986 compatible URI resolver class</b>
-		<p>A new UriResolver class was added to resolve an relative path against an
-		base uri. The class follows <a href="https://tools.ietf.org/html/rfc3986">rfc3986</a>
-		and uses the defined test cases.</p>
-	</li>
-	<li>
-		<b>Improved URI/URL/URN classes. Changed URL parameter getter/setter methods from getParam to getParameter etc.</b>
-		<p>This change could probably break your application if you use the URL 
-		object inside the controller. The renaming was mostly done to have a 
-		more polished and consistent API. I will make these kind of changes only
-		until we reach the 1.0 version. After that method changes will haven an 
-		deprecation phase and the removal happens only in an higher version.</p>
-	</li>
-	<li>
-		<b>Removed output method from xml writer and improved atom writer/entry</b>
-		<p>These methods used the header and echo function to output the content
-		of the writer. Since the methods are not testable and because we use an 
-		response object anyway I have removed these methods.</p>
-	</li>
-	<li>
-		<b>Added http cookie parser class</b>
-		<p>A class which parses <code>Cookie</code> and <code>Set-Cookie</code> 
-		headers.</p>
-	</li>
-	<li>
-		<b>Added http stream util class to simplify working with streams</b>
-		<p>The Util class has a simple method which converts an StreamInterface
-		into an string without changing the position of the internal pointer 
-		which is useful for middlewares.</p>
-	</li>
-	<li>
-		<b>Added application stack interface</b>
-		<p>This is the biggest internal design change but it has no effect on 
-		existing applications. So basically every controller returns now an
-		array of middleware classes which can modify the request/response. I
-		will create a seperate blog post with more detailed explanations.</p>
-	</li>
-	<li>
-		<b>Updated dbal to version 2.5</b>
-		<p>Because of this update all HHVM tests pass now that means PSX can now  
-		be used in an HHVM evnironment.</p>
-	</li>
-	<li>
-		<b>Added various middleware filter implementations</b>
-		<p>In regards to the application stack interface I have added various
-		middleware implementations i.e.: CookieEncryption, Backstage, 
-		StaticCache, IpFirewall.</p>
-	</li>
-	<li>
-		<b>Improved tests</b>
-		<p>With this release we reached >90% PHPUnit test line coverage.</p>
-	</li>
-	<li>
-		<b>Add CurveArray class to nest or flatten an array</b>
-		<p>An class which can create an nested array from an flat one and vice 
-		versa. This is useful i.e. to change an database result.</p>
-	</li>
-	<li>
-		<b>Updated api doc controller template</b>
-		<p>The template of the API doc controller was redesigned.</p>
-	</li>
+    <li>
+        <b>Sql table query methods return now an array instead of RecordInterface</b>
+        <p>This was done because of performance reasons and now it is possible to 
+        use the CurveArray class to nest an response. The values inside the array 
+        are still converted to the fitting PHP type.</p>
+    </li>
+    <li>
+        <b>Added media type class and improved content negotiation</b>
+        <p>A media type class was added which represents an media type i.e. 
+        <code>application/xml</code> or <code>text/html; encoding=UTF-8</code>. 
+        This improves and simplifies content negotiation.</p>
+    </li>
+    <li>
+        <b>Improved JWT implementation</b>
+        <p>The <a href="https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32">JWT</a> 
+        implementation was improved and is now easier to use.</p>
+    </li>
+    <li>
+        <b>Removed unused methods from Base class which now contains only the getVersion method</b>
+        <p>Previously the Base class was used to provide methods for the current application i.e. 
+        getTag or getUUID. Actually the class has added only the hostname to make the result
+        unique for this application. Since all this can be done by using the static methods
+        of the specific class I have removed the complete "base" service and the methods.</p>
+    </li>
+    <li>
+        <b>Added rfc3986 compatible URI resolver class</b>
+        <p>A new UriResolver class was added to resolve an relative path against an
+        base uri. The class follows <a href="https://tools.ietf.org/html/rfc3986">rfc3986</a>
+        and uses the defined test cases.</p>
+    </li>
+    <li>
+        <b>Improved URI/URL/URN classes. Changed URL parameter getter/setter methods from getParam to getParameter etc.</b>
+        <p>This change could probably break your application if you use the URL 
+        object inside the controller. The renaming was mostly done to have a 
+        more polished and consistent API. I will make these kind of changes only
+        until we reach the 1.0 version. After that method changes will haven an 
+        deprecation phase and the removal happens only in an higher version.</p>
+    </li>
+    <li>
+        <b>Removed output method from xml writer and improved atom writer/entry</b>
+        <p>These methods used the header and echo function to output the content
+        of the writer. Since the methods are not testable and because we use an 
+        response object anyway I have removed these methods.</p>
+    </li>
+    <li>
+        <b>Added http cookie parser class</b>
+        <p>A class which parses <code>Cookie</code> and <code>Set-Cookie</code> 
+        headers.</p>
+    </li>
+    <li>
+        <b>Added http stream util class to simplify working with streams</b>
+        <p>The Util class has a simple method which converts an StreamInterface
+        into an string without changing the position of the internal pointer 
+        which is useful for middlewares.</p>
+    </li>
+    <li>
+        <b>Added application stack interface</b>
+        <p>This is the biggest internal design change but it has no effect on 
+        existing applications. So basically every controller returns now an
+        array of middleware classes which can modify the request/response. I
+        will create a seperate blog post with more detailed explanations.</p>
+    </li>
+    <li>
+        <b>Updated dbal to version 2.5</b>
+        <p>Because of this update all HHVM tests pass now that means PSX can now  
+        be used in an HHVM evnironment.</p>
+    </li>
+    <li>
+        <b>Added various middleware filter implementations</b>
+        <p>In regards to the application stack interface I have added various
+        middleware implementations i.e.: CookieEncryption, Backstage, 
+        StaticCache, IpFirewall.</p>
+    </li>
+    <li>
+        <b>Improved tests</b>
+        <p>With this release we reached >90% PHPUnit test line coverage.</p>
+    </li>
+    <li>
+        <b>Add CurveArray class to nest or flatten an array</b>
+        <p>An class which can create an nested array from an flat one and vice 
+        versa. This is useful i.e. to change an database result.</p>
+    </li>
+    <li>
+        <b>Updated api doc controller template</b>
+        <p>The template of the API doc controller was redesigned.</p>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:7</id>
-		<title>PHP request and response lifecycle</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2014-12-28T18:10:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:7</id>
+        <title>PHP request and response lifecycle</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2014-12-28T18:10:00Z</updated>
+        <summary>
 Basic tutorial which shows howto read data from an request and write an response 
 with PHP
-		</summary>
-		<category term="concept" />
-		<category term="tutorial" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="concept" />
+        <category term="tutorial" />
+        <content type="html"><![CDATA[
 <p>In abstract the job of every web programming language is to process an 
 incomming HTTP request and produce a HTTP response based on the request data. 
 Every language has its own API to expose the request data to the userland code 
@@ -1624,65 +1660,65 @@ foo=bar
 with the following variables:</p>
 
 <ul>
-	<li>
-		<p><b>$_GET</b></p>
-		<pre><code class="php">$_GET = [
+    <li>
+        <p><b>$_GET</b></p>
+        <pre><code class="php">$_GET = [
     'bar' => 'foo',
 ];
 </code></pre>
-		<p>The <code>$_GET</code> variable get filled by the query parameters 
-		from the url. PHP uses the <a href="http://php.net/manual/en/function.parse-str.php">parse_str</a>
-		function to convert the query string into an array. Because of that it 
-		is not possible to have multiple GET parameters with the same name i.e.
-		<code>/test.php?bar=foo&bar=bar</code> which is unusual but possible. 
-		Also GET parameter which contain an '.' in the name are replaced by an
-		underscore i.e. <code>/test.php?foo.bar=value</code> becomes <code>foo_bar</code>.
-		It is possible to create nested arrays by appending "[]" to the 
-		parameter name i.e. <code>/test.php?bar[]=foo&bar[]=bar</code>. This 
-		would create an array like <code>array("foo", "bar")</code>.</p>
-	</li>
-	<li>
-		<p><b>$_POST</b></p>
-		<pre><code class="php">$_POST = [
+        <p>The <code>$_GET</code> variable get filled by the query parameters 
+        from the url. PHP uses the <a href="http://php.net/manual/en/function.parse-str.php">parse_str</a>
+        function to convert the query string into an array. Because of that it 
+        is not possible to have multiple GET parameters with the same name i.e.
+        <code>/test.php?bar=foo&bar=bar</code> which is unusual but possible. 
+        Also GET parameter which contain an '.' in the name are replaced by an
+        underscore i.e. <code>/test.php?foo.bar=value</code> becomes <code>foo_bar</code>.
+        It is possible to create nested arrays by appending "[]" to the 
+        parameter name i.e. <code>/test.php?bar[]=foo&bar[]=bar</code>. This 
+        would create an array like <code>array("foo", "bar")</code>.</p>
+    </li>
+    <li>
+        <p><b>$_POST</b></p>
+        <pre><code class="php">$_POST = [
     'foo' => 'bar',
 ];
 </code></pre>
-		<p>The parsing of the POST body into an array works only if the 
-		Content-Type is <code>application/x-www-form-urlencoded</code>. If this
-		is the case PHP also uses the <a href="http://php.net/manual/en/function.parse-str.php">parse_str</a>
-		function. Because of that all restrictions described for the GET 
-		parameters are also applied to the POST parameters.</p>
-	</li>
-	<li>
-		<p><b>$_COOKIE</b></p>
-		<pre><code class="php">$_COOKIE = [
+        <p>The parsing of the POST body into an array works only if the 
+        Content-Type is <code>application/x-www-form-urlencoded</code>. If this
+        is the case PHP also uses the <a href="http://php.net/manual/en/function.parse-str.php">parse_str</a>
+        function. Because of that all restrictions described for the GET 
+        parameters are also applied to the POST parameters.</p>
+    </li>
+    <li>
+        <p><b>$_COOKIE</b></p>
+        <pre><code class="php">$_COOKIE = [
     'baz' => 'foo',
 ];
 </code></pre>
-		<p>The <code>$_COOKIE</code> variable contains the key value pairs of 
-		the <code>Cookie</code> header.</p>
-	</li>
-	<li>
-		<p><b>$_FILES</b></p>
-		<pre><code class="php">$_FILES = [];
+        <p>The <code>$_COOKIE</code> variable contains the key value pairs of 
+        the <code>Cookie</code> header.</p>
+    </li>
+    <li>
+        <p><b>$_FILES</b></p>
+        <pre><code class="php">$_FILES = [];
 </code></pre>
-		<p>The <code>$_FILES</code> variable is only filled if the request 
-		contains an <code>multipart/form-data</code> file upload.</p>
-	</li>
-	<li>
-		<p><b>$_REQUEST</b></p>
-		<pre><code class="php">$_REQUEST = [
+        <p>The <code>$_FILES</code> variable is only filled if the request 
+        contains an <code>multipart/form-data</code> file upload.</p>
+    </li>
+    <li>
+        <p><b>$_REQUEST</b></p>
+        <pre><code class="php">$_REQUEST = [
     'bar' => 'foo',
     'foo' => 'bar',
 ];
 </code></pre>
-		<p>The <code>$_REQUEST</code> variable contains by default the GET, POST 
-		and COOKIE values. On my php.ini I have: <code>request_order = "GP"</code> 
-		which means it contains only GET and POST values.</p>
-	</li>
-	<li>
-		<p><b>$_SERVER</b></p>
-		<pre><code class="php">$_SERVER = [
+        <p>The <code>$_REQUEST</code> variable contains by default the GET, POST 
+        and COOKIE values. On my php.ini I have: <code>request_order = "GP"</code> 
+        which means it contains only GET and POST values.</p>
+    </li>
+    <li>
+        <p><b>$_SERVER</b></p>
+        <pre><code class="php">$_SERVER = [
     'HTTP_HOST' => '127.0.0.1',
     'HTTP_USER_AGENT' => 'Foolib',
     'HTTP_CONNECTION' => 'Keep-Alive',
@@ -1696,20 +1732,20 @@ with the following variables:</p>
     'REQUEST_URI' => '/tests/test.php?bar=foo',
 ];
 </code></pre>
-		<p>The <code>$_SERVER</code> values contain all headers in the 
-		<code>HTTP_*</code> keys and also meta variables from the webserver. 
-		There is an <a href="http://www.ietf.org/rfc/rfc3875">RFC</a> which 
-		specifies these meta variables.</p>
-	</li>
-	<li>
-		<p><b>Body</b></p>
-		<pre><code class="php">$body = file_get_contents('php://input');</code></pre>
-		<p>In order to access the raw request body we can use the 
-		<a href="http://php.net/manual/en/wrappers.php.php">input stream</a> in 
-		this case <code>$body</code> would have the value "foo=bar". This is
-		useful for parsing non <code>application/x-www-form-urlencoded</code>
-		content i.e. JSON or XML.</p>
-	</li>
+        <p>The <code>$_SERVER</code> values contain all headers in the 
+        <code>HTTP_*</code> keys and also meta variables from the webserver. 
+        There is an <a href="http://www.ietf.org/rfc/rfc3875">RFC</a> which 
+        specifies these meta variables.</p>
+    </li>
+    <li>
+        <p><b>Body</b></p>
+        <pre><code class="php">$body = file_get_contents('php://input');</code></pre>
+        <p>In order to access the raw request body we can use the 
+        <a href="http://php.net/manual/en/wrappers.php.php">input stream</a> in 
+        this case <code>$body</code> would have the value "foo=bar". This is
+        useful for parsing non <code>application/x-www-form-urlencoded</code>
+        content i.e. JSON or XML.</p>
+    </li>
 </ul>
 
 <p>To produce an response we could use the following PHP code:</p>
@@ -1757,21 +1793,21 @@ foobar
 probably the reason why PHP is so popular.</p> 
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:6</id>
-		<title>Example API introduction</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2014-12-14T22:19:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:6</id>
+        <title>Example API introduction</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2014-12-14T22:19:00Z</updated>
+        <summary>
 A short introduction about the new example API project
-		</summary>
-		<category term="tutorial" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="tutorial" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>I have a build a simple example API at <a href="http://example.phpsx.org/">example.phpsx.org</a> 
 with PSX. This API should showcase some features and help you to get started. 
 The source is also available on <a href="https://github.com/k42b3/psx-examples">GitHub</a>.
@@ -1783,8 +1819,8 @@ With this post i want to cover the functionality of the example.</p>
 schema. There we have two API endpoints:</p>
 
 <ul>
-	<li><a href="http://example.phpsx.org/population">/population</a></li>
-	<li><a href="http://example.phpsx.org/population/1">/population/1</a></li>
+    <li><a href="http://example.phpsx.org/population">/population</a></li>
+    <li><a href="http://example.phpsx.org/population/1">/population/1</a></li>
 </ul>
 
 <p>The first endpoint returns an collection of population entries and the second
@@ -1798,115 +1834,115 @@ API endpoint and also request examples.</p>
 wherewith you can discover all available API endpoints.</p>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:5</id>
-		<title>Version 0.9.3 released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2014-11-30T15:17:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:5</id>
+        <title>Version 0.9.3 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2014-11-30T15:17:00Z</updated>
+        <summary>
 A short explanation about the changes in PSX version 0.9.3
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>In the following I will go through the changelog of the 0.9.3 release of PSX
 and explain more detailed about the changes and the reasoning behind it.</p>
 
 <ul>
-	<li>
-		<b>Added commands to generate boilerplate source code for controller, commands and schema</b>
-		<p>In order to speedup development PSX now includes commands which can 
-		generate source code. Here as example an command call howto generate a
-		new controller:</p>
-		<pre>$ ./vendor/bin/psx generate:controller Acme\News connection,http</pre>
-		<p>This would generate the file Acme\News.php in the library folder and
-		inject the connection and http service.</p>
-	</li>
-	<li>
-		<b>When the default writer gets determined it respects now the list of supported writers</b>
-		<p>You can set the writers which are supported by your controller through 
-		overwriting the getSupportedWriter method. Previously the default writer
-		does not look at the list instead it always returned the JSON writer. 
-		Now the default writer must be in the list of supported writers. By this
-		you can force a controller to use only a specific writer.</p>
-	</li>
-	<li>
-		<b>Implemented priority queue to give reader and write a priority in which order they get used</b>
-		<p>When adding a reader or writer you can pass a priority value. The
-		priority value specify the traversal direction. I.e. the XML reader gets 
-		applied for every +xml content type so a custom reader for handling an 
-		specific xml content type must be added before the xml reader.</p>
-	</li>
-	<li>
-		<b>Changed default html template file extension from .tpl to .html</b>
-		<p>This change is a major break since all template files must end now 
-		with <code>.html</code>. This was done because we have added a new SVG 
-		writer which also uses the template engine. In order to distinct between 
-		the templates each template file must now have the file extension of the
-		associated content type. I.e. the HTML writer has <code>.html</code> and 
-		the SVG writer <code>.svg</code>.</p>
-	</li>
-	<li>
-		<b>Added abstract template writer which can be used to generate an output with an template engine</b>
-		<p>The abstract temlate writer simplifies the process of creating a new
-		writer for an specific content type using an template engine. The HTML
-		and SVG writer extend also from the abstract template writer.</p>
-	</li>
-	<li>
-		<b>Added svg writer which uses the abstract template writer</b>
-		<p>An SVG writer was added to create an SVG presentation of your data</p>
-	</li>
-	<li>
-		<b>Add possibility to set an content negotiation rule for an specific writer</b>
-		<p>It is now possible to set an custom content negotiation rule. I.e. if
-		you want that all image requests are handeled by the SVG writer you 
-		could add the following content negotiation rule:</p>
-		<pre><code class="php">$this->writerFactory->setContentNegotiation('image/*', WriterInterface::SVG);</code></pre>
-		<p>For every Accept header which has <i>image</i> as type i.e. 
-		<code>image/png</code>, <code>image/webp</code>, etc. the SVG writer 
-		gets used.</p>
-	</li>
-	<li>
-		<b>Restricted the TableInterface::TYPE_* constants to the subset of supported types from the doctrine dbal and use the dbal for type conversion</b>
-		<p>To support also different database vendors the table class uses now
-		only a subset of the available mysql types. This subset are the types
-		which are also supported by the dbal across all database vendors.</p>
-	</li>
-	<li>
-		<b>Added command to generate an bootstrap cache which can be included at startup to increase performance</b>
-		<p>A command was added which can generate a file containing all PSX 
-		classes which are needed for every request. This could increase the
-		performance of the application since the classes must not be autoloaded.
-		This makes only sense if you are _not_ using an bytecode cache which is 
-		included in HHVM or PHP 5.5.0 also the bootstrap cache complicates 
-		debugging. To use the cache you must include the generated bootstrap 
-		file in your index.php.</p>
-	</li>
+    <li>
+        <b>Added commands to generate boilerplate source code for controller, commands and schema</b>
+        <p>In order to speedup development PSX now includes commands which can 
+        generate source code. Here as example an command call howto generate a
+        new controller:</p>
+        <pre>$ ./vendor/bin/psx generate:controller Acme\News connection,http</pre>
+        <p>This would generate the file Acme\News.php in the library folder and
+        inject the connection and http service.</p>
+    </li>
+    <li>
+        <b>When the default writer gets determined it respects now the list of supported writers</b>
+        <p>You can set the writers which are supported by your controller through 
+        overwriting the getSupportedWriter method. Previously the default writer
+        does not look at the list instead it always returned the JSON writer. 
+        Now the default writer must be in the list of supported writers. By this
+        you can force a controller to use only a specific writer.</p>
+    </li>
+    <li>
+        <b>Implemented priority queue to give reader and write a priority in which order they get used</b>
+        <p>When adding a reader or writer you can pass a priority value. The
+        priority value specify the traversal direction. I.e. the XML reader gets 
+        applied for every +xml content type so a custom reader for handling an 
+        specific xml content type must be added before the xml reader.</p>
+    </li>
+    <li>
+        <b>Changed default html template file extension from .tpl to .html</b>
+        <p>This change is a major break since all template files must end now 
+        with <code>.html</code>. This was done because we have added a new SVG 
+        writer which also uses the template engine. In order to distinct between 
+        the templates each template file must now have the file extension of the
+        associated content type. I.e. the HTML writer has <code>.html</code> and 
+        the SVG writer <code>.svg</code>.</p>
+    </li>
+    <li>
+        <b>Added abstract template writer which can be used to generate an output with an template engine</b>
+        <p>The abstract temlate writer simplifies the process of creating a new
+        writer for an specific content type using an template engine. The HTML
+        and SVG writer extend also from the abstract template writer.</p>
+    </li>
+    <li>
+        <b>Added svg writer which uses the abstract template writer</b>
+        <p>An SVG writer was added to create an SVG presentation of your data</p>
+    </li>
+    <li>
+        <b>Add possibility to set an content negotiation rule for an specific writer</b>
+        <p>It is now possible to set an custom content negotiation rule. I.e. if
+        you want that all image requests are handeled by the SVG writer you 
+        could add the following content negotiation rule:</p>
+        <pre><code class="php">$this->writerFactory->setContentNegotiation('image/*', WriterInterface::SVG);</code></pre>
+        <p>For every Accept header which has <i>image</i> as type i.e. 
+        <code>image/png</code>, <code>image/webp</code>, etc. the SVG writer 
+        gets used.</p>
+    </li>
+    <li>
+        <b>Restricted the TableInterface::TYPE_* constants to the subset of supported types from the doctrine dbal and use the dbal for type conversion</b>
+        <p>To support also different database vendors the table class uses now
+        only a subset of the available mysql types. This subset are the types
+        which are also supported by the dbal across all database vendors.</p>
+    </li>
+    <li>
+        <b>Added command to generate an bootstrap cache which can be included at startup to increase performance</b>
+        <p>A command was added which can generate a file containing all PSX 
+        classes which are needed for every request. This could increase the
+        performance of the application since the classes must not be autoloaded.
+        This makes only sense if you are _not_ using an bytecode cache which is 
+        included in HHVM or PHP 5.5.0 also the bootstrap cache complicates 
+        debugging. To use the cache you must include the generated bootstrap 
+        file in your index.php.</p>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:4</id>
-		<title>Consume an REST API through SOAP</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2014-11-16T15:06:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:4</id>
+        <title>Consume an REST API through SOAP</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2014-11-16T15:06:00Z</updated>
+        <summary>
 This tutorial explains how to access an REST API through SOAP and it also shows 
 how you can simply generate an Java client based on an automatically generated 
 WSDL file
-		</summary>
-		<category term="concept" />
-		<category term="tutorial" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="concept" />
+        <category term="tutorial" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>PSX gives you the possibility to make an SOAP request against an REST API.
 This post will describe how this works in PSX and shows howto generate an SOAP
 client in Java which communicates with an REST API through SOAP.</p>
@@ -2023,114 +2059,114 @@ could be used to automatically generate client code.</p>
 all the great tools to consume an SOAP service even if we are developing an REST 
 API in the first place.</p>
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:3</id>
-		<title>Version 0.9.2 released</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2014-11-15T18:57:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:3</id>
+        <title>Version 0.9.2 released</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2014-11-15T18:57:00Z</updated>
+        <summary>
 Short coverage about PSX version 0.9.2
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>In the following I will go through the changelog of the 0.9.2 release of PSX
 and explain more detailed about the changes and the reasoning behind it.</p>
 
 <ul>
-	<li>
-		<b>Integrated JMS serializer</b>
-		<p>Since PSX had no special handling for serializing arbitrary objects 
-		we integrated the great <a href="https://github.com/schmittjoh/serializer">JMS serializer</a> 
-		library. There is a new <code>Serializer</code> service which can be 
-		used inside the controller to serialize an array of objects i.e. from an 
-		doctrine repository. Also you can pass the API Version object which then
-		makes use of the versioning feature of the JMS serializer.</p>
-	</li>
-	<li>
-		<b>Removed payment and handler classes</b>
-		<p>Previously PSX contains some classes to handle payment processing. I 
-		have moved these classes into its own <a href="https://github.com/k42b3/psx-payment">repository</a>
-		since they are not related to the framework.</p>
-		<p>Regarding the handler classes PSX had some interfaces which describe 
-		methods for retrieval and manipulation of data. These interfaces were 
-		similar to an <a href="http://www.doctrine-project.org/api/common/2.0/class-Doctrine.Common.Persistence.ObjectRepository.html">doctrine repository</a>
-		except that you could also create, update and delete data. The idea was 
-		that you could build automatically an API based on such an handler.
-		After long thinking and working with theses interfaces I came to the 
-		conclusion that they not add a real value to the framework. This is 
-		because normally you have already your own "Manager" or "Repsoitory" in 
-		your business logic which contains methods for retrieval and 
-		manipulation. In this case you would need to duplicate the code in such 
-		and handler. So it makes more sense to call these methods inside the API 
-		controller. Because of that I have removed these classes.</p>
-	</li>
-	<li>
-		<b>Added symfony console component and added several commands</b>
-		<p>For all CLI interaction we have implemented the symfony command 
-		system which makes it easy to write simple commands for reading and 
-		writing data to the CLI. We have implemented some commands which i.e.
-		output all registered services from the DI container, display all 
-		available routes or event take an HTTP request per stdin and return the
-		response.</p>
-		<p>Note PSX has also an "command" system but this is actually very 
-		different to the symfony command system. The difference is that an 
-		symfony command directly handles input and output of the CLI where an 
-		PSX command is more like an controller but without the request context.
-		So the PSX command is not bound to the CLI context it can also be 
-		executed from the web or any other context. We have build an symfony
-		command which triggers an psx command by accepting an JSON string 
-		containing the needed parameters which is useful for i.e. an message 
-		queue system.</p>
-	</li>
-	<li>
-		<b>Http client removed parameters from the http request object</b>
-		<p>We are closely following the <a href="https://github.com/php-fig/fig-standards/blob/master/proposed/http-message.md">PSR-7</a> 
-		standard which describes an common set of interfaces to describe HTTP 
-		messages. In fact we are already implementing version 0.2 of the 
-		specification. In order to align more to the specification we have 
-		removed some configuration parameters from the HTTP request object and
-		created an <code>Options</code> object which now contains theses 
-		informations.</p>
-	</li>
-	<li>
-		<b>Moved creation of the DI container into its own file</b>
-		<p>Previously in PSX the DI container was defined in the index.php. 
-		Since we need the DI container also in other places like for the CLI or
-		the tests we created a simple file container.php which returns the DI
-		container. This file gets used everywhere so if you want to change the
-		implementation you could easily change it in one place.</p>
-	</li>
-	<li>
-		<b>Dispatch events at key locations</b>
-		<p>PSX dispatches now events through the symfony event dispathcer in 
-		various key locations. In example when an request arrives at the 
-		application, an route was found or an response get sent to the user. 
-		All available events can be found at the <a href="https://github.com/k42b3/psx/blob/f6327a882988ea1fd7a28e3265229b0ee93697b7/library/PSX/Event.php"><code>Event</code></a> class. This should help to make the framework more 
-		extensible.</p>
-	</li>
+    <li>
+        <b>Integrated JMS serializer</b>
+        <p>Since PSX had no special handling for serializing arbitrary objects 
+        we integrated the great <a href="https://github.com/schmittjoh/serializer">JMS serializer</a> 
+        library. There is a new <code>Serializer</code> service which can be 
+        used inside the controller to serialize an array of objects i.e. from an 
+        doctrine repository. Also you can pass the API Version object which then
+        makes use of the versioning feature of the JMS serializer.</p>
+    </li>
+    <li>
+        <b>Removed payment and handler classes</b>
+        <p>Previously PSX contains some classes to handle payment processing. I 
+        have moved these classes into its own <a href="https://github.com/k42b3/psx-payment">repository</a>
+        since they are not related to the framework.</p>
+        <p>Regarding the handler classes PSX had some interfaces which describe 
+        methods for retrieval and manipulation of data. These interfaces were 
+        similar to an <a href="http://www.doctrine-project.org/api/common/2.0/class-Doctrine.Common.Persistence.ObjectRepository.html">doctrine repository</a>
+        except that you could also create, update and delete data. The idea was 
+        that you could build automatically an API based on such an handler.
+        After long thinking and working with theses interfaces I came to the 
+        conclusion that they not add a real value to the framework. This is 
+        because normally you have already your own "Manager" or "Repsoitory" in 
+        your business logic which contains methods for retrieval and 
+        manipulation. In this case you would need to duplicate the code in such 
+        and handler. So it makes more sense to call these methods inside the API 
+        controller. Because of that I have removed these classes.</p>
+    </li>
+    <li>
+        <b>Added symfony console component and added several commands</b>
+        <p>For all CLI interaction we have implemented the symfony command 
+        system which makes it easy to write simple commands for reading and 
+        writing data to the CLI. We have implemented some commands which i.e.
+        output all registered services from the DI container, display all 
+        available routes or event take an HTTP request per stdin and return the
+        response.</p>
+        <p>Note PSX has also an "command" system but this is actually very 
+        different to the symfony command system. The difference is that an 
+        symfony command directly handles input and output of the CLI where an 
+        PSX command is more like an controller but without the request context.
+        So the PSX command is not bound to the CLI context it can also be 
+        executed from the web or any other context. We have build an symfony
+        command which triggers an psx command by accepting an JSON string 
+        containing the needed parameters which is useful for i.e. an message 
+        queue system.</p>
+    </li>
+    <li>
+        <b>Http client removed parameters from the http request object</b>
+        <p>We are closely following the <a href="https://github.com/php-fig/fig-standards/blob/master/proposed/http-message.md">PSR-7</a> 
+        standard which describes an common set of interfaces to describe HTTP 
+        messages. In fact we are already implementing version 0.2 of the 
+        specification. In order to align more to the specification we have 
+        removed some configuration parameters from the HTTP request object and
+        created an <code>Options</code> object which now contains theses 
+        informations.</p>
+    </li>
+    <li>
+        <b>Moved creation of the DI container into its own file</b>
+        <p>Previously in PSX the DI container was defined in the index.php. 
+        Since we need the DI container also in other places like for the CLI or
+        the tests we created a simple file container.php which returns the DI
+        container. This file gets used everywhere so if you want to change the
+        implementation you could easily change it in one place.</p>
+    </li>
+    <li>
+        <b>Dispatch events at key locations</b>
+        <p>PSX dispatches now events through the symfony event dispathcer in 
+        various key locations. In example when an request arrives at the 
+        application, an route was found or an response get sent to the user. 
+        All available events can be found at the <a href="https://github.com/k42b3/psx/blob/f6327a882988ea1fd7a28e3265229b0ee93697b7/library/PSX/Event.php"><code>Event</code></a> class. This should help to make the framework more 
+        extensible.</p>
+    </li>
 </ul>
 
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:2</id>
-		<title>RESTful API versioning with PSX</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2014-11-01T20:31:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:2</id>
+        <title>RESTful API versioning with PSX</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2014-11-01T20:31:00Z</updated>
+        <summary>
 This post talks about API versioning methods and howto implement them in PSX
-		</summary>
-		<category term="concept" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="concept" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>Versioning an API is required if you want make changes to an existing API 
 without breaking clients which rely on the API. The normal process to change an
 API is to create a new API version and deprecate the old one. Then the consumers
@@ -2168,10 +2204,10 @@ Content-Type versioning since it is more RESTful. In the following a short list
 of popular companies and how they version their API:</p>
 
 <ul>
-	<li><a href="https://developers.facebook.com/">Facebook</a> (Url: https://www.facebook.com/v2.0)</li>
-	<li><a href="https://developer.github.com/">Github</a> (Content-Type: application/vnd.github.v3+json)</li>
-	<li><a href="https://developers.google.com">Google</a> (Url: https://www.googleapis.com/drive/v2)</li>
-	<li><a href="http://dev.twitch.tv/">Twitch</a> (Content-Type: application/vnd.twitchtv.v2+json)</li>
+    <li><a href="https://developers.facebook.com/">Facebook</a> (Url: https://www.facebook.com/v2.0)</li>
+    <li><a href="https://developer.github.com/">Github</a> (Content-Type: application/vnd.github.v3+json)</li>
+    <li><a href="https://developers.google.com">Google</a> (Url: https://www.googleapis.com/drive/v2)</li>
+    <li><a href="http://dev.twitch.tv/">Twitch</a> (Content-Type: application/vnd.twitchtv.v2+json)</li>
 </ul>
 
 <hr />
@@ -2222,22 +2258,22 @@ view is deprecated an <code>Warning</code> header gets added to each response
 containing a message that the version is deprecated. If the view is closed an 
 <code>410 Gone</code> response gets returned.</p>
 ]]></content>
-	</entry>
-	<entry>
-		<id>urn:phpsx.org:blog:1</id>
-		<title>First blog introduction</title>
-		<author>
-			<name>christoph.kappestein</name>
-			<uri>http://github.com/k42b3</uri>
-		</author>
-		<updated>2014-10-26T16:15:00Z</updated>
-		<summary>
+    </entry>
+    <entry>
+        <id>urn:phpsx.org:blog:1</id>
+        <title>First blog introduction</title>
+        <author>
+            <name>christoph.kappestein</name>
+            <uri>http://github.com/k42b3</uri>
+        </author>
+        <updated>2014-10-26T16:15:00Z</updated>
+        <summary>
 In this post I will shortly explain the motivations of this blog and what 
 content you can expect.
-		</summary>
-		<category term="announcement" />
-		<category term="psx" />
-		<content type="html"><![CDATA[
+        </summary>
+        <category term="announcement" />
+        <category term="psx" />
+        <content type="html"><![CDATA[
 <p>Since the beginning of this project I was not very vocal about changes. 
 I have only maintained an <a href="https://github.com/k42b3/psx/blob/master/changelog.txt">changelog</a> 
 which contains almost every major change. Because this project nears the first 
@@ -2249,16 +2285,16 @@ be also a great learning resource to start with PSX. To give you an overview I
 have roughly outlined the content which will be covered:</p>
 
 <ul>
-	<li>PSX releases describe the changes and motiviations</li>
-	<li>Howto articles showcasing specific use cases implemented with PSX</li>
-	<li>RESTful API design</li>
-	<li><a href="http://www.php-fig.org/">PHP FIG</a> specifications and implementations of PSRs</li>
-	<li>API authentication and authorization (<a href="https://tools.ietf.org/html/rfc5849">OAuth</a>, <a href="https://tools.ietf.org/html/rfc6749">OAuth 2</a>, <a href="https://github.com/hueniverse/hawk">Hawk</a>)</li>
-	<li>Consuming and serving RESTful APIs</li>
-	<li>General PHP development</li>
-	<li>API first design (using the website as javascript client with i.e. <a href="https://angularjs.org/">AngularJS</a>, <a href="http://emberjs.com/">EmberJS</a>, <a href="http://facebook.github.io/react/">React</a>)</li>
-	<li>New technologies in RESTful API or PHP context</li>
+    <li>PSX releases describe the changes and motiviations</li>
+    <li>Howto articles showcasing specific use cases implemented with PSX</li>
+    <li>RESTful API design</li>
+    <li><a href="http://www.php-fig.org/">PHP FIG</a> specifications and implementations of PSRs</li>
+    <li>API authentication and authorization (<a href="https://tools.ietf.org/html/rfc5849">OAuth</a>, <a href="https://tools.ietf.org/html/rfc6749">OAuth 2</a>, <a href="https://github.com/hueniverse/hawk">Hawk</a>)</li>
+    <li>Consuming and serving RESTful APIs</li>
+    <li>General PHP development</li>
+    <li>API first design (using the website as javascript client with i.e. <a href="https://angularjs.org/">AngularJS</a>, <a href="http://emberjs.com/">EmberJS</a>, <a href="http://facebook.github.io/react/">React</a>)</li>
+    <li>New technologies in RESTful API or PHP context</li>
 </ul>
 ]]></content>
-	</entry>
+    </entry>
 </feed>
