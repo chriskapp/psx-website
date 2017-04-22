@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <?php include($location . '/inc/meta.html'); ?>
+</head>
+<body class="psx mdl-color--grey-200 mdl-color-text--grey-700 mdl-base">
+
+<?php include($location . '/inc/header.html'); ?>
+
+<form method="post" id="schemaForm">
+  <input type="hidden" id="data" name="data" value="">
+  <div class="mdl-cell mdl-cell--12-col mdl-shadow--2dp">
+    <div class="psx-section mdl-color--primary-contrast">
+      <h2 class="mdl-typography--display-1-color-contrast">JsonSchema generator</h2>
+      <p class="mdl-typography--subhead-color-contrast">This tool uses the PSX schema 
+      classes to convert a JsonSchema to HTML or PHP. Please report any bugs to 
+      the <a href="https://github.com/apioo/psx-schema">repository</a>.</p>
+      <div id="psx-jsonschema-editor"><?php echo !empty($in) ? $in : '{
+  "title": "Person",
+  "type": "object",
+  "properties": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "age": {
+      "description": "Age in years",
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "required": ["firstName", "lastName"]
+}'; ?></div>
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--2-col">
+          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+            <input type="radio" id="option-2" class="mdl-radio__button" name="type" value="html" checked>
+            <span class="mdl-radio__label">HTML</span>
+          </label>
+          <br>
+          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+            <input type="radio" id="option-1" class="mdl-radio__button" name="type" value="php">
+            <span class="mdl-radio__label">PHP</span>
+          </label>
+        </div>
+        <div class="mdl-cell mdl-cell--1-col">
+          <input type="submit" value="Generate" class="mdl-button mdl-js-button mdl-button--raised">
+        </div>
+      </div>
+    </div>
+    <?php if(!empty($out)): ?>
+    <div class="psx-section mdl-color--grey-100">
+      <?php echo $out; ?>
+    </div>
+    <?php endif; ?>
+  </div>
+</form>
+
+<?php include($location . '/inc/footer.html'); ?>
+
+<script src="<?php echo $base; ?>/js/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo $base; ?>/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+  var editor = ace.edit("psx-jsonschema-editor");
+  editor.setTheme("ace/theme/eclipse");
+  editor.getSession().setMode("ace/mode/json");
+
+  $("#schemaForm").on("submit", function(){
+    $("#data").val(editor.getValue());
+  });
+</script>
+
+</body>
+</html>
