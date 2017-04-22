@@ -13,8 +13,8 @@ GET /blog/category/:category Phpsx\Website\Application\Blog::doCategory
 GET /blog/feed               Phpsx\Website\Application\Blog::doFeed
 
 # schema editor
-GET /schema/editor           Phpsx\Website\Application\Schema\Editor::doIndex
-POST /schema/editor          Phpsx\Website\Application\Schema\Editor::doGenerate
+GET /schema/generator        Phpsx\Website\Application\Schema\Generator::doIndex
+POST /schema/generator       Phpsx\Website\Application\Schema\Generator::doGenerate
 
 # tutorials
 GET /create-a-rest-api-from-mysql Phpsx\Website\Application\Documentation\TutorialMysql::doIndex
