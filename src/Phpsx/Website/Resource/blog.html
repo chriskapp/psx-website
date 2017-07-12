@@ -2,7 +2,7 @@
 <html>
 <head>
 	<?php include($location . '/inc/meta.html'); ?>
-	<?php echo \PSX\Data\Writer\Atom\Writer::link('PSX', $router->getUrl('Phpsx\Website\Application\Blog::doFeed')); ?>
+	<?php echo \PSX\Data\Writer\Atom\Writer::link('PSX', $router->getAbsolutePath('Phpsx\Website\Application\Blog::doFeed')); ?>
 </head>
 <body class="psx mdl-color--grey-200 mdl-color-text--grey-700 mdl-base">
 
@@ -12,7 +12,7 @@
 	<?php if(!empty($entry)): ?>
 		<?php foreach($entry as $i => $row): ?>
 			<div class="psx-section mdl-color--primary-contrast psx-blog-entry">
-		        <h3 class="mdl-typography--title-color-contrast"><a href="<?php echo $router->getUrl('Phpsx\Website\Application\Blog::doDetail', ['title' => $row->titleSlug]); ?>" class="mdl-color-text--primary"><?php echo $row->title; ?></a></h3>
+		        <h3 class="mdl-typography--title-color-contrast"><a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Blog::doDetail', ['title' => $row->titleSlug]); ?>" class="mdl-color-text--primary"><?php echo $row->title; ?></a></h3>
 				<p><small>posted by <a href="<?php echo $row->authorUri; ?>"><?php echo $row->authorName; ?></a> on <?php echo date('Y-m-d', strtotime($row->updated)); ?></small></p>
 				<div class="mdl-typography--body-1-color-contrast"><?php echo $row->summary; ?></div>
 			</div>

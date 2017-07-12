@@ -28,7 +28,7 @@
     <div class="psx-section mdl-color--grey-100">
         <h3 class="mdl-typography--title-color-contrast" id="preparation">Preparation</h3>
         <p class="mdl-typography--body-1-color-contrast">As basis we use the 
-        sample project. The <a href="<?php echo $router->getUrl('Phpsx\Website\Application\Bootstrap::doIndex'); ?>" class="mdl-color-text--primary">getting started</a> 
+        sample project. The <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Bootstrap::doIndex'); ?>" class="mdl-color-text--primary">getting started</a> 
         guide covers in detail howto setup the sample project. Basically you 
         need to install the project through composer:</p>
         <pre>composer create-project psx/sample .</pre>
@@ -624,7 +624,7 @@ class Todo extends SchemaApiAbstract
 </code></pre>
         <p class="mdl-typography--body-1-color-contrast">If you have questions,
         problems or want to know more about PSX please take a look at the 
-        <a href="<?php echo $router->getUrl('Phpsx\Website\Application\Documentation::doIndex'); ?>" class="mdl-color-text--primary">documentation</a> 
+        <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Documentation::doIndex'); ?>" class="mdl-color-text--primary">documentation</a> 
         page.</p>
     </div>
 </div>
