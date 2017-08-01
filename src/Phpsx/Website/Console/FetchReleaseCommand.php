@@ -3,27 +3,27 @@
 namespace Phpsx\Website\Console;
 
 use DateTime;
+use Phpsx\Website\Table;
 use PSX\Framework\Config\Config;
 use PSX\Http\Client;
 use PSX\Http\GetRequest;
 use PSX\Json\Parser;
 use PSX\Record\RecordInterface;
-use PSX\Sql\TableManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class FetchReleaseCommand extends Command
 {
-    protected $tableManager;
+    protected $releaseTable;
     protected $http;
     protected $config;
 
-    public function __construct(TableManager $tableManager, Client $http, Config $config)
+    public function __construct(Table\Release $releaseTable, Client $http, Config $config)
     {
         parent::__construct();
 
-        $this->tableManager = $tableManager;
+        $this->releaseTable = $releaseTable;
         $this->http         = $http;
         $this->config       = $config;
     }
@@ -37,7 +37,6 @@ class FetchReleaseCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $table    = $this->tableManager->getTable('Phpsx\Website\Table\Release');
         $url      = sprintf('%s/repos/%s/%s/releases', $this->config['git_api'], $this->config['git_owner'], $this->config['git_repo']);
         $request  = new GetRequest($url, [
             'Accept'     => 'application/vnd.github.v3+json',
@@ -51,12 +50,12 @@ class FetchReleaseCommand extends Command
 
             foreach ($releases as $release) {
                 if ($release->draft === false) {
-                    $row = $table->getOneById($release->id);
+                    $row = $this->releaseTable->getOneById($release->id);
 
                     if (!$row instanceof RecordInterface) {
                         $asset = $this->getAsset($release);
 
-                        $table->create([
+                        $this->releaseTable->create([
                             'id'          => $release->id,
                             'tagName'     => $release->tag_name,
                             'htmlUrl'     => $release->html_url,

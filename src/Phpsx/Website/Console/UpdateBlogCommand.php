@@ -3,32 +3,32 @@
 namespace Phpsx\Website\Console;
 
 use Phpsx\Website\Slugify;
+use Phpsx\Website\Table;
 use PSX\Data\Payload;
 use PSX\Data\Processor;
 use PSX\Model\Atom\Atom;
 use PSX\Model\Atom\Entry;
 use PSX\Model\Atom\Person;
 use PSX\Record\RecordInterface;
-use PSX\Sql\TableManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class UpdateBlogCommand extends Command
 {
-    protected $tableManager;
+    protected $blogTable;
     protected $processor;
     protected $feedFile;
     protected $slugify;
 
-    public function __construct(TableManager $tableManager, Processor $processor, $feedFile)
+    public function __construct(Table\Blog $blogTable, Processor $processor, $feedFile)
     {
         parent::__construct();
 
-        $this->tableManager = $tableManager;
-        $this->processor    = $processor;
-        $this->feedFile     = $feedFile;
-        $this->slugify      = new Slugify();
+        $this->blogTable = $blogTable;
+        $this->processor = $processor;
+        $this->feedFile  = $feedFile;
+        $this->slugify   = new Slugify();
     }
 
     protected function configure()
@@ -41,16 +41,14 @@ class UpdateBlogCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $postCount = $putCount = 0;
+        $data      = file_get_contents($this->feedFile);
 
-        $table = $this->tableManager->getTable('Phpsx\Website\Table\Blog');
-        $data  = file_get_contents($this->feedFile);
-        
         /** @var Atom $atom */
         $atom  = $this->processor->read(Atom::class, Payload::create($data, 'application/atom+xml'));
 
         foreach ($atom->getEntry() as $entry) {
             /** @var Entry $entry */
-            $row    = $table->getOneById($entry->getId());
+            $row    = $this->blogTable->getOneById($entry->getId());
             $author = $this->getFirstAuthor($entry);
 
             if (!$author instanceof Person) {
@@ -59,7 +57,7 @@ class UpdateBlogCommand extends Command
 
             if (!$row instanceof RecordInterface) {
                 // the blog entry does not exist create it
-                $table->create([
+                $this->blogTable->create([
                     'id'         => $entry->getId(),
                     'title'      => $entry->getTitle(),
                     'titleSlug'  => $this->slugify->slugify($entry->getTitle()),
@@ -75,7 +73,7 @@ class UpdateBlogCommand extends Command
             } else {
                 if ($entry->getUpdated() > $row->updated) {
                     // if the update date has change update the entry
-                    $table->update([
+                    $this->blogTable->update([
                         'id'         => $entry->getId(),
                         'title'      => $entry->getTitle(),
                         'titleSlug'  => $this->slugify->slugify($entry->getTitle()),

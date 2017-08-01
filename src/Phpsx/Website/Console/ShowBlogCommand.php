@@ -2,8 +2,8 @@
 
 namespace Phpsx\Website\Console;
 
+use Phpsx\Website\Table\Blog;
 use PSX\Sql\Sql;
-use PSX\Sql\TableManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
@@ -11,13 +11,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ShowBlogCommand extends Command
 {
-    protected $tableManager;
+    protected $blogTable;
 
-    public function __construct(TableManager $tableManager)
+    public function __construct(Blog $blogTable)
     {
         parent::__construct();
 
-        $this->tableManager = $tableManager;
+        $this->blogTable = $blogTable;
     }
 
     protected function configure()
@@ -29,7 +29,7 @@ class ShowBlogCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $entries = $this->tableManager->getTable('Phpsx\Website\Table\Blog')->getAll(null, null, 'updated', Sql::SORT_DESC);
+        $entries = $this->blogTable->getAll(null, null, 'updated', Sql::SORT_DESC);
         $rows    = array();
 
         foreach ($entries as $entry) {

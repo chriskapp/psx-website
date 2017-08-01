@@ -2,8 +2,8 @@
 
 namespace Phpsx\Website\Console;
 
+use Phpsx\Website\Table\Release;
 use PSX\Sql\Sql;
-use PSX\Sql\TableManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
@@ -11,13 +11,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ShowReleaseCommand extends Command
 {
-    protected $tableManager;
+    protected $tableRelease;
 
-    public function __construct(TableManager $tableManager)
+    public function __construct(Release $tableRelease)
     {
         parent::__construct();
 
-        $this->tableManager = $tableManager;
+        $this->tableRelease = $tableRelease;
     }
 
     protected function configure()
@@ -29,7 +29,7 @@ class ShowReleaseCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $entries = $this->tableManager->getTable('Phpsx\Website\Table\Release')->getAll(null, null, 'publishedAt', Sql::SORT_DESC);
+        $entries = $this->tableRelease->getAll(null, null, 'publishedAt', Sql::SORT_DESC);
         $rows    = array();
 
         foreach ($entries as $entry) {
