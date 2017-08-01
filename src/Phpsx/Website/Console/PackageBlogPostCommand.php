@@ -80,7 +80,7 @@ class PackageBlogPostCommand extends Command
                 $summary = sprintf('Coverage of the %s release', $tag->name);
                 $content = <<<HTML
 <p>We have released version {$tag->name} of {$projectName}.<br>The complete
-changelog is available on the <a href="{$project->git}">repository</a>.</p>
+changelog is available at the <a href="{$project->git}">repository</a>.</p>
 HTML;
 
                 $this->blogTable->create([
