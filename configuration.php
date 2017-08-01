@@ -12,6 +12,7 @@ return array(
     // File which contains an atom feed with blog entries
     'disclosure_file'         => __DIR__ . '/disclosure.xml',
     'blog_file'               => __DIR__ . '/blog.xml',
+    'projects_file'           => __DIR__ . '/projects.json',
 
     // GIT repo data
     'git_api'                 => 'https://api.github.com',
