@@ -28,15 +28,19 @@ class OpenApi extends ViewAbstract
         $type = isset($body->type) ? $body->type : 'html';
         $data = isset($body->data) ? $body->data : '';
 
-        // parse openapi
-        $resolver  = new RefResolver();
-        $parser    = new Parser\OpenAPI(null, $resolver);
-        $resources = $parser->parseAll(json_encode(Yaml::parse($data)));
+        try {
+            // parse openapi
+            $resolver  = new RefResolver();
+            $parser    = new Parser\OpenAPI(null, $resolver);
+            $resources = $parser->parseAll(json_encode(Yaml::parse($data)));
 
-        // generate output
-        $results = [];
-        foreach ($resources as $path => $resource) {
-            $results[$path] = $this->generateResource($type, $resource);
+            // generate output
+            $results = [];
+            foreach ($resources as $path => $resource) {
+                $results[$path] = $this->generateResource($type, $resource);
+            }
+        } catch (\Exception $e) {
+            $results['Response'] = $e->getMessage();
         }
 
         $this->setBody([
