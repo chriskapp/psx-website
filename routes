@@ -5,6 +5,7 @@ GET /get-started             Phpsx\Website\Application\Bootstrap::doIndex
 GET /download                Phpsx\Website\Application\Download::doIndex
 GET /components              Phpsx\Website\Application\Components::doIndex
 GET /documentation           Phpsx\Website\Application\Documentation::doIndex
+GET /tools                   Phpsx\Website\Application\Tools::doIndex
 GET /security                Phpsx\Website\Application\Security::doIndex
 GET /disclosure              Phpsx\Website\Application\Disclosure::doIndex
 GET /blog                    Phpsx\Website\Application\Blog::doIndex
@@ -12,9 +13,11 @@ GET /blog/post/:title        Phpsx\Website\Application\Blog::doDetail
 GET /blog/category/:category Phpsx\Website\Application\Blog::doCategory
 GET /blog/feed               Phpsx\Website\Application\Blog::doFeed
 
-# schema editor
-GET /schema/generator        Phpsx\Website\Application\Schema\Generator::doIndex
-POST /schema/generator       Phpsx\Website\Application\Schema\Generator::doGenerate
+# tools
+GET /tools/jsonschema        Phpsx\Website\Application\Tools\JsonSchema::doIndex
+POST /tools/jsonschema       Phpsx\Website\Application\Tools\JsonSchema::doGenerate
+GET /tools/openapi           Phpsx\Website\Application\Tools\OpenApi::doIndex
+POST /tools/openapi          Phpsx\Website\Application\Tools\OpenApi::doGenerate
 
 # tutorials
 GET /create-a-rest-api-from-mysql Phpsx\Website\Application\Documentation\TutorialMysql::doIndex
