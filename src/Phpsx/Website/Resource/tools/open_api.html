@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <?php include($location . '/inc/meta.html'); ?>
+</head>
+<body class="psx mdl-color--grey-200 mdl-color-text--grey-700 mdl-base">
+
+<?php include($location . '/inc/header.html'); ?>
+
+<form method="post" id="schemaForm">
+  <input type="hidden" id="data" name="data" value="">
+  <div class="mdl-cell mdl-cell--12-col mdl-shadow--2dp">
+    <div class="psx-section mdl-color--primary-contrast">
+      <h2 class="mdl-typography--display-1-color-contrast">OpenAPI generator</h2>
+      <p class="mdl-typography--subhead-color-contrast">This tool uses the PSX api 
+      library to convert an OpenAPI specification to PHP, RAML, Swagger, OpenAPI 
+      or HTML. Please report any bugs to the <a href="https://github.com/apioo/psx-api">repository</a>.</p>
+      <div id="psx-jsonschema-editor"><?php echo !empty($in) ? $in : 'openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+  license:
+    name: MIT
+servers:
+  - url: http://petstore.swagger.io/v1
+paths:
+  /pets:
+    get:
+      summary: List all pets
+      operationId: listPets
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: An paged array of pets
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/Pets"
+        500:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Create a pet
+      operationId: createPets
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Pet"
+      responses:
+        201:
+          description: Null response
+        500:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /pets/{petId}:
+    get:
+      summary: Info for a specific pet
+      operationId: showPetById
+      parameters:
+        - name: petId
+          in: path
+          required: true
+          description: The id of the pet to retrieve
+          schema:
+            type: string
+      responses:
+        200:
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pets"
+        500:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Pet:
+      title: Pet
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        tag:
+          type: string
+      required:
+        - id
+        - name
+    Pets:
+      title: Pets
+      properties:
+        entries:
+          type: array
+          items:
+            $ref: "#/components/schemas/Pet"
+    Error:
+      title: Error
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string'; ?></div>
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--2-col">
+          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+            <input type="radio" id="option-1" class="mdl-radio__button" name="type" value="php" checked>
+            <span class="mdl-radio__label">PHP</span>
+          </label>
+          <br>
+          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+            <input type="radio" id="option-2" class="mdl-radio__button" name="type" value="raml">
+            <span class="mdl-radio__label">RAML</span>
+          </label>
+          <br>
+          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+            <input type="radio" id="option-3" class="mdl-radio__button" name="type" value="swagger">
+            <span class="mdl-radio__label">Swagger</span>
+          </label>
+          <br>
+          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-4">
+            <input type="radio" id="option-4" class="mdl-radio__button" name="type" value="openapi">
+            <span class="mdl-radio__label">OpenAPI</span>
+          </label>
+          <br>
+          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-5">
+            <input type="radio" id="option-5" class="mdl-radio__button" name="type" value="html">
+            <span class="mdl-radio__label">HTML</span>
+          </label>
+        </div>
+        <div class="mdl-cell mdl-cell--1-col">
+          <input type="submit" value="Generate" class="mdl-button mdl-js-button mdl-button--raised">
+        </div>
+      </div>
+    </div>
+    <?php if(!empty($out)): ?>
+    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+      <div class="mdl-tabs__tab-bar">
+        <?php $i = 0; foreach($out as $path => $result): ?>
+        <a href="#<?php echo md5($path); ?>" class="mdl-tabs__tab <?php echo $i == 0 ? "is-active" : ""; $i++; ?>"><?php echo $path; ?></a>
+        <?php endforeach; ?>
+      </div>
+      <?php $i = 0; foreach($out as $path => $result): ?>
+      <div class="mdl-tabs__panel <?php echo $i == 0 ? "is-active" : ""; $i++; ?>" id="<?php echo md5($path); ?>">
+        <div class="psx-section"><?php echo $result; ?></div>
+      </div>
+      <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
+  </div>
+</form>
+
+<?php include($location . '/inc/footer.html'); ?>
+
+<script src="<?php echo $base; ?>/js/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo $base; ?>/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+  var editor = ace.edit("psx-jsonschema-editor");
+  editor.setTheme("ace/theme/eclipse");
+  editor.getSession().setMode("ace/mode/yaml");
+
+  $("#schemaForm").on("submit", function(){
+    $("#data").val(editor.getValue());
+  });
+</script>
+
+</body>
+</html>

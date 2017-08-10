@@ -1,12 +1,12 @@
 <?php
 
-namespace Phpsx\Website\Application\Schema;
+namespace Phpsx\Website\Application\Tools;
 
 use PSX\Framework\Controller\ViewAbstract;
 use PSX\Schema\Generator as SchemaGenerator;
-use PSX\Schema\Parser\JsonSchema;
+use PSX\Schema\Parser;
 
-class Generator extends ViewAbstract
+class JsonSchema extends ViewAbstract
 {
     public function doIndex()
     {
@@ -19,8 +19,8 @@ class Generator extends ViewAbstract
         $data = isset($body->data) ? $body->data : '';
 
         // parse json schema
-        $resolver = new JsonSchema\RefResolver();
-        $parser   = new JsonSchema(null, $resolver);
+        $resolver = new Parser\JsonSchema\RefResolver();
+        $parser   = new Parser\JsonSchema(null, $resolver);
         $schema   = $parser->parse($data);
         
         // generate output

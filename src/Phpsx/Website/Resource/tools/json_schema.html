@@ -13,7 +13,7 @@
     <div class="psx-section mdl-color--primary-contrast">
       <h2 class="mdl-typography--display-1-color-contrast">JsonSchema generator</h2>
       <p class="mdl-typography--subhead-color-contrast">This tool uses the PSX schema 
-      classes to convert a JsonSchema to HTML or PHP. Please report any bugs to 
+      library to convert a JsonSchema to HTML or PHP. Please report any bugs to 
       the <a href="https://github.com/apioo/psx-schema">repository</a>.</p>
       <div id="psx-jsonschema-editor"><?php echo !empty($in) ? $in : '{
   "title": "Person",
@@ -35,14 +35,14 @@
 }'; ?></div>
       <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--2-col">
-          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-            <input type="radio" id="option-2" class="mdl-radio__button" name="type" value="html" checked>
-            <span class="mdl-radio__label">HTML</span>
+          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+            <input type="radio" id="option-1" class="mdl-radio__button" name="type" value="php" checked>
+            <span class="mdl-radio__label">PHP</span>
           </label>
           <br>
-          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-            <input type="radio" id="option-1" class="mdl-radio__button" name="type" value="php">
-            <span class="mdl-radio__label">PHP</span>
+          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+            <input type="radio" id="option-2" class="mdl-radio__button" name="type" value="html">
+            <span class="mdl-radio__label">HTML</span>
           </label>
         </div>
         <div class="mdl-cell mdl-cell--1-col">
@@ -51,8 +51,13 @@
       </div>
     </div>
     <?php if(!empty($out)): ?>
-    <div class="psx-section mdl-color--grey-100">
-      <?php echo $out; ?>
+    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+      <div class="mdl-tabs__tab-bar">
+        <a href="#schema" class="mdl-tabs__tab is-active">Schema</a>
+      </div>
+      <div class="mdl-tabs__panel is-active" id="schema">
+        <div class="psx-section"><?php echo $out; ?></div>
+      </div>
     </div>
     <?php endif; ?>
   </div>
