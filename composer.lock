@@ -1168,16 +1168,16 @@
         },
         {
             "name": "psx/api",
-            "version": "v2.2.2",
+            "version": "v2.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-api.git",
-                "reference": "f78de0888e97ad6f26af41a2727a58f022518419"
+                "reference": "b9229995bea97887ba62783b5459691184b73cc0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-api/zipball/f78de0888e97ad6f26af41a2727a58f022518419",
-                "reference": "f78de0888e97ad6f26af41a2727a58f022518419",
+                "url": "https://api.github.com/repos/apioo/psx-api/zipball/b9229995bea97887ba62783b5459691184b73cc0",
+                "reference": "b9229995bea97887ba62783b5459691184b73cc0",
                 "shasum": ""
             },
             "require": {
@@ -1223,7 +1223,7 @@
                 "swagger",
                 "wsdl"
             ],
-            "time": "2017-08-10T16:50:55+00:00"
+            "time": "2017-08-12T09:15:26+00:00"
         },
         {
             "name": "psx/cache",
@@ -1783,16 +1783,16 @@
         },
         {
             "name": "psx/schema",
-            "version": "v2.1.5",
+            "version": "v2.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apioo/psx-schema.git",
-                "reference": "920ef2ff843d9e09630be150f4d464716fea1231"
+                "reference": "635bb9267890923fbcfe12882ee8ae145f230abd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/920ef2ff843d9e09630be150f4d464716fea1231",
-                "reference": "920ef2ff843d9e09630be150f4d464716fea1231",
+                "url": "https://api.github.com/repos/apioo/psx-schema/zipball/635bb9267890923fbcfe12882ee8ae145f230abd",
+                "reference": "635bb9267890923fbcfe12882ee8ae145f230abd",
                 "shasum": ""
             },
             "require": {
@@ -1839,7 +1839,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2017-08-09T17:00:23+00:00"
+            "time": "2017-08-12T08:45:39+00:00"
         },
         {
             "name": "psx/sql",
