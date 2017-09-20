@@ -3,3 +3,9 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule (.*) /index.php/$1 [L]
+
+Redirect 301 /doc/manual.htm http://psx.readthedocs.io/en/latest/
+Redirect 301 /index.php/download.htm http://phpsx.org/download
+Redirect 301 /profile.htm/k42b3 http://christoph.kappestein.com/
+Redirect 301 /thanks.htm http://phpsx.org/
+Redirect 301 /doc/manual.xml.html http://psx.readthedocs.io/en/latest/
