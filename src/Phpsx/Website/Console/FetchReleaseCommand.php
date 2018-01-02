@@ -63,10 +63,10 @@ class FetchReleaseCommand extends Command
                             'authorName'  => $release->author->login,
                             'authorUri'   => $release->author->html_url,
                             'body'        => $release->body,
-                            'assetName'   => isset($asset->name) ? $asset->name : null,
-                            'assetUrl'    => isset($asset->browser_download_url) ? $asset->browser_download_url : null,
-                            'assetSize'   => isset($asset->size) ? $asset->size : null,
-                            'assetMime'   => isset($asset->content_type) ? $asset->content_type : null,
+                            'assetName'   => isset($asset->name) ? $asset->name : '',
+                            'assetUrl'    => isset($asset->browser_download_url) ? $asset->browser_download_url : '',
+                            'assetSize'   => isset($asset->size) ? $asset->size : '',
+                            'assetMime'   => isset($asset->content_type) ? $asset->content_type : '',
                         ]);
 
                         $count++;
