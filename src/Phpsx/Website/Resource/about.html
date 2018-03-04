@@ -44,14 +44,15 @@
                 <p class="mdl-typography--body-1-color-contrast">PSX gives you the 
                 possibility to define a clear schema for each API endpoint. The schema 
                 can be defined through annotations, as <b><a href="http://raml.org/" class="mdl-color-text--primary">RAML</a></b>
-                specification or directly in PHP. Because PSX has all informations how
-                the API is structured it can validate incoming and outgoing data according
-                to the schema.</p>
+                or <b><a href="https://www.openapis.org/" class="mdl-color-text--primary">OAI</a></b> 
+                specification or directly in PHP. Because PSX has all information how
+                the API is structured it can validate incoming and outgoing data 
+                according to the schema.</p>
 
                 <p class="mdl-typography--body-1-color-contrast">Based on the defined 
                 schema PSX can also generate different API definition formats like: 
                 <b><a href="http://example.phpsx.org/tool/raml/1/population" class="mdl-color-text--primary">RAML</a></b>
-                and <b><a href="http://example.phpsx.org/tool/swagger/1/population" class="mdl-color-text--primary">Swagger</a></b>.
+                or <b><a href="http://example.phpsx.org/tool/swagger/1/population" class="mdl-color-text--primary">Swagger</a></b>.
                 These formats can be used i.e. to automatically generate client-side
                 code.</p>
             </div>
@@ -70,14 +71,14 @@
      * @QueryParam(name="count", type="integer")
      * @Outgoing(code=200, schema="Acme\Collection")
      */
-    public function doGet()
+    public function doGet(HttpContextInterface $context)
     {
     }
 
     /**
      * @Incoming(schema="Acme\Entry")
      */
-    public function doPost($entry)
+    public function doPost($entry, HttpContextInterface $context)
     {
     }
 }</code></pre>
@@ -100,7 +101,7 @@
     /**
      * @Incoming(schema="Acme\News")
      */
-    protected function doPost($news);
+    protected function doPost($news, HttpContextInterface $context)
     {
         // @TODO do something with the news
         $news-&gt;getTitle();
@@ -184,7 +185,7 @@ class News
                     <div class="mdl-tabs__panel is-active" id="response-controller">
                         <pre><code class="php">class Endpoint extends SchemaApiAbstract
 {
-    protected function doGet();
+    protected function doGet(HttpContextInterface $context);
     {
         return [
             'totalResults' => 2,
@@ -300,10 +301,10 @@ class News
                 <h3 class="mdl-typography--title-color-contrast">Code generation</h3>
                 <p class="mdl-typography--body-1-color-contrast">PSX provides a 
                 CLI command to generate different classes. I.e. it is possible
-                to generate a POPO based on a jsonschema or to generate a 
-                controller class based on a RAML specification. These generated 
-                classes can then be used to rapidly develop the defined API 
-                endpoint.</p>
+                to generate a <abbr title="Plain Old PHP Object">POPO</abbr> based 
+                on a jsonschema or to generate a controller class based on a RAML 
+                specification. These generated classes can then be used to rapidly 
+                develop the defined API endpoint.</p>
             </div>
         </div>
     </div>
@@ -331,7 +332,7 @@ class News
     public function testHelloWorld()
     {
         // send request to the controller
-        $response = $this-&gt;sendRequest('http://127.0.0.1/foo', 'GET');
+        $response = $this-&gt;sendRequest('/foo', 'GET');
         $body     = (string) $response->getBody();
 
         $this-&gt;assertEquals(200, $response->getStatusCode());
@@ -357,18 +358,27 @@ class News
                         <a href="#routing-controller" class="mdl-tabs__tab">Controller</a>
                     </div>
                     <div class="mdl-tabs__panel is-active" id="routing-file">
-                        <pre>GET      /news             Acme\News\Application\Index::doIndex
-GET      /news/:news_id    Acme\News\Application\Index::doDetail
-GET      /bar/$foo&lt;[0-9]+&gt; Acme\News\Application\Article
-GET      /download/*file   Acme\News\Application\Download
-GET|POST /bar              Acme\News\Application\BarApi</pre>
+                        <pre><code class="php">return [
+    [['ANY'], '/news', 'Acme\News\Application\Index'],
+    [['GET'], '/news/:news_id', 'Acme\News\Application\Detail'],
+    [['GET', 'POST'], '/bar/$foo&lt;[0-9]+&gt;', 'Acme\News\Application\Article'],
+    [['GET'], '/download/*file', 'Acme\News\Application\Download'],
+    [['GET'], '/hello', function(RequestInterface $request, ResponseInterface $response, FilterChainInterface $filterChain){
+        // write response
+        $response->setHeader('Content-Typ', 'text/plain');
+        $response->getBody()->write('Hello World!');
+
+        $filterChain->handle($request, $response);
+    }],
+];
+</code></pre>
                     </div>
                     <div class="mdl-tabs__panel" id="routing-controller">
                         <pre><code class="php">class Index extends SchemaApiAbstract
 {
-    public function doGet()
+    public function doGet(HttpContextInterface $context)
     {
-        $newsId = $this-&gt;getUriFragment('news_id');
+        $newsId = $context-&gt;getUriFragment('news_id');
 
         // @TODO work with the news id
     }
@@ -379,10 +389,10 @@ GET|POST /bar              Acme\News\Application\BarApi</pre>
             <div class="mdl-cell mdl-cell--6-col">
                 <h3 class="mdl-typography--title-color-contrast">Routing</h3>
                 <p class="mdl-typography--body-1-color-contrast">PSX uses a simple 
-                routing file which was inspired by the Java <a href="https://www.playframework.com/" class="mdl-color-text--primary">Play-Framework</a>.
-                We can specify the allowed request methods, the path and the controller which
-                should be called. In the example controller we access the dynamic part
-                of the path.</p>
+                routing file where it is possible to specify the allowed methods, 
+                the route and the controller. Normally every route has a simple
+                class as controller but it is also possible to specify a closure.
+                In the example controller we access the dynamic part of the path.</p>
             </div>
         </div>
     </div>

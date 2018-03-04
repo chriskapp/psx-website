@@ -11,7 +11,7 @@
     <div class="psx-section mdl-color--primary-contrast">
         <h2 class="mdl-typography--display-1-color-contrast">Create a REST API from MySQL database</h2>
         <p class="mdl-typography--subhead-color-contrast">This tutorial is a 
-        step by step guide howto build a simple REST API with a MySQL database 
+        step by step guide how to build a simple REST API with a MySQL database 
         as backend using the PSX framework. We will create a API around a table 
         where we can receive and create todo entries.</p>
         <ul>
@@ -97,9 +97,10 @@ INSERT INTO `todo_entry` (`id`, `authorId`, `title`, `insertDate`) VALUES
     <div class="psx-section mdl-color--grey-100">
         <h3 class="mdl-typography--title-color-contrast" id="models">Models</h3>
         <p class="mdl-typography--body-1-color-contrast">At first we model simple
-        POPOs which will contain the request and response data of our API. We 
-        add also annotations to the properties so that we can automatically 
-        generate a JsonSchema from these models.</p>
+        <abbr title="Plain Old PHP Objects">POPOs</abbr> which will contain the 
+        request and response data of our API. We add also annotations to the 
+        properties so that we can automatically generate a JsonSchema from these
+        models.</p>
         <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
             <div class="mdl-tabs__tab-bar">
                 <a href="#model-entry" class="mdl-tabs__tab is-active">Entry</a>
@@ -402,13 +403,14 @@ namespace Acme\Endpoint;
 
 use Acme\Table\Todo\Entry;
 use PSX\Framework\Controller\SchemaApiAbstract;
+use PSX\Http\Environment\HttpContextInterface;
 
 class Todo extends SchemaApiAbstract
 {
     /**
      * @Outgoing(code=200, schema="Acme\Model\Todo\Collection")
      */
-    protected function doGet()
+    protected function doGet(HttpContextInterface $context)
     {
     }
 
@@ -416,7 +418,7 @@ class Todo extends SchemaApiAbstract
      * @Incoming(schema="Acme\Model\Todo\Entry")
      * @Outgoing(code=200, schema="Acme\Model\Todo\Message")
      */
-    protected function doPost($record)
+    protected function doPost($record, HttpContextInterface $context)
     {
     }
 }
@@ -534,11 +536,13 @@ class Author extends TableAbstract
             </div>
         </div>
 
-        <p class="mdl-typography--body-1-color-contrast psx-alert psx-alert-info"><b>Note:</b> To simplify things we use the table classes directly in the controller.
+        <p class="mdl-typography--body-1-color-contrast psx-alert psx-alert-info"><b>Note:</b> 
+        To simplify things we use the table classes directly in the controller.
         Normally it is best practice to use only services in the controller and
         the service has then access to the database layer.</p>
 
-        <p class="mdl-typography--body-1-color-contrast">We can then use the generated table classes inside the controller:</p>
+        <p class="mdl-typography--body-1-color-contrast">We can then use the 
+        generated table classes inside the controller:</p>
         <pre><code class="php">&lt;?php
 // File: src/Acme/Endpoint/Todo.php
 
@@ -546,6 +550,7 @@ namespace Acme\Endpoint;
 
 use Acme\Table\Todo\Entry;
 use PSX\Framework\Controller\SchemaApiAbstract;
+use PSX\Http\Environment\HttpContextInterface;
 
 class Todo extends SchemaApiAbstract
 {
@@ -558,7 +563,7 @@ class Todo extends SchemaApiAbstract
     /**
      * @Outgoing(code=200, schema="Acme\Model\Todo\Collection")
      */
-    protected function doGet()
+    protected function doGet(HttpContextInterface $context)
     {
         return $this-&gt;tableManager-&gt;getTable('Acme\Model\Todo\Entry')-&gt;getEntries();
     }
@@ -567,7 +572,7 @@ class Todo extends SchemaApiAbstract
      * @Incoming(schema="Acme\Model\Todo\Entry")
      * @Outgoing(code=200, schema="Acme\Model\Todo\Message")
      */
-    protected function doPost($record)
+    protected function doPost($record, HttpContextInterface $context)
     {
         $this-&gt;tableManager-&gt;getTable('Acme\Model\Todo\Entry')-&gt;insert([
             'title' =&gt; $record-&gt;title,
@@ -589,8 +594,8 @@ class Todo extends SchemaApiAbstract
         <p class="mdl-typography--body-1-color-contrast">To make the controller
         accessible we have to define a route. PSX uses a simple routing file
         which contains all available routes. Add the following entry to the 
-        <code>routing</code> file to make the controller accessible.</p>
-        <pre>GET|POST|PUT|DELETE /todo Acme\Endpoint\Todo</pre>
+        <code>routing.php</code> file to make the controller accessible.</p>
+        <pre>[['ANY'], '/todo', 'Acme\Endpoint\Todo']</pre>
     </div>
 
     <div class="psx-section mdl-color--grey-100">
