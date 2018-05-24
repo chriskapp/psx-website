@@ -7,6 +7,7 @@ GET /components              Phpsx\Website\Application\Components::doIndex
 GET /documentation           Phpsx\Website\Application\Documentation::doIndex
 GET /tools                   Phpsx\Website\Application\Tools::doIndex
 GET /security                Phpsx\Website\Application\Security::doIndex
+GET /imprint                 Phpsx\Website\Application\Imprint::doIndex
 GET /disclosure              Phpsx\Website\Application\Disclosure::doIndex
 GET /blog                    Phpsx\Website\Application\Blog::doIndex
 GET /blog/post/:title        Phpsx\Website\Application\Blog::doDetail
