@@ -8,7 +8,7 @@
         <title>Version 3.0 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2016-12-24T13:47:00Z</updated>
         <summary>
@@ -44,7 +44,7 @@ to see a detailed list of the changes and how to upgrade a 2.x installation to
         <title>Project status and updates</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2016-09-11T10:05:00Z</updated>
         <summary>
@@ -80,7 +80,7 @@ quickly setup an API program.</p>
         <title>Version 2.0 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2016-05-08T23:26:00Z</updated>
         <summary>
@@ -159,7 +159,7 @@ will cover all changes.</p>
         <title>Version 2.0 RC1</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2016-04-29T22:06:00Z</updated>
         <summary>
@@ -187,7 +187,7 @@ lifecycle.</p>
         <title>Version 1.2.1 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2016-02-07T18:59:00Z</updated>
         <summary>
@@ -244,7 +244,7 @@ coverage of the changelog:</p>
         <title>Version 1.2 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2016-01-24T20:28:00Z</updated>
         <summary>
@@ -304,7 +304,7 @@ following we go in detail through the changelog:</p>
         <title>Website update and version 1.1.4 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2015-12-29T12:03:00Z</updated>
         <summary>
@@ -360,7 +360,7 @@ In the following the coverage of the changelog:</p>
         <title>Version 1.1.2 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2015-12-27T02:05:00Z</updated>
         <summary>
@@ -414,7 +414,7 @@ following the coverage of the changelog.</p>
         <title>Version 1.1.1 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2015-11-21T21:10:00Z</updated>
         <summary>
@@ -522,7 +522,7 @@ the following the complete changelog.</p>
         <title>Version 1.1.0 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2015-10-05T18:35:00Z</updated>
         <summary>
@@ -579,7 +579,7 @@ the complete changlog.</p>
         <title>Version 1.0.6 and 1.0.7 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2015-08-22T13:19:00Z</updated>
         <summary>
@@ -649,7 +649,7 @@ following the coverage of both changelogs.</p>
         <title>Version 1.0.5 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2015-07-23T18:36:00Z</updated>
         <summary>
@@ -683,7 +683,7 @@ use PSX for HTML presentation. In the following the changelog.</p>
         <title>Version 1.0.4 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2015-07-05T23:21:00Z</updated>
         <summary>
@@ -741,7 +741,7 @@ changelog.</p>
         <title>Version 1.0.3 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2015-06-14T20:29:00Z</updated>
         <summary>
@@ -797,7 +797,7 @@ and outgoing data was unified. In the following the changelog</p>
         <title>Version 1.0.2 hotfix released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2015-05-23T19:26:00Z</updated>
         <summary>
@@ -819,7 +819,7 @@ work correct. More detailed informations about the problem at the
         <title>Version 1.0.1 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2015-05-22T19:13:00Z</updated>
         <summary>
@@ -887,7 +887,7 @@ coverage of the complete changelog.</p>
         <title>Security process and website update</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2015-05-04T23:04:00Z</updated>
         <summary>
@@ -912,7 +912,7 @@ page to help new users to quickly get a running PSX environment.</p>
         <title>First stable 1.0 release</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2015-05-02T18:37:00Z</updated>
         <summary>
@@ -951,7 +951,7 @@ tuned.</p>
         <title>Version 0.9.10 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2015-04-19T00:52:00Z</updated>
         <summary>
@@ -1028,7 +1028,7 @@ expect to release soon the first stable version.</p>
         <title>New release 0.9.9 and website update</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2015-04-06T18:30:00Z</updated>
         <summary>
@@ -1139,7 +1139,7 @@ the following the combined changelog of the 0.9.8 and 0.9.9 release.</p>
         <title>Version 0.9.7 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2015-03-22T15:48:00Z</updated>
         <summary>
@@ -1230,7 +1230,7 @@ license was changed from GPLv3 to Apache 2.0. In the following the changelog.</p
         <title>Version 0.9.6 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2015-02-23T20:04:00Z</updated>
         <summary>
@@ -1343,7 +1343,7 @@ following I will cover the points of the changelog:</p>
         <title>Version 0.9.5 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2015-02-09T22:58:00Z</updated>
         <summary>
@@ -1405,7 +1405,7 @@ release. In the following the coverage of the changelog:</p>
         <title>HTTP based middlewares</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2015-02-03T21:59:00Z</updated>
         <summary>
@@ -1515,7 +1515,7 @@ also probably go the mutable way.</p>
         <title>Version 0.9.4 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2015-01-15T21:20:00Z</updated>
         <summary>
@@ -1623,7 +1623,7 @@ following I will cover each point of the changelog.</p>
         <title>PHP request and response lifecycle</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2014-12-28T18:10:00Z</updated>
         <summary>
@@ -1799,7 +1799,7 @@ probably the reason why PHP is so popular.</p>
         <title>Example API introduction</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2014-12-14T22:19:00Z</updated>
         <summary>
@@ -1840,7 +1840,7 @@ wherewith you can discover all available API endpoints.</p>
         <title>Version 0.9.3 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2014-11-30T15:17:00Z</updated>
         <summary>
@@ -1931,7 +1931,7 @@ and explain more detailed about the changes and the reasoning behind it.</p>
         <title>Consume an REST API through SOAP</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2014-11-16T15:06:00Z</updated>
         <summary>
@@ -2065,7 +2065,7 @@ API in the first place.</p>
         <title>Version 0.9.2 released</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2014-11-15T18:57:00Z</updated>
         <summary>
@@ -2158,7 +2158,7 @@ and explain more detailed about the changes and the reasoning behind it.</p>
         <title>RESTful API versioning with PSX</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2014-11-01T20:31:00Z</updated>
         <summary>
@@ -2264,7 +2264,7 @@ containing a message that the version is deprecated. If the view is closed an
         <title>First blog introduction</title>
         <author>
             <name>christoph.kappestein</name>
-            <uri>http://github.com/k42b3</uri>
+            <uri>https://github.com/chriskapp</uri>
         </author>
         <updated>2014-10-26T16:15:00Z</updated>
         <summary>
