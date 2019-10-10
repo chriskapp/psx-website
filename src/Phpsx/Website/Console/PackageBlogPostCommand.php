@@ -69,7 +69,7 @@ class PackageBlogPostCommand extends Command
         if (empty($post)) {
             $request  = new GetRequest($tag->commit->url, [
                 'Accept'     => 'application/vnd.github.v3+json',
-                'User-Agent' => 'PSX-Website-Updater (https://github.com/k42b3)',
+                'User-Agent' => 'PSX-Website-Updater (https://github.com/chriskapp)',
             ]);
             $response = $this->httpClient->request($request);
 
@@ -88,7 +88,7 @@ HTML;
                     'title'      => $title,
                     'titleSlug'  => $this->slugify->slugify($title),
                     'authorName' => 'christoph.kappestein',
-                    'authorUri'  => 'http://github.com/k42b3',
+                    'authorUri'  => 'https://github.com/chriskapp',
                     'updated'    => new \DateTime($commit->commit->author->date),
                     'summary'    => $summary,
                     'category'   => ['release', 'psx'],
