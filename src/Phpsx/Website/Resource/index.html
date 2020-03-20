@@ -21,13 +21,13 @@ clean and documented REST APIs.</h3>
         </p>
         <ul class="mdl-typography--subhead-color-contrast">
             <li>Automatic <a href="http://example.phpsx.org/documentation/#!/api/" class="mdl-color-text--primary">documentation</a> generation</li>
-            <li>Generate <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Tools\OpenApi::doIndex'); ?>">controller</a> and <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Tools\JsonSchema::doIndex'); ?>">model</a> classes from a schema API specification</li>
+            <li>Generate <a href="<?php echo $router->getAbsolutePath(Phpsx\Website\Application\Tools\OpenApi::class); ?>">controller</a> and <a href="<?php echo $router->getAbsolutePath(Phpsx\Website\Application\Tools\JsonSchema::class); ?>">model</a> classes from a schema API specification</li>
             <li>Work with <abbr title="Plain Old PHP Objects">POPOs</abbr> for incoming and outgoing data</li>
             <li>Automatic generation of schema specifications (<a href="https://openapis.org/" class="mdl-color-text--primary">OpenAPI</a>, <a href="http://raml.org/" class="mdl-color-text--primary">RAML</a>)</li>
-            <li>Validate incoming data based on <a href="http://json-schema.org/" class="mdl-color-text--primary">JsonSchema</a></li>
-            <li>Based on multiple independent <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Components::doIndex'); ?>" class="mdl-color-text--primary">components</a></li>
+            <li>Validate incoming data based on <a href="https://typeschema.org/" class="mdl-color-text--primary">TypeSchema</a></li>
+            <li>Based on multiple independent <a href="<?php echo $router->getAbsolutePath(Phpsx\Website\Application\Components::class); ?>" class="mdl-color-text--primary">components</a></li>
         </ul>
-        <p class="mdl-typography--body-1-color-contrast psx-alert psx-alert-info">Please take a look at the <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Documentation\TutorialMysql::doIndex'); ?>">getting started tutorial</a> 
+        <p class="mdl-typography--body-1-color-contrast psx-alert psx-alert-info">Please take a look at the <a href="<?php echo $router->getAbsolutePath(Phpsx\Website\Application\Documentation\TutorialMysql::class); ?>">getting started tutorial</a> 
         for a step by step guide how to build an API based on a database.</p>
     </div>
     <div class="psx-section mdl-color--primary-contrast">
@@ -169,12 +169,12 @@ clean and documented REST APIs.</h3>
     <div class="psx-section mdl-color--grey-100">
         <p class="mdl-typography--subhead-color-contrast">This was only a short introduction to give you an insight how a PSX 
         application works. If you are excited about the possibilities as we are you 
-        can read the <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\About::doIndex'); ?>" class="mdl-color-text--primary">about</a>
+        can read the <a href="<?php echo $router->getAbsolutePath(Phpsx\Website\Application\About::class); ?>" class="mdl-color-text--primary">about</a>
         page for more information or checkout the offical <a href="http://psx.readthedocs.org/en/latest/" class="mdl-color-text--primary">documentation</a>.</p>
         <br>
         <div style="text-align:center">
-            <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Bootstrap::doIndex'); ?>" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Get started</a>
-            <a href="<?php echo $router->getAbsolutePath('Phpsx\Website\Application\Download::doIndex'); ?>" class="mdl-button mdl-js-button mdl-button--raised">Download</a>
+            <a href="<?php echo $router->getAbsolutePath(Phpsx\Website\Application\Bootstrap::class); ?>" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Get started</a>
+            <a href="<?php echo $router->getAbsolutePath(Phpsx\Website\Application\Download::class); ?>" class="mdl-button mdl-js-button mdl-button--raised">Download</a>
         </div>
     </div>
 </div>

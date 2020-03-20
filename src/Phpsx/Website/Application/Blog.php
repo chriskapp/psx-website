@@ -4,9 +4,12 @@ namespace Phpsx\Website\Application;
 
 use PSX\Framework\Controller\ViewAbstract;
 use PSX\Http\Exception as StatusCode;
+use PSX\Http\RequestInterface;
+use PSX\Http\ResponseInterface;
 use PSX\Http\Stream\TempStream;
 use PSX\Record\RecordInterface;
 use PSX\Sql\Condition;
+use Phpsx\Website\Table;
 
 class Blog extends ViewAbstract
 {
@@ -18,66 +21,35 @@ class Blog extends ViewAbstract
      */
     protected $tableManager;
 
-    /**
-     * @Inject
-     * @var \PSX\Framework\Loader\ReverseRouter
-     */
-    protected $reverseRouter;
-
-    public function doIndex()
+    public function onGet(RequestInterface $request, ResponseInterface $response)
     {
-        $table        = $this->tableManager->getTable('Phpsx\Website\Table\Blog');
-        $totalResults = $table->getCount();
-        $selfUrl      = $this->reverseRouter->getUrl(__METHOD__);
-        $startIndex   = $this->getStartIndex();
+        $table    = $this->tableManager->getTable(Table\Blog::class);
+        $category = $this->context->getParameter('category');
 
-        $this->setBody([
+        $condition = null;
+        if (empty($category)) {
+            $condition = new Condition(['category', 'LIKE', '%' . $category . '%']);
+        }
+
+        $totalResults = $table->getCount($condition);
+        $startIndex   = $this->getStartIndex((int) $request->getUri()->getParameter('startIndex'));
+
+        if (empty($category)) {
+            $entries = $table->getIndexEntries($startIndex);
+            $selfUrl = $this->reverseRouter->getUrl(__METHOD__);
+        } else {
+            $entries = $table->getEntriesByCategory($category, $startIndex);
+            $selfUrl = $this->reverseRouter->getUrl(__METHOD__, ['category' => $category]);
+        }
+
+        $data = [
             'totalResults' => $totalResults,
             'startIndex'   => $startIndex,
-            'entry'        => $table->getIndexEntries($startIndex),
+            'entry'        => $entries,
             'links'        => $this->getLinks($selfUrl, $startIndex, $totalResults),
-        ]);
-    }
+        ];
 
-    public function doDetail()
-    {
-        $table = $this->tableManager->getTable('Phpsx\Website\Table\Blog');
-        $entry = $table->getOneByTitleSlug($this->getUriFragment('title'));
-
-        if ($entry instanceof RecordInterface) {
-            $this->template->set('blog_detail.html');
-
-            $this->setBody($entry);
-        } else {
-            throw new StatusCode\NotFoundException('Entry not found');
-        }
-    }
-
-    public function doCategory()
-    {
-        $table        = $this->tableManager->getTable('Phpsx\Website\Table\Blog');
-        $category     = $this->getUriFragment('category');
-        $totalResults = $table->getCount(new Condition(['category', 'LIKE', '%' . $category . '%']));
-
-        if ($totalResults > 0) {
-            $selfUrl      = $this->reverseRouter->getUrl(__METHOD__, ['category' => $category]);
-            $startIndex   = $this->getStartIndex();
-
-            $this->setBody([
-                'totalResults' => $totalResults,
-                'startIndex'   => $startIndex,
-                'entry'        => $table->getEntriesByCategory($category, $startIndex),
-                'links'        => $this->getLinks($selfUrl, $startIndex, $totalResults),
-            ]);
-        } else {
-            throw new StatusCode\NotFoundException('Category does not exist');
-        }
-    }
-
-    public function doFeed()
-    {
-        $this->setHeader('Content-Type', 'application/atom+xml');
-        $this->setBody(new TempStream(fopen($this->config['blog_file'], 'r')));
+        $this->render($response, __DIR__ . '/../Resource/blog.html', $data);
     }
 
     /**
@@ -109,9 +81,8 @@ class Blog extends ViewAbstract
      *
      * @return integer
      */
-    protected function getStartIndex()
+    protected function getStartIndex($startIndex)
     {
-        $startIndex = (int) $this->getParameter('startIndex');
         $startIndex = $startIndex < 0 ? 0 : $startIndex;
         $startIndex = $startIndex % self::ITEMS_PER_PAGE !== 0 ? $startIndex - ($startIndex % self::ITEMS_PER_PAGE) : $startIndex;
 

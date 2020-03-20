@@ -6,6 +6,8 @@ use PSX\Api\Resource;
 use PSX\Framework\Controller\ViewAbstract;
 use PSX\Api\Parser;
 use PSX\Api\Generator;
+use PSX\Http\RequestInterface;
+use PSX\Http\ResponseInterface;
 use PSX\Schema\Generator\Html;
 use PSX\Schema\Parser\JsonSchema\RefResolver;
 use Symfony\Component\Yaml\Yaml;
@@ -16,15 +18,16 @@ class OpenApi extends ViewAbstract
      * @Inject
      * @var \Doctrine\Common\Annotations\Reader
      */
-    protected $annotationReader;
+    protected $annotationReaderFactory;
 
-    public function doIndex()
+    public function onGet(RequestInterface $request, ResponseInterface $response)
     {
+        $this->render($response, __DIR__ . '/../../Resource/tools/open_api.html', []);
     }
 
-    public function doGenerate()
+    public function onPost(RequestInterface $request, ResponseInterface $response)
     {
-        $body = $this->getBody();
+        $body = $this->requestReader->getBody($request);
         $type = isset($body->type) ? $body->type : 'html';
         $data = isset($body->data) ? $body->data : '';
 
@@ -43,10 +46,12 @@ class OpenApi extends ViewAbstract
             $results['Response'] = $e->getMessage();
         }
 
-        $this->setBody([
+        $data = [
             'in'  => htmlspecialchars($data),
             'out' => $results,
-        ]);
+        ];
+
+        $this->render($response, __DIR__ . '/../../Resource/tools/open_api.html', $data);
     }
 
     /**

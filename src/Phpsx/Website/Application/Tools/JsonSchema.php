@@ -3,19 +3,27 @@
 namespace Phpsx\Website\Application\Tools;
 
 use PSX\Framework\Controller\ViewAbstract;
+use PSX\Http\RequestInterface;
+use PSX\Http\ResponseInterface;
 use PSX\Schema\Generator as SchemaGenerator;
+use PSX\Schema\GeneratorFactory;
 use PSX\Schema\Parser;
 use PSX\Schema\SchemaInterface;
 
 class JsonSchema extends ViewAbstract
 {
-    public function doIndex()
+    public function onGet(RequestInterface $request, ResponseInterface $response)
     {
+        $data = [
+            'types' => GeneratorFactory::getPossibleTypes()
+        ];
+    
+        $this->render($response, __DIR__ . '/../../Resource/tools/json_schema.html', $data);
     }
 
-    public function doGenerate()
+    public function onPost(RequestInterface $request, ResponseInterface $response)
     {
-        $body = $this->getBody();
+        $body = $this->requestReader->getBody($request);
         $type = isset($body->type) ? $body->type : 'html';
         $data = isset($body->data) ? $body->data : '';
 
@@ -31,10 +39,13 @@ class JsonSchema extends ViewAbstract
             $result = $e->getMessage();
         }
 
-        $this->setBody([
+        $data = [
+            'types' => GeneratorFactory::getPossibleTypes(),
             'in'  => htmlspecialchars($data),
             'out' => $result,
-        ]);
+        ];
+
+        $this->render($response, __DIR__ . '/../../Resource/tools/json_schema.html', $data);
     }
 
     /**

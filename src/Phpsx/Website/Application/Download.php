@@ -3,7 +3,10 @@
 namespace Phpsx\Website\Application;
 
 use PSX\Framework\Controller\ViewAbstract;
+use PSX\Http\RequestInterface;
+use PSX\Http\ResponseInterface;
 use PSX\Sql;
+use Phpsx\Website\Table;
 
 class Download extends ViewAbstract
 {
@@ -13,11 +16,11 @@ class Download extends ViewAbstract
      */
     protected $tableManager;
 
-    public function doIndex()
+    public function onGet(RequestInterface $request, ResponseInterface $response)
     {
-        $release = $this->tableManager->getTable('Phpsx\Website\Table\Release')->getLatestRelease();
+        $release = $this->tableManager->getTable(Table\Release::class)->getLatestRelease();
 
-        $this->setBody([
+        $data = [
             'links' => [[
                 'rel'         => 'composer',
                 'title'       => 'Composer',
@@ -34,6 +37,8 @@ class Download extends ViewAbstract
                 'href'        => $release['htmlUrl'],
                 'description' => 'Latest repository tag',
             ]]
-        ]);
+        ];
+
+        $this->render($response, __DIR__ . '/../Resource/download.html', $data);
     }
 }

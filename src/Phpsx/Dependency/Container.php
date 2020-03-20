@@ -4,20 +4,11 @@ namespace Phpsx\Dependency;
 
 use Phpsx\Website\Console;
 use Phpsx\Website\Table;
-use PSX\Framework\Data\Writer as FrameworkWriter;
 use PSX\Framework\Dependency\DefaultContainer;
 use Symfony\Component\Console\Application;
 
 class Container extends DefaultContainer
 {
-    public function getIo()
-    {
-        $processor = parent::getIo();
-        $processor->getConfiguration()->getWriterFactory()->addWriter(new FrameworkWriter\Text($this->get('template'), $this->get('reverse_router')), 39);
-
-        return $processor;
-    }
-
     protected function appendConsoleCommands(Application $application)
     {
         parent::appendConsoleCommands($application);

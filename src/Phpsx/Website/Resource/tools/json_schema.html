@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <?php include($location . '/inc/meta.html'); ?>
+    <?php include($location . '/../inc/meta.html'); ?>
 </head>
 <body class="psx mdl-color--grey-200 mdl-color-text--grey-700 mdl-base">
 
-<?php include($location . '/inc/header.html'); ?>
+<?php include($location . '/../inc/header.html'); ?>
 
 <form method="post" id="schemaForm">
   <input type="hidden" id="data" name="data" value="">
@@ -35,15 +35,11 @@
 }'; ?></div>
       <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--2-col">
-          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-            <input type="radio" id="option-1" class="mdl-radio__button" name="type" value="php" checked>
-            <span class="mdl-radio__label">PHP</span>
-          </label>
-          <br>
-          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-            <input type="radio" id="option-2" class="mdl-radio__button" name="type" value="html">
-            <span class="mdl-radio__label">HTML</span>
-          </label>
+          <select name="type">
+            <?php foreach($types as $type): ?>
+            <option><?php echo $type; ?></option>
+            <?php endforeach; ?>
+          </select>
         </div>
         <div class="mdl-cell mdl-cell--1-col">
           <input type="submit" value="Generate" class="mdl-button mdl-js-button mdl-button--raised">
@@ -63,7 +59,7 @@
   </div>
 </form>
 
-<?php include($location . '/inc/footer.html'); ?>
+<?php include($location . '/../inc/footer.html'); ?>
 
 <script src="<?php echo $base; ?>/js/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?php echo $base; ?>/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>

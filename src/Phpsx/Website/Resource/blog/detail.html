@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<?php include($location . '/inc/meta.html'); ?>
-	<?php echo \PSX\Data\Writer\Atom\Writer::link('PSX', $router->getAbsolutePath('Phpsx\Website\Application\Blog::doFeed')); ?>
+	<?php include($location . '/../inc/meta.html'); ?>
+	<?php echo \PSX\Data\Writer\Atom\Writer::link('PSX', $router->getAbsolutePath(Phpsx\Website\Application\Blog\Feed::class)); ?>
 </head>
 <body class="psx mdl-color--grey-200 mdl-color-text--grey-700 mdl-base">
 
-<?php include($location . '/inc/header.html'); ?>
+<?php include($location . '/../inc/header.html'); ?>
 
 <div class="mdl-cell mdl-cell--12-col mdl-shadow--2dp">
     <div class="psx-section mdl-color--primary-contrast">
@@ -15,7 +15,7 @@
     </p>
 </div>
 
-<?php include($location . '/inc/footer.html'); ?>
+<?php include($location . '/../inc/footer.html'); ?>
 
 </body>
 </html>
