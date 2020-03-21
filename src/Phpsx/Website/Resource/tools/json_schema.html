@@ -35,9 +35,9 @@
 }'; ?></div>
       <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--2-col">
-          <select name="type">
+          <select name="type" class="mdl-select">
             <?php foreach($types as $type): ?>
-            <option><?php echo $type; ?></option>
+            <option value="<?php echo $type; ?>"><?php echo $type; ?></option>
             <?php endforeach; ?>
           </select>
         </div>
@@ -49,9 +49,9 @@
     <?php if(!empty($out)): ?>
     <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
       <div class="mdl-tabs__tab-bar">
-        <a href="#schema" class="mdl-tabs__tab is-active">Schema</a>
+        <a href="#output" class="mdl-tabs__tab is-active">Output</a>
       </div>
-      <div class="mdl-tabs__panel is-active" id="schema">
+      <div class="mdl-tabs__panel is-active" id="output">
         <div class="psx-section"><?php echo $out; ?></div>
       </div>
     </div>

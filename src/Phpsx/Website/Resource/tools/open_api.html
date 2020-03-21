@@ -130,30 +130,11 @@ components:
           type: string'; ?></div>
       <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--2-col">
-          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-            <input type="radio" id="option-1" class="mdl-radio__button" name="type" value="php" checked>
-            <span class="mdl-radio__label">PHP</span>
-          </label>
-          <br>
-          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-            <input type="radio" id="option-2" class="mdl-radio__button" name="type" value="raml">
-            <span class="mdl-radio__label">RAML</span>
-          </label>
-          <br>
-          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-            <input type="radio" id="option-3" class="mdl-radio__button" name="type" value="swagger">
-            <span class="mdl-radio__label">Swagger</span>
-          </label>
-          <br>
-          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-4">
-            <input type="radio" id="option-4" class="mdl-radio__button" name="type" value="openapi">
-            <span class="mdl-radio__label">OpenAPI</span>
-          </label>
-          <br>
-          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-5">
-            <input type="radio" id="option-5" class="mdl-radio__button" name="type" value="html">
-            <span class="mdl-radio__label">HTML</span>
-          </label>
+          <select name="type" class="mdl-select">
+            <?php foreach($types as $type): ?>
+            <option value="<?php echo $type; ?>"><?php echo $type; ?></option>
+            <?php endforeach; ?>
+          </select>
         </div>
         <div class="mdl-cell mdl-cell--1-col">
           <input type="submit" value="Generate" class="mdl-button mdl-js-button mdl-button--raised">
@@ -163,15 +144,11 @@ components:
     <?php if(!empty($out)): ?>
     <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
       <div class="mdl-tabs__tab-bar">
-        <?php $i = 0; foreach($out as $path => $result): ?>
-        <a href="#<?php echo md5($path); ?>" class="mdl-tabs__tab <?php echo $i == 0 ? "is-active" : ""; $i++; ?>"><?php echo $path; ?></a>
-        <?php endforeach; ?>
+        <a href="#output" class="mdl-tabs__tab is-active">Output</a>
       </div>
-      <?php $i = 0; foreach($out as $path => $result): ?>
-      <div class="mdl-tabs__panel <?php echo $i == 0 ? "is-active" : ""; $i++; ?>" id="<?php echo md5($path); ?>">
-        <div class="psx-section"><?php echo $result; ?></div>
+      <div class="mdl-tabs__panel is-active" id="output">
+        <div class="psx-section"><?php echo $out; ?></div>
       </div>
-      <?php endforeach; ?>
     </div>
     <?php endif; ?>
   </div>

@@ -2,12 +2,16 @@
 
 namespace Phpsx\Website\Application\Tools;
 
+use PSX\Api\GeneratorFactory;
 use PSX\Api\Resource;
+use PSX\Framework\Annotation\ReaderFactory;
 use PSX\Framework\Controller\ViewAbstract;
 use PSX\Api\Parser;
 use PSX\Api\Generator;
 use PSX\Http\RequestInterface;
 use PSX\Http\ResponseInterface;
+use PSX\Http\Writer\File;
+use PSX\Schema\Generator\Code\Chunks;
 use PSX\Schema\Generator\Html;
 use PSX\Schema\Parser\JsonSchema\RefResolver;
 use Symfony\Component\Yaml\Yaml;
@@ -16,13 +20,17 @@ class OpenApi extends ViewAbstract
 {
     /**
      * @Inject
-     * @var \Doctrine\Common\Annotations\Reader
+     * @var ReaderFactory
      */
     protected $annotationReaderFactory;
 
     public function onGet(RequestInterface $request, ResponseInterface $response)
     {
-        $this->render($response, __DIR__ . '/../../Resource/tools/open_api.html', []);
+        $data = [
+            'types' => GeneratorFactory::getPossibleTypes(),
+        ];
+
+        $this->render($response, __DIR__ . '/../../Resource/tools/open_api.html', $data);
     }
 
     public function onPost(RequestInterface $request, ResponseInterface $response)
@@ -38,55 +46,35 @@ class OpenApi extends ViewAbstract
             $resources = $parser->parseAll(json_encode(Yaml::parse($data)));
 
             // generate output
-            $results = [];
-            foreach ($resources as $path => $resource) {
-                $results[$path] = $this->generateResource($type, $resource);
+            $factory   = new GeneratorFactory($this->annotationReaderFactory->factory('PSX\Schema\Parser\Popo\Annotation'), 'urn:schema.phpsx.org#', 'http://localhost', '');
+            $generator = $factory->getGenerator($type);
+            $result    = $generator->generateAll($resources);
+
+            if (is_string($result)) {
+                $result = "<pre class='psx-out'><code class='" . $type . "'>" . htmlspecialchars($result) . "</code></pre>";
+            } elseif ($result instanceof Chunks) {
+                $key  = substr(sha1($data), 0, 8);
+                $name = 'sdk-' . $type .  '-' . $key . '.zip';
+                $file = PSX_PATH_CACHE . '/' . $name;
+                if (!is_file($file)) {
+                    $result->writeTo($file);
+                }
+
+                $this->responseWriter->setBody($response, new File($file, $name, 'application/zip'));
+                return;
+            } else {
+                throw new \RuntimeException('Generator returned an invalid response');
             }
         } catch (\Exception $e) {
-            $results['Response'] = $e->getMessage();
+            $result = $e->getMessage();
         }
 
         $data = [
+            'types' => GeneratorFactory::getPossibleTypes(),
             'in'  => htmlspecialchars($data),
-            'out' => $results,
+            'out' => $result,
         ];
 
         $this->render($response, __DIR__ . '/../../Resource/tools/open_api.html', $data);
-    }
-
-    /**
-     * @param $type
-     * @param \PSX\Api\Resource $resource
-     * @return string
-     */
-    private function generateResource($type, Resource $resource)
-    {
-        switch ($type) {
-            case 'php':
-                $generator = new Generator\Php();
-                return "<pre class='psx-out'><code class='php'>" . htmlspecialchars($generator->generate($resource)) . "</code></pre>";
-                break;
-
-            case 'raml':
-                $generator = new Generator\Raml($resource->getTitle(), 1, 'http://api.phpsx.org', 'urn:schema.phpsx.org#');
-                return "<pre class='psx-out'><code class='yaml'>" . htmlspecialchars($generator->generate($resource)) . "</code></pre>";
-                break;
-
-            case 'swagger':
-                $generator = new Generator\Swagger($this->annotationReader, 1, '/', 'urn:schema.phpsx.org#');
-                return "<pre class='psx-out'><code class='json'>" . htmlspecialchars($generator->generate($resource)) . "</code></pre>";
-                break;
-
-            case 'openapi':
-                $generator = new Generator\OpenAPI($this->annotationReader, 1, 'http://api.phpsx.org', 'urn:schema.phpsx.org#');
-                return "<pre class='psx-out'><code class='json'>" . htmlspecialchars($generator->generate($resource)) . "</code></pre>";
-                break;
-
-            case 'html':
-            default:
-                $generator = new Generator\Html\Schema(new Html());
-                return $generator->generate($resource);
-                break;
-        }
     }
 }
