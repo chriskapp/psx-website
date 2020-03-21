@@ -129,15 +129,16 @@ components:
         message:
           type: string'; ?></div>
       <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--2-col">
-          <select name="type" class="mdl-select">
+        <div class="mdl-cell mdl-cell--10-col">
+          <label for="type">Type</label>
+          <select name="type" id="type" class="psx-select mdl-button--raised">
             <?php foreach($types as $type): ?>
             <option value="<?php echo $type; ?>"><?php echo $type; ?></option>
             <?php endforeach; ?>
           </select>
         </div>
-        <div class="mdl-cell mdl-cell--1-col">
-          <input type="submit" value="Generate" class="mdl-button mdl-js-button mdl-button--raised">
+        <div class="mdl-cell mdl-cell--2-col">
+          <input type="submit" value="Generate" class="psx-btn-generate mdl-button mdl-button--primary mdl-js-button mdl-button--raised">
         </div>
       </div>
     </div>

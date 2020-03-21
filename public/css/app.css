@@ -225,6 +225,14 @@ code {
   overflow-x:auto;
 }
 
+.psx-select {
+  margin:0;
+  margin-left:8px;
+  padding:0 16px;
+  height: 36px;
+  border:0;
+}
+
 /*
 
 Sunburst-like style (c) Vasily Polovnyov <vast@whiteants.net>
