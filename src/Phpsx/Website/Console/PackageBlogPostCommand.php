@@ -5,8 +5,8 @@ namespace Phpsx\Website\Console;
 use Phpsx\Website\Slugify;
 use Phpsx\Website\Table;
 use PSX\Framework\Config\Config;
-use PSX\Http\Client;
-use PSX\Http\GetRequest;
+use PSX\Http\Client\ClientInterface;
+use PSX\Http\Client\GetRequest;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -18,7 +18,7 @@ class PackageBlogPostCommand extends Command
     protected $config;
     protected $slugify;
 
-    public function __construct(Table\Blog $blogTable, Client $httpClient, Config $config)
+    public function __construct(Table\Blog $blogTable, ClientInterface $httpClient, Config $config)
     {
         parent::__construct();
 

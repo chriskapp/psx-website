@@ -5,8 +5,8 @@ namespace Phpsx\Website\Console;
 use DateTime;
 use Phpsx\Website\Table;
 use PSX\Framework\Config\Config;
-use PSX\Http\Client;
-use PSX\Http\GetRequest;
+use PSX\Http\Client\ClientInterface;
+use PSX\Http\Client\GetRequest;
 use PSX\Json\Parser;
 use PSX\Record\RecordInterface;
 use Symfony\Component\Console\Command\Command;
@@ -19,7 +19,7 @@ class FetchReleaseCommand extends Command
     protected $http;
     protected $config;
 
-    public function __construct(Table\Release $releaseTable, Client $http, Config $config)
+    public function __construct(Table\Release $releaseTable, ClientInterface $http, Config $config)
     {
         parent::__construct();
 
