@@ -1,70 +1,86 @@
 {
-   "primary": {
-      "psx/api": {
-         "git": "https://github.com/apioo/psx-api.git",
-         "description": "Parse and generate API specification formats"
-      },
-      "psx/data": {
-         "git": "https://github.com/apioo/psx-data.git",
-         "description": "Data processing library to read and write POPOs in different formats"
-      },
-      "psx/framework": {
-         "git": "https://github.com/apioo/psx-framework.git",
-         "description": "Engine of the PSX framework"
-      },
-      "psx/json": {
-         "git": "https://github.com/apioo/psx-json.git",
-         "description": "Read and transform JSON documents through JSON-Patch/Pointer"
-      },
-      "psx/schema": {
-         "git": "https://github.com/apioo/psx-schema.git",
-         "description": "Parse and generate data schema formats"
-      },
-      "psx/sql": {
-         "git": "https://github.com/apioo/psx-sql.git",
-         "description": "Build complex data structures from relational databases"
-      },
-      "psx/model": {
-         "git": "https://github.com/apioo/psx-model.git",
-         "description": "Model classes based on open data specifications"
-      },
-      "psx/datetime": {
-         "git": "https://github.com/apioo/psx-datetime.git",
-         "description": "Date and time implementations which only accept RFC3339 formats"
-      },
-      "psx/uri": {
-         "git": "https://github.com/apioo/psx-uri.git",
-         "description": "URI, URL and URN value objects"
-      }
-   },
-   "secondary": {
-      "psx/cache": {
-         "git": "https://github.com/apioo/psx-cache.git",
-         "description": "PSR-6 implementation using the doctrine cache system"
-      },
-      "psx/http": {
-         "git": "https://github.com/apioo/psx-http.git",
-         "description": "Mutable HTTP model and HTTP client implementation"
-      },
-      "psx/oauth": {
-         "git": "https://github.com/apioo/psx-oauth.git",
-         "description": "Oauth consumer"
-      },
-      "psx/oauth2": {
-         "git": "https://github.com/apioo/psx-oauth2.git",
-         "description": "Oauth2 consumer"
-      },
-      "psx/openssl": {
-         "git": "https://github.com/apioo/psx-openssl.git",
-         "description": "OpenSsl wrapper library"
-      },
-      "psx/record": {
-         "git": "https://github.com/apioo/psx-record.git",
-         "description": "Data HashMap implementation"
-      },
-      "psx/validate": {
-         "git": "https://github.com/apioo/psx-validate.git",
-         "description": "Validate complex data structures"
-      }
-   }
+  "primary": {
+    "psx/api": {
+      "git": "https://github.com/apioo/psx-api.git",
+      "description": "Parse and generate API specification formats"
+    },
+    "psx/data": {
+      "git": "https://github.com/apioo/psx-data.git",
+      "description": "Data processing library to read and write POPOs in different formats"
+    },
+    "psx/framework": {
+      "git": "https://github.com/apioo/psx-framework.git",
+      "description": "Engine of the PSX framework"
+    },
+    "psx/schema": {
+      "git": "https://github.com/apioo/psx-schema.git",
+      "description": "Parse and generate data schema formats"
+    },
+    "psx/sql": {
+      "git": "https://github.com/apioo/psx-sql.git",
+      "description": "Build complex data structures from relational databases"
+    },
+    "psx/dependency": {
+      "git": "https://github.com/apioo/psx-dependency",
+      "description": "Simple and fast PSR-11 compatible DI container"
+    },
+    "psx/http": {
+      "git": "https://github.com/apioo/psx-http.git",
+      "description": "Interfaces to describe HTTP message, middleware and client implementations"
+    },
+    "psx/uri": {
+      "git": "https://github.com/apioo/psx-uri.git",
+      "description": "URI, URL and URN value objects"
+    },
+    "psx/cloudevents": {
+      "git": "https://github.com/apioo/psx-cloudevents",
+      "description": "Library which helps to produce and consume cloud events"
+    },
+    "psx/sandbox": {
+      "git": "https://github.com/apioo/psx-sandbox",
+      "description": "Execute PHP code in a sandbox"
+    },
+    "psx/model": {
+      "git": "https://github.com/apioo/psx-model.git",
+      "description": "Model classes based on open data specifications"
+    },
+    "psx/datetime": {
+      "git": "https://github.com/apioo/psx-datetime.git",
+      "description": "Stricter date time implementations which only accepts RFC3339 date time"
+    },
+    "psx/json": {
+      "git": "https://github.com/apioo/psx-json.git",
+      "description": "Read and transform JSON documents through JSON-Patch/Pointer"
+    },
+    "psx/cache": {
+      "git": "https://github.com/apioo/psx-cache.git",
+      "description": "PSR-6 and PSR-16 implementation using the doctrine cache system"
+    },
+    "psx/v8": {
+      "git": "https://github.com/apioo/psx-v8",
+      "description": "Execute Javasript code via V8"
+    }
+  },
+  "secondary": {
+    "psx/oauth": {
+      "git": "https://github.com/apioo/psx-oauth.git",
+      "description": "Oauth consumer and provider"
+    },
+    "psx/oauth2": {
+      "git": "https://github.com/apioo/psx-oauth2.git",
+      "description": "Oauth2 consumer and provider"
+    },
+    "psx/openssl": {
+      "git": "https://github.com/apioo/psx-openssl.git",
+      "description": "OpenSsl wrapper library"
+    },
+    "psx/record": {
+      "git": "https://github.com/apioo/psx-record.git",
+      "description": "Data HashMap implementation"
+    },
+    "psx/validate": {
+      "git": "https://github.com/apioo/psx-validate.git",
+      "description": "Validate complex data structures"
+    }
+  }
 }
