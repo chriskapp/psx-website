@@ -91,6 +91,8 @@ class UpdateBlogCommand extends Command
         }
 
         $output->writeln(sprintf('Created %s and updated %s entries', $postCount, $putCount));
+
+        return 0;
     }
 
     protected function getCategories(Entry $entry)

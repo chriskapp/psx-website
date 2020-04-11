@@ -42,5 +42,7 @@ class ShowBlogCommand extends Command
             ->setRows($rows);
 
         $table->render();
+
+        return 0;
     }
 }

@@ -36,5 +36,7 @@ class CreateSchemaCommand extends Command
 
             $this->connection->query($query);
         }
+
+        return 0;
     }
 }

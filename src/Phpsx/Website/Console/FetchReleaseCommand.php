@@ -78,6 +78,8 @@ class FetchReleaseCommand extends Command
         } else {
             $output->writeln(sprintf('Received an status code %s', $response->getStatusCode()));
         }
+
+        return 0;
     }
 
     protected function getAsset(\stdClass $release)

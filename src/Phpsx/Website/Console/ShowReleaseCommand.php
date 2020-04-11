@@ -42,5 +42,7 @@ class ShowReleaseCommand extends Command
             ->setRows($rows);
 
         $table->render();
+
+        return 0;
     }
 }

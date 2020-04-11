@@ -59,6 +59,8 @@ class PackageBlogPostCommand extends Command
                 }
             }
         }
+
+        return 0;
     }
 
     private function insertTag(\stdClass $tag, $projectName, \stdClass $project, OutputInterface $output)
